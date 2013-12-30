@@ -8,9 +8,8 @@ echo '<div class="col-sm-12">';
 echo $this->Form->textarea('body', array(
             "rows"=>20,
             "class"=>"form-control",
-            'label'=>'本文'
-            'default'=>$post['WikiPage']['body'],
-            'error' => array('attributes' => array('class' => 'has-error')
+            'label'=>'本文',
+            'default'=>$post['WikiPage']['body']
         ));
 
 echo 'カテゴリー ';

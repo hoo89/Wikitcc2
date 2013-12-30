@@ -60,8 +60,8 @@
                 ?>
             </div>
             <div class="col-sm-offset-2 col-sm-10" id="content">
-                <?php echo $this->fetch('title'); ?>
                 <?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
+                <?php echo $this->fetch('title'); ?>
                 <hr>
                 <?php echo $this->fetch('content'); ?>
                 <hr>
