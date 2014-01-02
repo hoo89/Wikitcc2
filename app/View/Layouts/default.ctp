@@ -59,7 +59,16 @@
                 }
                 ?>
             </div>
-            <div class="col-sm-offset-2 col-sm-10" id="content">
+            
+            <div class="col-sm-offset-2 col-md-9 col-sm-10" id="content">
+                <div id="content-header">
+                <?php
+                if(empty($content_title)){
+                    $content_title=null;
+                }
+                echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+                ?>
+                </div>
                 <?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
                 <?php echo $this->fetch('title'); ?>
                 <hr>

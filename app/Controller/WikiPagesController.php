@@ -19,24 +19,26 @@ class WikiPagesController extends AppController {
             throw new NotFoundException(__('ページが見つかりません'));
         }
         $this->set('parents', $this->WikiPage->Category->getPath($post['Category']['id']));
-        $this->set('page_title', $post['WikiPage']['title']);
+        $this->set('content_title', $post['WikiPage']['title']);
         $this->set('post', $post);
     }
     public function add() {
         $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
         $this->set('categoryList',$categoryList);
+        $this->set('content_title', null);
 
         if ($this->request->is('post')) {
             $this->WikiPage->create();
             if ($this->WikiPage->save($this->request->data)) {
                 $this->Session->setFlash(__('ページが作成されました.'));
-                return $this->redirect(array('action' => 'view',$this->request->data['WikiPage']['title']));
+                return $this->redirect(array('action' => 'view',h($this->request->data['WikiPage']['title'])));
             }
             $this->Session->setFlash(__('ページを作成できませんでした.'));
         }
     }
     public function edit($title = null) {
         $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
+        $this->set('content_title', $title);
         $this->set('categoryList',$categoryList);
         if (!$title) {
             throw new NotFoundException(__('ページが見つかりません'));
