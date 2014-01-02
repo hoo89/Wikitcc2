@@ -1,4 +1,6 @@
 body {
+    margin-right: 5px;
+    background-color: #EEE;
 }
 .form-control{
     margin: 10px 0px;
@@ -45,10 +47,19 @@ h4#headline {
 }
 #content{
     padding-left: 30px;
-    max-width: 70%;
+    padding-top: 5px;
+    background-color: #FFF;
+    border-radius: 5px;
+}
+#content>.nav-pills>li.active>a{
+
 }
 #header{
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: 5px;
+    min-width: 350px;
 }
 #footer{
     text-align: right;
@@ -61,9 +72,9 @@ th{
 .btn{
     margin: 15px 0px;
 }
-.breadcrumb{
-    margin-top: 5px;
+#content>.breadcrumb{
     margin-bottom: 0px;
+    background-color: #FFF;
 }
 
 .navbar-toggle .icon-bar{
@@ -116,7 +127,7 @@ pre, code{
 @media (max-width: 768px) {
     #content{
         max-width: 100%;
-        margin-right: 5px;
+
     }
     #updates{
         display: none;
