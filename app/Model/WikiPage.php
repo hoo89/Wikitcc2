@@ -9,4 +9,11 @@ class WikiPage extends AppModel {
     );
     public $name = 'WikiPage';
     public $belongsTo = 'Category';
+
+    public function beforeSave($options = array()) {
+    	if (isset($this->data[$this->alias]['title'])) {
+    		$this->data[$this->alias]['title']=h($this->data[$this->alias]['title']);
+    	}
+    	return true;
+    }
 }
