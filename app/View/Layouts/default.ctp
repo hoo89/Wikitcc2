@@ -35,17 +35,17 @@
 
 <body>
     <div class="container-fluid">
-        <?php
-        if(!$logged_in){
-            echo $this->element('header');
-        }else{
-            if(!empty($page_title)){
-                echo $this->element('private_header',compact($page_title));
+        <div class="row">
+            <div class="col-sm-offset-7 col-sm-3" id="header">
+            <?php
+            if(!$logged_in){
+                echo $this->element('header');
             }else{
                 echo $this->element('private_header');
             }
-        }
-        ?>
+            ?>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-sm-2" id="sidebar">
