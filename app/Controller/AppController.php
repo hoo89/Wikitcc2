@@ -51,4 +51,12 @@ class AppController extends Controller {
         $this->Auth->allow();
         $this->set('logged_in',$this->Auth->loggedIn());
     }
+
+    public function isAuthorized($user) {
+        if ($this->Auth->loggedIn()) {
+            return true;
+        }
+
+        return false;
+    }
 }
