@@ -59,7 +59,11 @@ h4#headline {
     margin-bottom: 5px;
     background-color: white;
     border-radius: 5px;
-    min-width: 350px;
+
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 10%;
 }
 #footer{
     text-align: right;
@@ -127,7 +131,9 @@ pre, code{
 @media (max-width: 768px) {
     #content{
         max-width: 100%;
-
+    }
+    #header{
+      margin: 0;
     }
     #updates{
         display: none;
