@@ -3,7 +3,8 @@ Wikitcc2
 
 CakePHPで動くWikiクローンです.
 ある先輩が作成したWikitccというWikiエンジンの後継を目指し製作中です.
-Wiki記法のパーサはそれをほぼそのまま流用しました.
+詳しくはこちらへ https://github.com/hoo89/Wikitcc2/wiki
+
 
 Wiki clone powered by CakePHP.
 
