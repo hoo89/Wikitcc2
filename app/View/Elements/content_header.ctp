@@ -19,8 +19,15 @@
 </li>
 <?php } ?>
 
-
-<li><?php echo $this->Html->link('アップロード',array('controller' => 'categories', 'action' => 'index')); ?></li>
+<li <?php if($this->Pills->isActive('attachments', array('view'))) { echo 'class="active"'; } ?> >
+	<?php 
+	if(!empty($content_title)){
+		echo $this->Html->link('アップロード',array('controller' => 'attachments', 'action' => 'add',$content_title));
+	}else{
+		echo $this->Html->link('アップロード',array('controller' => 'attachments', 'action' => 'add'));
+	}
+	?>
+</li>
 <li <?php if($this->Pills->isActive('wikiPages', array('add'))) { echo 'class="active"'; } ?> >
 	<?php echo $this->Html->link('新規',array('controller' => 'wikiPages', 'action' => 'add')); ?>
 </li>
