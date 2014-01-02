@@ -202,7 +202,7 @@ class WikitccParser{
         
         //イメージリンク(仮)
         //例:[image:logo.jpg|http://www.kitcc.org]
-        $img_path = "./img/uploads/";       
+        $img_path = "/wikitcc2/files/attachment/";       
         $this->text = preg_replace("/([^<])\[image:(.+)\|($reg_url)\]([^>])/",
                                    "\\1<a href=\"\\3\"><img src=\"$img_path\\2\"></a>\\5", $this->text);
         
@@ -547,8 +547,8 @@ class WikitccParser{
      * [image:ファイル名]
      */
     private function createImg(){
-        
-        $img_path = "./img/uploads/";       
+        // must fix change path
+        $img_path = "/wikitcc2/files/attachment/";
         $this->text = preg_replace("/([^<])\[image:([^\[]+)\]([^>])/", 
                                    "\\1<a href=\"$img_path\\2\"><img src=\"$img_path\\2\"></a>\\3",
                                    $this->text);

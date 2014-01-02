@@ -27,10 +27,8 @@
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/', array('controller' => 'wikiPages', 'action' => 'view','TOP'));
 	Router::connect('/wiki/*', array('controller' => 'wikiPages', 'action' => 'view'));
-/**
- * ...and connect the rest of 'Pages' controller's URLs.
- */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	Router::connect('/wiki/*', array('controller' => 'wikiPages', 'action' => 'view'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

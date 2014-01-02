@@ -36,7 +36,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-offset-7 col-sm-3" id="header">
+            <div class="pull-right" id="header">
             <?php
             if(!$logged_in){
                 echo $this->element('header');

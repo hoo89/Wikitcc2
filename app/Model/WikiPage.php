@@ -9,6 +9,7 @@ class WikiPage extends AppModel {
     );
     public $name = 'WikiPage';
     public $belongsTo = 'Category';
+    public $hasMany = 'Attachment';
 
     public function beforeSave($options = array()) {
     	if (isset($this->data[$this->alias]['title'])) {

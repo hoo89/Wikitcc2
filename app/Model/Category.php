@@ -8,4 +8,10 @@ class Category extends AppModel {
     		'fields' => array('id','title','category_id','is_public')
     	)
     );
+    public function beforeSave($options = array()) {
+    	if (isset($this->data[$this->alias]['title'])) {
+    		$this->data[$this->alias]['title']=h($this->data[$this->alias]['title']);
+    	}
+    	return true;
+    }
 }
