@@ -41,14 +41,15 @@ class AppController extends Controller {
     public $components = array(
         'Session',
         'Auth' => array(
-            'loginRedirect' => array('controller' => 'categories', 'action' => 'index'),
-            //'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
-            'authorize' => array('Controller')
+            'loginRedirect' => '/',
+            'authorize' => array('Controller'),
+            'authError' => 'その操作にはログインが必要です'
         )
     );
 
     public function beforeFilter() {
-        $this->Auth->allow();
+        //ログイン無しで行えるActionを許可する
+        //$this->Auth->allow();
         $this->set('logged_in',$this->Auth->loggedIn());
     }
 
@@ -56,7 +57,6 @@ class AppController extends Controller {
         if ($this->Auth->loggedIn()) {
             return true;
         }
-
         return false;
     }
 }

@@ -13,7 +13,14 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout');
+        $this->Auth->allow('login');
+    }
+
+    public function isAuthorised($user){
+        if($this->action === 'logout'){
+            return parrent::isAuthorised();
+        }
+        return false;
     }
 
     public function login() {
@@ -31,10 +38,10 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->logout());
     }
 
-    /*public function index() {
+    public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
-    }*/
+    }
 
     public function view($id = null) {
         $this->User->id = $id;

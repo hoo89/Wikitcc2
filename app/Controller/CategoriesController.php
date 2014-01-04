@@ -1,6 +1,12 @@
 <?php
 class CategoriesController extends AppController {
 	public $helpers = array('Tree');
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('index');
+	}
+
     public function index() {
     	$categories = $this->Category->find('threaded', array( 
             'order' => array('Category.lft')) 
@@ -23,16 +29,16 @@ class CategoriesController extends AppController {
 
 		if($this->request->isDelete()) {
 			if ($this->Category->delete($id)) {
-				$this->Session->setFlash('カテゴリーを削除しました.');
+				$this->Session->setFlash('カテゴリーを削除しました');
 			} else {
-				$this->Session->setFlash('カテゴリーの削除に失敗しました.');
+				$this->Session->setFlash('カテゴリーの削除に失敗しました');
 			}
 			$this->redirect(array('action'=> 'index'));
 		}
 
 		$this->request->data = $this->Category->findById($id);
 		if (empty($this->request->data)) {
-			$this->Session->setFlash('カテゴリーが見つかりませんでした.');
+			$this->Session->setFlash('カテゴリーが見つかりませんでした');
 			$this->redirect(array('action'=> 'index'));
 		}
 
@@ -44,20 +50,19 @@ class CategoriesController extends AppController {
 	public function edit($id = null) {
 		if ($this->request->isPost() || $this->request->isPut()) {
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash('カテゴリーを保存しました.');
+				$this->Session->setFlash('カテゴリーを保存しました');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('入力に間違いがあります.');
+				$this->Session->setFlash('カテゴリーを保存できませんでした');
 			}
 		} else {
 			if ($id != null) {
 				$this->request->data = $this->Category->findById($id);
 				if (empty($this->request->data)) {
-					$this->Session->setFlash('カテゴリーが見つかりませんでした.');
+					$this->Session->setFlash('カテゴリーが見つかりませんでした');
 					$this->redirect(array('action'=> 'index'));
 				}
 			}
-
 		}
 
 		$categoryList = $this->Category->generateTreeList(null, null, null, '-');

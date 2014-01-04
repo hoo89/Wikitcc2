@@ -3,12 +3,18 @@ class WikiPagesController extends AppController {
     public $components = array('Search.Prg');
     public $presetVars = true;
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('find_public','view');
+        if($this->action === 'view'){
+            $title = $this->request->params['pass'][0];
+            if (!$this->WikiPage->isPublic($title)){
+                $this->Auth->deny('view');
+            }
+        }
+    }
+
     public function index() {
-        $this->Prg->commonProcess();
-        $this->paginate = array(
-            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
-        );
-        
         $posts = $this->paginate();
         if ($this->request->is('requested')) {
             return $posts;
@@ -16,6 +22,35 @@ class WikiPagesController extends AppController {
             $this->set('posts', $posts);
         }
     }
+
+    public function find(){
+        $this->Prg->commonProcess();
+        $this->paginate = array(
+            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
+        );
+        $posts = $this->paginate();
+        if ($this->request->is('requested')) {
+            return $posts;
+        } else {
+            $this->set('posts', $posts);
+        }
+    }
+
+    public function find_public(){
+        $this->Prg->commonProcess();
+        $this->passedArgs['is_public'] = 1;
+        $this->paginate = array(
+            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
+        );
+        $posts = $this->paginate();
+        $this->set('posts', $posts);
+        if ($this->request->is('requested')) {
+            return $posts;
+        } else {
+            $this->set('posts', $posts);
+        }
+    }
+
     public function view($title = null) {
         $this->helpers[] = 'WikitccParse';
         if (!$title) {
@@ -30,9 +65,9 @@ class WikiPagesController extends AppController {
         $this->set('content_title', $post['WikiPage']['title']);
         $this->set('data', $post);
     }
+
     public function add() {
-        return $this->edit();
-        /*$categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
+        $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
         $this->set('categoryList',$categoryList);
         $this->set('content_title', null);
 
@@ -43,36 +78,41 @@ class WikiPagesController extends AppController {
                 return $this->redirect(array('action' => 'view',h($this->request->data['WikiPage']['title'])));
             }
             $this->Session->setFlash(__('ページを作成できませんでした'));
-        }*/
+        }
     }
+
     public function edit($title = null) {
         $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
         $this->set('content_title', $title);
         $this->set('categoryList',$categoryList);
-        /*if (!$title) {
-            throw new NotFoundException(__('ページが見つかりません'));
-        }*/
         $post = $this->WikiPage->findByTitle($title);
-        /*if (!$post) {
-            throw new NotFoundException(__('ページが見つかりません'));
-        }*/
         $this->set('post', $post);
 
         if ($this->request->is(array('post', 'put'))) {
-            $this->WikiPage->id = $post['WikiPage']['id'];
+            if($post){
+                $this->WikiPage->id = $post['WikiPage']['id'];
+            }
             if ($this->WikiPage->save($this->request->data)) {
-                $this->Session->setFlash(__('ページが更新されました'));
+                if($post){
+                    $this->Session->setFlash(__('ページが更新されました'));
+                }else{
+                    $this->Session->setFlash(__('ページが作成されました'));
+                }
                 return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
             }
-            $this->Session->setFlash(__('ページを更新できませんでした'));
+            if($post){
+                $this->Session->setFlash(__('ページを更新できませんでした'));
+            }else{
+                $this->Session->setFlash(__('ページを作成できませんでした'));
+            }
         }
 
-        //フォームのデフォルト値をここで設定している
+        //フォームのデフォルト値をここで設定
         if (!$this->request->data) {
             $this->request->data = $post;
         }
-        $this->render('edit');
     }
+
     public function delete($title = null) {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
@@ -90,6 +130,7 @@ class WikiPagesController extends AppController {
             return $this->redirect(array('action' => 'index'));
         }
     }
+
     public function add_comment(){
         if ($this->request->is('post')) {
             $post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);

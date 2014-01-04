@@ -24,5 +24,13 @@ class WikiPage extends AppModel {
         'title' => array('type' => 'like'),
         'body' => array('type' => 'like'),
         'keyword' => array('type' => 'like', 'field' => array('WikiPage.title', 'WikiPage.body'),'connectorAnd' => ' ', 'connectorOr' => ','),
+        'is_public' => array('type' => 'value')
     );
+    public function isPublic($title){
+        $post = $this->findByTitle($title);
+        if(!$post) return true;
+        return $post['WikiPage']['is_public'];
+    }
+
+    private $limit_revisions = 100;
 }
