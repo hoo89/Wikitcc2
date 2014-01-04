@@ -69,14 +69,40 @@ class WikiPagesController extends AppController {
 
         $post = $this->WikiPage->findByTitle($title);
         if(!$post){
-            $this->Session->setFlash(__('削除するページが見つかりません.', h($title)));
+            $this->Session->setFlash(__('削除するページが見つかりません', h($title)));
             return $this->redirect(array('action' => 'index'));
         }
         $id=$post['WikiPage']['id'];
 
         if ($this->WikiPage->delete($id)) {
-            $this->Session->setFlash(__('ページ： %s を削除しました.', h($title)));
+            $this->Session->setFlash(__('ページ： %s を削除しました', h($title)));
             return $this->redirect(array('action' => 'index'));
+        }
+    }
+    public function add_comment(){
+        if ($this->request->is('post')) {
+            $post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);
+            if (!$post) {
+                $this->Session->setFlash(__('ページが見つかりません'));
+                return $this->redirect(array('action' => 'index'));
+            }            
+            $this->WikiPage->id = $post['WikiPage']['id'];
+            $content = $post['WikiPage']['body'];
+            $name = h($this->request->data['WikiPage']['name']);
+            $message = h($this->request->data['WikiPage']['comment']);
+            if(empty($name)){
+                $name = "名無しさん";
+            }
+            $wiki_comment = "*$message - $name\n";
+            $content = str_replace('{{comment}}', $wiki_comment.'{{comment}}', $content);
+            $post['WikiPage']['body'] = $content;
+
+            if ($this->WikiPage->save($post)) {
+                $this->Session->setFlash(__('ページが更新されました'));
+                return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
+            }else{
+                $this->Session->setFlash(__('ページを更新できませんでした'));
+            }
         }
     }
 }

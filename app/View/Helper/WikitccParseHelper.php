@@ -1,7 +1,8 @@
 <?php
 class WikitccParseHelper extends AppHelper {
-    public function parse($text) {
+    public function parse($view,$text) {
         $wiki = new WikitccParser($text);
+        $wiki->view = $view;
         $wiki->parse();
         return $wiki->getText();
     }
@@ -13,6 +14,8 @@ class WikitccParseHelper extends AppHelper {
  * @author bokko
  */
 class WikitccParser{
+
+    public $view;
     
     /**
      * @var string 解析するテキスト
@@ -87,7 +90,7 @@ class WikitccParser{
         $this->createHorizon();
         $this->createMailTo();
         $this->createImg();
-        //$this->createPlugin();
+        $this->createPlugin();
         $this->createInnerLink();
         $this->rmIgnoreDelimiter();
         $this->createPre();
@@ -559,30 +562,24 @@ class WikitccParser{
      * 
      * {{プラグイン名 引数}}
      */
-    /*private function createPlugin(){
-        
-        $dir = Config::GetPluginDir().'/';
-        $hd = null;
-        $file = null;       
-        
-        $str = 'if($hd = opendir($dir)){
-                    while(false !== $file = readdir($hd)){
-                        if($file == \\\'\\2.php\\\'){
-                            require_once($dir.$file);
-                        }
-                    }
-                }
-                if(function_exists(wikitcc_\\2)) return \\\'\\1\\\'.wikitcc_\\2(\\\'\\3\\\', $this->plugined_file).\\\'\\4\\\';
-                else return \\\'Not Found!\\4\\\';';
-        
-        $this->text = preg_replace("/([^<])\{\{([^\{ ]*)()\}\}([^>])/e",
-                                   "eval('$str')",
+    private function createPlugin(){
+        $view=$this->view;
+        $callback = function ($matches) use ($view){
+            $plugin = basename($matches[2]);
+            if(!$view->elementExists('plugin/'.$plugin)){
+                return $matches[1].('Not Found!').$matches[4];
+            }else{
+                return $matches[1].$view->element('plugin/'.$plugin).$matches[4];
+            }
+        };
+        $this->text = preg_replace_callback("/([^<])\{\{([^\{ ]*)()\}\}([^>])/",
+                                   $callback,
                                    $this->text);
         
-        $this->text = preg_replace("/([^<])\{\{([^\{]*) ([^\{]*)\}\}([^>])/e",
-                                   "eval('$str')",
+        $this->text = preg_replace_callback("/([^<])\{\{([^\{]*) ([^\{]*)\}\}([^>])/",
+                                   $callback,
                                    $this->text);
-    }*/
+    }
     
     /**
      * 記法を<>で囲んだ部分の<>を取り除く(<と>で囲まれた記法はパースされない)
