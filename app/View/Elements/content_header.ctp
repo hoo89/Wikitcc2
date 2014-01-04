@@ -19,6 +19,16 @@
 </li>
 <?php } ?>
 
+<?php if(!empty($content_title)){ ?>
+<li <?php if($this->Pills->isActive('wikiPages', array('revisions'))) { echo 'class="active"'; } ?> >
+	<?php echo $this->Html->link('履歴',array('controller' => 'wikiPages', 'action' => 'revisions',$content_title)); ?>
+</li>
+<?php }else{ ?>
+<li class="disabled <?php if($this->Pills->isActive('wikiPages', array('edit'))) { echo ' active'; } ?>">
+	<?php echo $this->Html->link('履歴','#'); ?>
+</li>
+<?php } ?>
+
 <li <?php if($this->Pills->isActive('attachments', array('add'))) { echo 'class="active"'; } ?> >
 	<?php 
 	if(!empty($content_title)){
