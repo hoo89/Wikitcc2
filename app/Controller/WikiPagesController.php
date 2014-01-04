@@ -1,6 +1,14 @@
 <?php
 class WikiPagesController extends AppController {
+    public $components = array('Search.Prg');
+    public $presetVars = true;
+
     public function index() {
+        $this->Prg->commonProcess();
+        $this->paginate = array(
+            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
+        );
+        
         $posts = $this->paginate();
         if ($this->request->is('requested')) {
             return $posts;
