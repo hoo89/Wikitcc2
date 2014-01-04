@@ -10,8 +10,8 @@ body {
 	margin: 10px 0px;
 }
 
-.content-body{
-	font-size: 100%;
+#content-body{
+	font-size: 110%;
 	color: black;
 }
 
