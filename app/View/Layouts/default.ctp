@@ -54,23 +54,29 @@
 			</div>
 
 			<div class="col-sm-offset-2 col-md-9 col-sm-10" id="content">
-				<div class="pull-right" id="content-header">
-				<?php
-				if(empty($content_title)){
-					$content_title=null;
-				}
-				if($logged_in){
-					echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
-				}
-				?>
+				<div id="content-header">
+					<div class="col-md-6" id="breadcrumb">
+					<?php
+					echo $this->fetch('breadcrumb');
+					?>
+					</div>
+					<div class="pull-right">
+					<?php
+					if(empty($content_title)){
+						$content_title=null;
+					}
+					if($logged_in){
+						echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+					}
+					?>
+					</div>
+					<div class="col-sm-6">
+						<?php echo $this->fetch('title'); ?>
+					</div>
+					<div class="col-sm-12">
+						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
+					</div>
 				</div>
-
-				<div class="col-sm-6">
-					<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
-					<?php echo $this->fetch('title'); ?>
-				</div>
-
-				
 				<div class="col-sm-12" id="content-body">
 					<hr>
 					<?php echo $this->fetch('content'); ?>

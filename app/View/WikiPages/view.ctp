@@ -8,10 +8,10 @@ if($this->Html->url()!=$this->Html->webroot){
 	}
 	$this->Html->addCrumb($data['WikiPage']['title']);
 }
-$this->start('title');
-echo $this->Html->getCrumbList(array('class'=>'breadcrumb'));
-echo '<h3>'.$data['WikiPage']['title'].'</h3>';
-$this->end();
+
+$this->assign('breadcrumb', $this->Html->getCrumbList(array('class'=>'breadcrumb')));
+$this->assign('title', '<h3>'.$data['WikiPage']['title'].'</h3>');
+
 ?>
 <div class="content-body">
 	<?php echo $this->WikitccParse->parse($this,$data['WikiPage']['body']); ?>
