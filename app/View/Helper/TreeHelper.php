@@ -10,18 +10,16 @@ class TreeHelper extends AppHelper {
             }
 
             foreach ($array as $vals) {
-                if (($vals['Category']['is_leaf'] == false)) {
-                    echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
-                    $this->generate($vals['children'],null,false);
-                    if(!empty($vals['WikiPage'])){
-                        echo '<ul>';
-                        foreach ($vals['WikiPage'] as $page){
-                            $link = $this->Html->link($page['title'],
-                                array('controller' => 'wikiPages', 'action' => 'view', $page['title']));
-                            echo "<li>".$link;
-                        }
-                        echo '</ul>';
+                echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
+                $this->generate($vals['children'],null,false);
+                if(!empty($vals['WikiPage'])){
+                    echo '<ul>';
+                    foreach ($vals['WikiPage'] as $page){
+                        $link = $this->Html->link($page['title'],
+                            array('controller' => 'wikiPages', 'action' => 'view', $page['title']));
+                        echo "<li>".$link;
                     }
+                    echo '</ul>';
                 }
                 echo "</li>\n";
             }

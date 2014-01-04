@@ -67,7 +67,7 @@ class WikiPagesController extends AppController {
     }
 
     public function add() {
-        $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
         $this->set('categoryList',$categoryList);
         $this->set('content_title', null);
 
@@ -82,7 +82,7 @@ class WikiPagesController extends AppController {
     }
 
     public function edit($title = null) {
-        $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
         $this->set('content_title', $title);
         $this->set('categoryList',$categoryList);
         $post = $this->WikiPage->findByTitle($title);
