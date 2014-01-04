@@ -1,20 +1,28 @@
 <?php
-$this->assign('title','<h3>編集</h3>');
+if($this->data && $this->data['WikiPage']){
+	$this->assign('title','<h3>編集</h3>');
+}else{
+	$this->assign('title', '<h3>新規作成</h3>');
+}
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
-echo $this->Form->input('title',array('disabled' => true, 'class' => 'form-control', 'label'=>'タイトル','default'=>$post['WikiPage']['title']));
+if($this->data && $this->data['WikiPage']){
+	echo $this->Form->input('title',array('disabled' => true, 'class' => 'form-control', 'label'=>'タイトル','error' => array('attributes' => array('class' => 'has-error'))));
+}else{
+	echo $this->Form->input('title',array('class' => 'form-control', 'label'=>'タイトル','error' => array('attributes' => array('class' => 'has-error'))));
+}
 echo '</div>';
 echo '<div class="col-sm-12">';
 echo $this->Form->textarea('body', array(
             "rows"=>20,
             "class"=>"form-control",
-            'label'=>'本文',
-            'default'=>$post['WikiPage']['body']
+            'label'=>'本文'
         ));
 
 echo 'カテゴリー ';
 echo $this->Form->select('category_id', $categoryList, array('empty' => '------'));
-echo $this->Form->input('id', array('type' => 'hidden','default'=>$post['WikiPage']['id']));
-echo $this->Form->end('保存する');
+echo $this->Form->radio('is_public', array(0=>'部内のみに公開する',1=>'外部に公開する'));
+echo $this->Form->input('id', array('type' => 'hidden'));
+echo $this->Form->end(array('label'=>'保存する','class'=>'btn btn-primary'));
 echo '</div>';
 ?>

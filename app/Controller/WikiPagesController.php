@@ -28,47 +28,50 @@ class WikiPagesController extends AppController {
         }
         $this->set('parents', $this->WikiPage->Category->getPath($post['Category']['id']));
         $this->set('content_title', $post['WikiPage']['title']);
-        $this->set('post', $post);
+        $this->set('data', $post);
     }
     public function add() {
-        $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
+        return $this->edit();
+        /*$categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
         $this->set('categoryList',$categoryList);
         $this->set('content_title', null);
 
         if ($this->request->is('post')) {
             $this->WikiPage->create();
             if ($this->WikiPage->save($this->request->data)) {
-                $this->Session->setFlash(__('ページが作成されました.'));
+                $this->Session->setFlash(__('ページが作成されました'));
                 return $this->redirect(array('action' => 'view',h($this->request->data['WikiPage']['title'])));
             }
-            $this->Session->setFlash(__('ページを作成できませんでした.'));
-        }
+            $this->Session->setFlash(__('ページを作成できませんでした'));
+        }*/
     }
     public function edit($title = null) {
         $categoryList = $this->WikiPage->Category->generateTreeList(array('is_leaf' => false),null,null, '-');
         $this->set('content_title', $title);
         $this->set('categoryList',$categoryList);
-        if (!$title) {
+        /*if (!$title) {
             throw new NotFoundException(__('ページが見つかりません'));
-        }
+        }*/
         $post = $this->WikiPage->findByTitle($title);
-        if (!$post) {
+        /*if (!$post) {
             throw new NotFoundException(__('ページが見つかりません'));
-        }
+        }*/
         $this->set('post', $post);
 
         if ($this->request->is(array('post', 'put'))) {
             $this->WikiPage->id = $post['WikiPage']['id'];
             if ($this->WikiPage->save($this->request->data)) {
-                $this->Session->setFlash(__('ページが更新されました.'));
+                $this->Session->setFlash(__('ページが更新されました'));
                 return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
             }
-            $this->Session->setFlash(__('ページを更新できませんでした.'));
+            $this->Session->setFlash(__('ページを更新できませんでした'));
         }
 
+        //フォームのデフォルト値をここで設定している
         if (!$this->request->data) {
             $this->request->data = $post;
         }
+        $this->render('edit');
     }
     public function delete($title = null) {
         if ($this->request->is('get')) {
