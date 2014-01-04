@@ -61,19 +61,27 @@
             </div>
             
             <div class="col-sm-offset-2 col-md-9 col-sm-10" id="content">
-                <div id="content-header">
+                
+                
+                <div class="col-md-7 col-sm-6">
+                    <?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
+                    <?php echo $this->fetch('title'); ?>
+                </div>
+                <div class="pull-right" id="content-header">
                 <?php
                 if(empty($content_title)){
                     $content_title=null;
                 }
-                echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+                if($logged_in){
+                    echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+                }
                 ?>
                 </div>
-                <?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
-                <?php echo $this->fetch('title'); ?>
-                <hr>
-                <?php echo $this->fetch('content'); ?>
-                <hr>
+                <div class="col-sm-12">
+                    <hr>
+                    <?php echo $this->fetch('content'); ?>
+                    <hr>
+                </div>
             </div>
         </div>
         <div id="footer">Copyright© KITCC All Rights Reserved. Since 2013 - <?php echo date('Y')?><br/>Powered by Wikitcc2 with CakePHP2.4.4 and PHP5</div>
