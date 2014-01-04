@@ -116,4 +116,46 @@ class WikiPagesController extends AppController {
             }
         }
     }
+
+    public function revisions($title=null){
+        $this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
+
+        $post = $this->WikiPage->findByTitle($title);
+        if(!$post){
+            $this->Session->setFlash(__('ページが見つかりません'));
+            return $this->redirect(array('action' => 'index'));
+        }
+
+        $this->WikiPage->id = $post['WikiPage']['id'];
+        //$this->WikiPage->newest();
+        $revisions = $this->WikiPage->revisions(array('limit'=>10));
+        $this->set('revisions',$revisions);
+        $this->set('content_title',$post['WikiPage']['title']);
+    }
+
+    public function view_revision($version_id){
+        $this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
+
+        $post = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+        $this->set('post',$post);
+    }
+
+    public function view_prev_diff($version_id){
+        $this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
+
+        $old = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+        $this->WikiPage->id = $old['WikiPage']['id'];
+        $diff = $this->WikiPage->diff(null,$version_id,array('limit'=>2));
+        $this->set('diff',$diff);
+    }
+    
+    public function view_latest_diff($version_id){
+        $this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
+
+        $old = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+        $current = $this->WikiPage->findById($old['WikiPage']['id']);
+        $diff = array_merge_recursive($current, $old);
+        $this->set('diff',$diff);
+        $this->render('view_prev_diff');
+    }
 }
