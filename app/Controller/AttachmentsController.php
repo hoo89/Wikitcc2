@@ -2,16 +2,6 @@
 class AttachmentsController extends AppController{
 	public $scaffold;
 	public function add($title=null){
-        $wiki_page_id=null;
-        if(!empty($title)){
-            $post = $this->Attachment->WikiPage->findByTitle($title);
-            if ($post) {
-                $wiki_page_id = $post['WikiPage']['id'];
-            }
-        }
-        $this->set('wiki_page_id',$wiki_page_id);
-        $this->set('content_title',$title);
-
 		if ($this->request->is('post')) {
             $this->Attachment->create();
             if ($this->Attachment->save($this->request->data)) {
@@ -20,5 +10,14 @@ class AttachmentsController extends AppController{
             }
             $this->Session->setFlash(__('アップロードできませんでした.'));
         }
+        $wiki_page_id=null;
+        if(!empty($title)){
+            $post = $this->Attachment->WikiPage->findByTitle($title);
+            if ($post) {
+                $wiki_page_id = $post['WikiPage']['id'];
+                $this->set('content_title',$post['WikiPage']['title']);
+            }
+        }
+        $this->set('wiki_page_id',$wiki_page_id);
 	}
 }
