@@ -24,5 +24,10 @@ echo $this->Form->select('category_id', $categoryList, array('empty' => '------'
 echo $this->Form->radio('is_public', array(0=>'部内のみに公開する',1=>'外部に公開する'));
 echo $this->Form->input('id', array('type' => 'hidden'));
 echo $this->Form->end(array('label'=>'保存する','class'=>'btn btn-primary'));
+if($this->data && $this->data['WikiPage']){
+	echo $this->Form->create('WikiPage',array('onsubmit'=>"return confirm('このページを削除してよろしいですか？');",'class'=>'form-inline','url' => array('controller' => 'WikiPages', 'action' => 'delete',$this->data['WikiPage']['title'])));
+	echo $this->Form->end(array('label'=>'このページを削除する','class'=>'btn btn-warning'));
+}
 echo '</div>';
+
 ?>

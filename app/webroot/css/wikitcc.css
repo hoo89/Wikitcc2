@@ -1,110 +1,110 @@
 body {
-    margin-right: 5px;
-    background-color: #EEE;
+	margin-right: 5px;
+	background-color: #EEE;
 }
 #WikiPageEditForm>div>.form-control,
 #WikiPageAddForm>div>.form-control{
-    margin: 10px 0px;
+	margin: 10px 0px;
 }
 #header>form{
-  margin: 10px 0px;
+	margin: 10px 0px;
 }
 
 .content-body{
-    font-size: 100%;
-    color: black;
+	font-size: 100%;
+	color: black;
 }
 
 h2#headline {
-    border-left: 3px solid #eee;
-    background-color: #EFF6FA;
-    border-color: #2fa4e7;
-    padding: 5px;
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 10px;
+	border-left: 3px solid #eee;
+	background-color: #EFF6FA;
+	border-color: #2fa4e7;
+	padding: 5px;
+	color: black;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 h3#headline {
-    border-left: 3px solid #bbb;
-    background-color: #f5f5f5;
-    padding: 5px;
-    color: black;
-    margin-top: 10px;
-    margin-bottom: 10px;
+	border-left: 3px solid #bbb;
+	background-color: #f5f5f5;
+	padding: 5px;
+	color: black;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 h4#headline {
-    color: black;
+	color: black;
 }
 
 #sidebar{
-    background-color: #EFF6FA;
-    position: absolute;
-    top: 0px;
+	background-color: #EFF6FA;
+	position: absolute;
+	top: 0px;
 }
 #wikitcc-nav>li>a{
-    padding: 2px 10px;
+	padding: 2px 10px;
 }
 #updates{
-    margin-top: 20px;
-    margin-left: 10px;
+	margin-top: 20px;
+	margin-left: 10px;
 }
 #content{
-    padding-top: 5px;
-    background-color: #FFF;
-    border-radius: 5px;
+	padding-top: 5px;
+	background-color: #FFF;
+	border-radius: 5px;
 }
 #content-header{
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 #header{
-    margin-bottom: 10px;
-    border-radius: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
 
-    float: left;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-right: 10%;
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-right: 10%;
 }
 
 #header>form{
-  display:inline-block;
-  float:left;
-  margin-right: 10px;
+	display:inline-block;
+	float:left;
+	margin-right: 10px;
 }
 #header>ul{
-  display:inline-block;
-  float:right;
-  padding-top: 5px;
+	display:inline-block;
+	float:right;
+	padding-top: 5px;
 }
 #footer{
-    text-align: right;
-    margin: 30px 10px;
-    font-size: 90%;
+	text-align: right;
+	margin: 30px 10px;
+	font-size: 90%;
 }
 th{
-    background-color: #EFF6FA;
+	background-color: #EFF6FA;
 }
 .control-group>button{
-    margin: 15px 0px;
+	margin: 15px 0px;
 }
 
 .navbar-toggle .icon-bar{
-    background-color: #cccccc;
+	background-color: #cccccc;
 }
 
 pre, code{
-    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
-    font-size: 14px;
-    line-height: 1.2;
+	font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+	font-size: 14px;
+	line-height: 1.2;
 }
 
 .aa {
-  font-family:"ＭＳ Ｐゴシック","Mona","mona-gothic-jisx0208.1990-0",sans-serif;
-  font-size:12px;
-  line-height:14px;
+	font-family:"ＭＳ Ｐゴシック","Mona","mona-gothic-jisx0208.1990-0",sans-serif;
+	font-size:12px;
+	line-height:14px;
 }
 
 .error .help-block,
@@ -113,46 +113,66 @@ pre, code{
 .error .checkbox,
 .error .radio-inline,
 .error .checkbox-inline {
-  color: #a94442;
+	color: #a94442;
 }
 
 .error .form-control {
-  border-color: #a94442;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	border-color: #a94442;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .error .form-control:focus {
-  border-color: #843534;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+	border-color: #843534;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
 }
 
 .error .input-group-addon {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #a94442;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #a94442;
 }
 
 .error .error-message{
-  color: #a94442;
+	color: #a94442;
 }
 
 @media (max-width: 768px) {
-    #content{
-        max-width: 100%;
-    }
-    #header{
-      margin: 0;
-      width: 100%
-    }
-    #content-header{
-      float:inherit!important;
-    }
-    #updates{
-        display: none;
-    }
-    #sidebar{
-        position: relative;
-    }
+	#content{
+		max-width: 100%;
+	}
+	#header{
+		margin: 0;
+		width: 100%
+	}
+	#content-header{
+		float:inherit!important;
+	}
+	#updates{
+		display: none;
+	}
+	#sidebar{
+		position: relative;
+	}
+}
+
+#header>.nav > li > a:hover,
+#header>.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #DDD;
+}
+
+.diff>.info{
+	color:blue;
+}
+.diff>.ins{
+	color:#00CF00;
+}
+.diff>.del{
+	color:red;
+}
+
+.category{
+	margin-top: 15px;
 }

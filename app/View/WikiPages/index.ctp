@@ -27,7 +27,7 @@ array('controller' => 'wikiPages', 'action' => 'view', $post['WikiPage']['title'
             <?php echo $this->Form->postLink(
                 'Delete',
                 array('action' => 'delete', $post['WikiPage']['title']),
-                array('confirm' => 'Are you sure?'));
+                array('confirm' => 'このページを削除してよろしいですか？'));
             ?>
             <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['WikiPage']['title'])); ?>
         </td>

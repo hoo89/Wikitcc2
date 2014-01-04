@@ -9,5 +9,5 @@
         ?>
         </div>
     </fieldset>
-<?php echo $this->Form->end(__('ログイン')); ?>
+<?php echo $this->Form->end(array('label'=>'ログイン','class'=>'btn btn-default')); ?>
 </div>
