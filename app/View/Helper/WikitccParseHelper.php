@@ -3,6 +3,7 @@ class WikitccParseHelper extends AppHelper {
     public function parse($view,$text) {
         $wiki = new WikitccParser($text);
         $wiki->view = $view;
+        $wiki->webroot = $this->webroot;
         $wiki->parse();
         return $wiki->getText();
     }
@@ -16,6 +17,7 @@ class WikitccParseHelper extends AppHelper {
 class WikitccParser{
 
     public $view;
+    public $webroot;
     
     /**
      * @var string 解析するテキスト
@@ -205,7 +207,7 @@ class WikitccParser{
         
         //イメージリンク(仮)
         //例:[image:logo.jpg|http://www.kitcc.org]
-        $img_path = "/wikitcc2/files/attachment/";       
+        $img_path = $this->webroot."files/attachment/";       
         $this->text = preg_replace("/([^<])\[image:(.+)\|($reg_url)\]([^>])/",
                                    "\\1<a href=\"\\3\"><img src=\"$img_path\\2\"></a>\\5", $this->text);
         
@@ -551,7 +553,7 @@ class WikitccParser{
      */
     private function createImg(){
         // must fix change path
-        $img_path = "/wikitcc2/files/attachment/";
+        $img_path = $this->webroot."files/attachment/";
         $this->text = preg_replace("/([^<])\[image:([^\[]+)\]([^>])/", 
                                    "\\1<a href=\"$img_path\\2\"><img src=\"$img_path\\2\"></a>\\3",
                                    $this->text);
