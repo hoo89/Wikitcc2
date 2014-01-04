@@ -59,8 +59,12 @@ h4#headline {
 	margin-bottom: 5px;
 	margin-left: 5px;
 }
+#breadcrumb{
+	margin-right: 30px;
+}
 #breadcrumb>ul{
 	margin-bottom: 0;
+	padding: 10px 20px;
 }
 
 #header{
