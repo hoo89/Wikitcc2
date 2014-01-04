@@ -10,6 +10,7 @@ class AttachmentsController extends AppController{
             }
         }
         $this->set('wiki_page_id',$wiki_page_id);
+        $this->set('content_title',$title);
 
 		if ($this->request->is('post')) {
             $this->Attachment->create();

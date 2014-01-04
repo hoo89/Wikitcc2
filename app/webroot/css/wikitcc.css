@@ -2,9 +2,14 @@ body {
     margin-right: 5px;
     background-color: #EEE;
 }
-.form-control{
+#WikiPageEditForm>div>.form-control,
+#WikiPageAddForm>div>.form-control{
     margin: 10px 0px;
 }
+#header>form{
+  margin: 10px 0px;
+}
+
 .content-body{
     font-size: 100%;
     color: black;
@@ -46,24 +51,33 @@ h4#headline {
     margin-left: 10px;
 }
 #content{
-    padding-left: 30px;
     padding-top: 5px;
     background-color: #FFF;
     border-radius: 5px;
 }
-#content>.nav-pills>li.active>a{
-
+#content-header{
+  margin-bottom: 5px;
 }
+
 #header{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: white;
+    margin-bottom: 10px;
     border-radius: 5px;
 
     float: left;
     padding-left: 15px;
     padding-right: 15px;
     margin-right: 10%;
+}
+
+#header>form{
+  display:inline-block;
+  float:left;
+  margin-right: 10px;
+}
+#header>ul{
+  display:inline-block;
+  float:right;
+  padding-top: 5px;
 }
 #footer{
     text-align: right;
@@ -73,12 +87,8 @@ h4#headline {
 th{
     background-color: #EFF6FA;
 }
-.btn{
+.control-group>button{
     margin: 15px 0px;
-}
-#content>.breadcrumb{
-    margin-bottom: 0px;
-    background-color: #FFF;
 }
 
 .navbar-toggle .icon-bar{
@@ -134,6 +144,10 @@ pre, code{
     }
     #header{
       margin: 0;
+      width: 100%
+    }
+    #content-header{
+      float:inherit!important;
     }
     #updates{
         display: none;

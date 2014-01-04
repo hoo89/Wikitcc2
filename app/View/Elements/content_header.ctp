@@ -1,4 +1,4 @@
-<ul class="nav nav-pills pull-right">
+<ul class="nav nav-pills">
 <li <?php if($this->Pills->isActive('wikiPages', array('view'))) { echo 'class="active"'; } ?> >
 	<?php 
 	if(!empty($content_title) && $content_title!='TOP'){
@@ -19,7 +19,7 @@
 </li>
 <?php } ?>
 
-<li <?php if($this->Pills->isActive('attachments', array('view'))) { echo 'class="active"'; } ?> >
+<li <?php if($this->Pills->isActive('attachments', array('add'))) { echo 'class="active"'; } ?> >
 	<?php 
 	if(!empty($content_title)){
 		echo $this->Html->link('アップロード',array('controller' => 'attachments', 'action' => 'add',$content_title));

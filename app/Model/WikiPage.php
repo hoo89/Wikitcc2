@@ -7,7 +7,7 @@ class WikiPage extends AppModel {
         	array('rule' => 'isUnique','message' => 'このタイトルは既に使われています')
     	)
     );
-    public $name = 'WikiPage';
+
     public $belongsTo = 'Category';
     public $hasMany = 'Attachment';
 
@@ -17,4 +17,11 @@ class WikiPage extends AppModel {
     	}
     	return true;
     }
+
+    public $actsAs = array('Search.Searchable');
+    public $filterArgs = array(
+        'title' => array('type' => 'like'),
+        'body' => array('type' => 'like'),
+        'keyword' => array('type' => 'like', 'field' => array('WikiPage.title', 'WikiPage.body'),'connectorAnd' => ' ', 'connectorOr' => ','),
+    );
 }
