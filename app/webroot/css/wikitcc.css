@@ -154,7 +154,7 @@ pre, code{
 		margin: 0;
 		width: 100%
 	}
-	#content-header{
+	#content-header>div{
 		float:inherit!important;
 	}
 	#updates,
@@ -167,6 +167,9 @@ pre, code{
 	#WikiPageKeyword{
 		margin-left: 5px;
 		width:100px;
+	}
+	.nav>li>a{
+		padding:10px 10px;
 	}
 }
 
