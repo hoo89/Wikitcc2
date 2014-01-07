@@ -16,9 +16,9 @@ class UsersController extends AppController {
         $this->Auth->allow('login');
     }
 
-    public function isAuthorised($user){
+    public function isAuthorized($user){
         if($this->action === 'logout'){
-            return parrent::isAuthorised();
+            return parent::isAuthorized();
         }
         return false;
     }
