@@ -159,22 +159,22 @@ class WikitccParser{
 
 
         $this->text = preg_replace("/^!!!(.+)#(.+)<br \/>$/m", 
-                                   "<a name=\"\\2\"><h2 id=\"headline\">\\1</h2></a>", $this->text);
+                                   "<a name=\"\\2\"><h2 class=\"headline\">\\1</h2></a>", $this->text);
         
         $this->text = preg_replace("/^!!(.*)#(.+)<br \/>$/m", 
-                                   "<a name=\"\\2\"><h3 id=\"headline\">\\1</h3></a>", $this->text);
+                                   "<a name=\"\\2\"><h3 class=\"headline\">\\1</h3></a>", $this->text);
         
         $this->text = preg_replace("/^!(.*)#(.+)<br \/>$/m", 
-                                   "<a name=\"\\2\"><h4 id=\"headline\">\\1</h4></a>", $this->text);
+                                   "<a name=\"\\2\"><h4 class=\"headline\">\\1</h4></a>", $this->text);
         
         $this->text = preg_replace("/^!!!(.*)<br \/>$/m", 
-                                   "<h2 id=\"headline\">\\1</h2>", $this->text);
+                                   "<h2 class=\"headline\">\\1</h2>", $this->text);
         
         $this->text = preg_replace("/^!!(.*)<br \/>$/m", 
-                                   "<h3 id=\"headline\">\\1</h3>", $this->text);
+                                   "<h3 class=\"headline\">\\1</h3>", $this->text);
         
         $this->text = preg_replace("/^!(.*)<br \/>$/m", 
-                                   "<h4 id=\"headline\">\\1</h4>", $this->text);
+                                   "<h4 class=\"headline\">\\1</h4>", $this->text);
 
     }
     
@@ -277,7 +277,7 @@ class WikitccParser{
         $ii = 0;
         foreach($lines as $line){
             if(!$in_list_flag){//リストの外
-                if(preg_match("/^<pre id=\"superPre\">/", $line)){
+                if(preg_match("/^<pre>/", $line)){
                     $is_spre = true;
                 }
                 elseif(preg_match("/^<\/pre>/", $line)){
@@ -350,7 +350,7 @@ class WikitccParser{
         $is_spre = false;
         
         foreach($lines as $line){
-            if(preg_match("/^<pre id=\"superPre\">/", $line)){
+            if(preg_match("/^<pre>/", $line)){
                 $is_spre = true;
             }
             elseif(preg_match("/^<\/pre>/", $line)){
@@ -437,7 +437,7 @@ class WikitccParser{
             }
             if(preg_match("/^>\|<br \/>/", $line)){
                 $in = true;
-                $text = preg_replace("/>\|<br \/>/", "<pre id=\"pre\">", $text);
+                $text = preg_replace("/>\|<br \/>/", "<pre>", $text);
             }
             elseif(preg_match("/^\|</", $line)){
                 $in = false;
@@ -461,7 +461,7 @@ class WikitccParser{
         foreach($lines as $line){
             if($in == false && preg_match("/^\s\S+/", $line)){
                 $in = true;
-                $line = preg_replace("/^\s/", "<pre id=\"pre\">".WikitccParser::LINE_FEED, $line);
+                $line = preg_replace("/^\s/", "<pre>".WikitccParser::LINE_FEED, $line);
             }
             elseif($in == true && preg_match("/^[^\s]/", $line)){
                 $in = false;
@@ -520,7 +520,7 @@ class WikitccParser{
             }
             if(preg_match("/^>\|\|/", $line)){
                 $in = true;
-                $text = preg_replace("/>\|\|<br \/>/", "<pre id=\"superPre\">", $text);
+                $text = preg_replace("/>\|\|<br \/>/", "<pre>", $text);
             }
             elseif(preg_match("/^>\|(.+)\|/", $line, $mode)){
                 $mode = $mode[1];
@@ -529,7 +529,7 @@ class WikitccParser{
                     $modes["aa"] = true;
                 }
                 else{
-                    $text = preg_replace("/>\|(.+)\|<br \/>/", "<div id=\"none\">", $text);
+                    $text = preg_replace("/>\|(.+)\|<br \/>/", "<div>", $text);
                 }
             }
             elseif(preg_match("/^\|\|</", $line)){
