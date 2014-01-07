@@ -151,6 +151,10 @@ pre, code{
 	margin-top: 15px;
 }
 
+#message{
+	margin-top: 5px;
+}
+
 @media screen and (max-width: 768px) {
 	#content{
 		max-width: 100%;

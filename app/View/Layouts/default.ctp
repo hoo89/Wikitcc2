@@ -73,12 +73,12 @@
 					</div>
 				</div>
 				<div class="col-sm-12" id="content-body">
-					<div>
-						<?php echo $this->fetch('title'); ?>
-					</div>
-					<div>
+					<div id="message">
 						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
 					</div>
+					<div>
+						<?php echo $this->fetch('title'); ?>
+					</div>		
 					<hr>
 					<?php echo $this->fetch('content'); ?>
 					<hr class="col-sm-12">
