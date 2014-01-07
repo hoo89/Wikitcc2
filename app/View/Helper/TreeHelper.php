@@ -1,10 +1,10 @@
 <?php
 class TreeHelper extends AppHelper {
     public $helpers = array('Html');
-    public function generate($array,$sub_pages=null,$first=true) {
+    public function generate($array,$sub_pages=null,$first=true,$id="tree") {
         if (!empty($array)) {
             if($first){
-                echo '<ul id="tree" class="treeview">';
+                echo '<ul id="'.$id.'" class="treeview">';
             }else{
                 echo '<ul>';
             }
@@ -34,7 +34,7 @@ class TreeHelper extends AppHelper {
             echo "</ul>\n";
             if($first){
                 $this->Html->scriptBlock('$(document).ready(
-                    function(){$("#tree").treeview({animated:"fast",persist: "cookie"});}
+                    function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie"});}
                     );',array('inline'=>false));
             }
         }
