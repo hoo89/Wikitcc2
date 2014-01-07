@@ -22,3 +22,4 @@ Thumbs.db
 
 app/webroot/files/attachment
 *~
+app/Config/core.php
