@@ -1,5 +1,5 @@
 body {
-	margin-right: 5px;
+	margin-top: 5px;
 	background-color: #EEE;
 }
 #WikiPageEditForm>div>.form-control,
@@ -15,7 +15,7 @@ body {
 	color: black;
 }
 
-h2#headline {
+h2.headline{
 	border-left: 3px solid #eee;
 	background-color: #EFF6FA;
 	border-color: #2fa4e7;
@@ -25,7 +25,7 @@ h2#headline {
 	margin-bottom: 10px;
 }
 
-h3#headline {
+h3.headline{
 	border-left: 3px solid #bbb;
 	background-color: #f5f5f5;
 	padding: 5px;
@@ -34,7 +34,7 @@ h3#headline {
 	margin-bottom: 10px;
 }
 
-h4#headline {
+h4.headline{
 	color: black;
 }
 
@@ -69,29 +69,14 @@ h4#headline {
 
 #header{
 	margin-bottom: 10px;
-	border-radius: 5px;
-
-	float: left;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-right: 10%;
 }
 
-#header>form{
-	display:inline-block;
-	float:left;
-	margin-right: 10px;
-}
-#header>ul{
-	display:inline-block;
-	float:right;
-	padding-top: 5px;
-}
 #footer{
 	text-align: right;
 	margin: 30px 10px;
 	font-size: 90%;
 }
+
 th{
 	background-color: #EFF6FA;
 }
@@ -146,33 +131,6 @@ pre, code{
 	color: #a94442;
 }
 
-@media (max-width: 768px) {
-	#content{
-		max-width: 100%;
-	}
-	#header{
-		margin: 0;
-		width: 100%
-	}
-	#content-header>div{
-		float:inherit!important;
-	}
-	#updates,
-	#breadcrumb{
-		display: none;
-	}
-	#sidebar{
-		position: relative;
-	}
-	#WikiPageKeyword{
-		margin-left: 5px;
-		width:100px;
-	}
-	.nav>li>a{
-		padding:10px 10px;
-	}
-}
-
 #header>.nav > li > a:hover,
 #header>.nav > li > a:focus {
   text-decoration: none;
@@ -191,4 +149,27 @@ pre, code{
 
 .category{
 	margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+	#content{
+		max-width: 100%;
+	}
+	#header{
+		margin: 0;
+		width: 100%
+	}
+	#content-header>div{
+		float:inherit!important;
+	}
+	#updates,
+	#breadcrumb{
+		display: none;
+	}
+	#sidebar{
+		position: relative;
+	}
+	.nav>li>a{
+		padding:10px 10px;
+	}
 }

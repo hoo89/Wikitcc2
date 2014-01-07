@@ -11,16 +11,17 @@
 		?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="Kyoto Institute of Technology Computer Club - KITCC">
+	<meta name="description" content="京都工芸繊維大学コンピュータ部のウェブページ">
+	<meta name="author" content="京都工芸繊維大学コンピュータ部">
 
+	<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
 	<?php echo $this->Html->css('cake.generic'); ?>
 	<?php echo $this->Html->css('bootstrap.min'); ?>
 	<?php echo $this->Html->css('jquery.treeview'); ?>
 	<?php echo $this->Html->css('wikitcc'); ?>
-	<!--
-	<link rel="shortcut icon" href="/ico/favicon.ico">
-	-->
+
 	<?php
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
@@ -30,14 +31,14 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="pull-right" id="header">
-			<?php
-			if(!$logged_in){
-				echo $this->element('header');
-			}else{
-				echo $this->element('private_header');
-			}
-			?>
+			<div id="header">
+				<?php
+				if(!$logged_in){
+					echo $this->element('header');
+				}else{
+					echo $this->element('private_header');
+				}
+				?>
 			</div>
 		</div>
 		<div class="row">

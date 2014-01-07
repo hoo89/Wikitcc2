@@ -13,6 +13,6 @@ $this->assign('breadcrumb', $this->Html->getCrumbList(array('class'=>'breadcrumb
 $this->assign('title', '<h3>'.$data['WikiPage']['title'].'</h3>');
 
 ?>
-<div class="content-body">
+<div class="wiki_content">
 	<?php echo $this->WikitccParse->parse($this,$data['WikiPage']['body']); ?>
 </div>
