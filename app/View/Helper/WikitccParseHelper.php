@@ -661,7 +661,7 @@ class WikitccParser{
             if(preg_match_all("/\[\[([^\[]+)\]\]/", $line, $titles)){
                 foreach($titles[1] as $title){
                     $line = preg_replace("/\[\[$title\]\]([^>])/u", 
-                                         '<a href=wiki/'.$title.'>'.$title.'</a>\\1', $line);                    
+                                         '<a href='.$this->webroot.'wiki/'.h($title).'>'.h($title).'</a>\\1', $line);                    
                 }
             }
             $text .= $line.WikitccParser::LINE_FEED;
