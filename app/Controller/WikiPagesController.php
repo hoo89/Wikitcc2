@@ -52,17 +52,18 @@ class WikiPagesController extends AppController {
     }
 
     public function view($title = null) {
+        $this->set('content_title', $title);
         $this->helpers[] = 'WikitccParse';
         if (!$title) {
-            throw new NotFoundException(__('ページが見つかりません'));
+            throw new NotFoundException('ページが見つかりません');
         }
 
         $post = $this->WikiPage->findByTitle($title);
         if (!$post) {
-            throw new NotFoundException(__('ページが見つかりません'));
+            throw new NotFoundException('ページが見つかりません');
         }
         $this->set('parents', $this->WikiPage->Category->getPath($post['Category']['id']));
-        $this->set('content_title', $post['WikiPage']['title']);
+        //$this->set('content_title', $post['WikiPage']['title']);
         $this->set('data', $post);
     }
 
@@ -74,10 +75,10 @@ class WikiPagesController extends AppController {
         if ($this->request->is('post')) {
             $this->WikiPage->create();
             if ($this->WikiPage->save($this->request->data)) {
-                $this->Session->setFlash(__('ページが作成されました'));
+                $this->Session->setFlash('ページが作成されました');
                 return $this->redirect(array('action' => 'view',h($this->request->data['WikiPage']['title'])));
             }
-            $this->Session->setFlash(__('ページを作成できませんでした'));
+            $this->Session->setFlash('ページを作成できませんでした');
         }
     }
 
@@ -94,16 +95,16 @@ class WikiPagesController extends AppController {
             }
             if ($this->WikiPage->save($this->request->data)) {
                 if($post){
-                    $this->Session->setFlash(__('ページが更新されました'));
+                    $this->Session->setFlash('ページが更新されました');
                 }else{
-                    $this->Session->setFlash(__('ページが作成されました'));
+                    $this->Session->setFlash('ページが作成されました');
                 }
                 return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
             }
             if($post){
-                $this->Session->setFlash(__('ページを更新できませんでした'));
+                $this->Session->setFlash('ページを更新できませんでした');
             }else{
-                $this->Session->setFlash(__('ページを作成できませんでした'));
+                $this->Session->setFlash('ページを作成できませんでした');
             }
         }
 
@@ -120,13 +121,12 @@ class WikiPagesController extends AppController {
 
         $post = $this->WikiPage->findByTitle($title);
         if(!$post){
-            $this->Session->setFlash(__('削除するページが見つかりません', h($title)));
-            return $this->redirect(array('action' => 'index'));
+            throw new NotFoundException('ページが見つかりません');
         }
         $id=$post['WikiPage']['id'];
 
         if ($this->WikiPage->delete($id)) {
-            $this->Session->setFlash(__('ページ： %s を削除しました', h($title)));
+            $this->Session->setFlash(__('ページ： %s を削除しました', $title));
             return $this->redirect(array('action' => 'index'));
         }
     }
@@ -135,8 +135,7 @@ class WikiPagesController extends AppController {
         if ($this->request->is('post')) {
             $post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);
             if (!$post) {
-                $this->Session->setFlash(__('ページが見つかりません'));
-                return $this->redirect(array('action' => 'index'));
+                throw new NotFoundException('ページが見つかりません');
             }            
             $this->WikiPage->id = $post['WikiPage']['id'];
             $content = $post['WikiPage']['body'];
@@ -163,8 +162,7 @@ class WikiPagesController extends AppController {
 
         $post = $this->WikiPage->findByTitle($title);
         if(!$post){
-            $this->Session->setFlash(__('ページが見つかりません'));
-            return $this->redirect(array('action' => 'index'));
+            throw new NotFoundException('ページが見つかりません');
         }
 
         $this->WikiPage->id = $post['WikiPage']['id'];
