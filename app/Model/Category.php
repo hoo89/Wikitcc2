@@ -14,4 +14,16 @@ class Category extends AppModel {
     	}
     	return true;
     }
+    public function beforeDelete($options = array()){
+        $category = $this->findById($this->id);
+        $this->log($category);
+        if(array_key_exists('WikiPage',$category)){
+            //カテゴリを削除する前にそのカテゴリに属していたページのページカテゴリをnullに戻す
+            foreach($category['WikiPage'] as $page){
+                $this->WikiPage->id = $page['id'];
+                $this->WikiPage->saveField('category_id',null);
+            }
+        }
+        return true;
+    }
 }
