@@ -11,9 +11,7 @@
 	<h3>親カテゴリー</h3>
 	<p><?php echo $this->Form->select('parent_id', $categoryList, array('empty' => '------')); ?></p>
 
-	<?php echo $this->Form->end(empty($this->data['Category']['id']) ? ' 追加 ' : ' 編集 '); ?>
-</div>
+	<?php echo $this->Form->radio('is_public', array(0=>'部内のみに公開する',1=>'外部に公開する'));?>
 
-<div style="text-align: right;">
-	<?php echo empty($this->data['Category']['id']) ? null : $this->Html->link('削除する', array('action' => 'delete', $this->data['Category']['id'])); ?>
+	<?php echo $this->Form->end(empty($this->data['Category']['id']) ? ' 追加 ' : ' 編集 '); ?>
 </div>

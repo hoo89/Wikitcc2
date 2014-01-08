@@ -73,6 +73,49 @@ class CategoriesController extends AppController {
 
 		$this->render('edit');
 	}
+	public function movedown($id = null, $delta = null) {
+
+		$this->Category->id = $id;
+		if (!$this->Category->exists()) {
+			throw new NotFoundException(__('Invalid category'));
+		}
+
+		if ($delta > 0) {
+			$this->Category->moveDown($this->Category->id, abs($delta));
+		} else {
+			$this->Session->setFlash('入力に間違いがあります。');
+		}
+
+		$this->redirect(array('action' => 'edit_view'), null, true);
+
+	}
+
+
+	public function moveup($id = null, $delta = null) {
+
+		$this->Category->id = $id;
+		if (!$this->Category->exists()) {
+			throw new NotFoundException(__('Invalid category'));
+		}
+
+		if ($delta > 0) {
+			$this->Category->moveUp($this->Category->id, abs($delta));
+		} else {
+			$this->Session->setFlash('入力に間違いがあります。');
+		}
+
+		$this->redirect(array('action' => 'edit_view'), null, true);
+
+	}
+
+	public function edit_view(){
+		$categories = $this->Category->find('threaded', array( 
+            'order' => array('Category.lft')) 
+        );
+        
+		$this->set('categories',$categories);
+	}
+
 	public function public_index(){
 		$categories = $this->Category->find(
 			'threaded', array(

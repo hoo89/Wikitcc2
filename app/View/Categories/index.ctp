@@ -1,7 +1,7 @@
 <?php $this->assign('title','サイトマップ'); ?>
 
 	<?php echo $this->Html->link('カテゴリーを登録する', array('action' => 'add'), array('class'=>'btn btn-primary btn-sm')); ?>
-	<?php echo $this->Html->link('カテゴリーを削除する', array('action' => 'add'), array('class'=>'btn btn-danger btn-sm','style'=>'display:none')); ?>
+	<?php echo $this->Html->link('カテゴリーを編集する', array('action' => 'edit_view'), array('class'=>'btn btn-warning btn-sm')); ?>
 
 <div class="category">
 TOP

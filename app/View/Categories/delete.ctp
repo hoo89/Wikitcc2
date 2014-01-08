@@ -3,6 +3,7 @@
 <?php $this->end(); ?>
 
 <div>
+	このカテゴリーを削除しますか？(ページは削除されません)
 	<?php echo $this->Form->create('Category', array('type' => 'delete')); ?>
 	<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
 
