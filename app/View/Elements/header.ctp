@@ -6,7 +6,7 @@
 		</ul>
 	</div>
 
-	<div class="col-xs-5 col-sm-3 pull-right">
+	<div class="col-sm-3 col-md-2 pull-right">
 		<form action="/wikitcc2/WikiPages/find_public" class="form-search" id="WikiPageViewForm" method="post" accept-charset="utf-8">
 		<div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
 		<div class="input-group input-group-sm">

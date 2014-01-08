@@ -39,9 +39,11 @@ h4.headline{
 }
 
 #sidebar{
-	background-color: #EFF6FA;
-	position: absolute;
-	top: 0px;
+	background-color: #F4FAFF;
+	margin-right: 5px;
+	margin-left: -5px;
+	border-radius: 5px;
+	margin-top: -50px;
 }
 #wikitcc-nav>li>a{
 	padding: 2px 10px;
@@ -158,6 +160,7 @@ pre, code{
 @media screen and (max-width: 768px) {
 	#content{
 		max-width: 100%;
+		border-radius: 0;
 	}
 	#header{
 		margin: 0px 10px;
@@ -170,7 +173,8 @@ pre, code{
 		display: none;
 	}
 	#sidebar{
-		position: relative;
+		margin: 0;
+		border-radius: 0;
 	}
 	.nav>li>a{
 		padding:10px 10px;

@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<div id="header">
 				<?php
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-2" id="sidebar">
+			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
 				if(!$logged_in){
 					echo $this->element('sidebar/sidemenu');
@@ -54,7 +54,7 @@
 				?>
 			</div>
 
-			<div class="col-sm-offset-2 col-md-9 col-sm-10" id="content">
+			<div class="col-sm-9" id="content">
 				<div id="content-header">
 					<div class="pull-right">
 						<?php
