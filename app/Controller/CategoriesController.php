@@ -4,10 +4,13 @@ class CategoriesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index');
+		$this->Auth->allow('index', 'public_index');
 	}
 
     public function index() {
+    	if(!$this->Auth->loggedIn()){
+    		$this->redirect(array('action' => 'public_index'), null, true);
+    	}
     	$categories = $this->Category->find('threaded', array( 
             'order' => array('Category.lft')) 
         );
@@ -69,5 +72,23 @@ class CategoriesController extends AppController {
 		$this->set('categoryList',$categoryList);
 
 		$this->render('edit');
+	}
+	public function public_index(){
+		$categories = $this->Category->find(
+			'threaded', array(
+				'conditions' => array('Category.is_public' => true),
+            	'order' => array('Category.lft')
+            )
+        );
+        $top_pages = $this->Category->WikiPage->find(
+        	'all',array('conditions' => array(
+        			'WikiPage.category_id' => null,
+        			'WikiPage.is_public' => true
+        			)
+        		)
+        	);
+
+		$this->set('categories',$categories);
+		$this->set('top_pages',$top_pages);
 	}
 }
