@@ -1,5 +1,5 @@
 <?php 
-    $this->assign('title', '<h3>ページ一覧</h3>');
+    $this->assign('title', 'ページ一覧');
     echo $this->Html->link(
     'Add WikiPage',
     array('controller' => 'wikiPages', 'action' => 'add')

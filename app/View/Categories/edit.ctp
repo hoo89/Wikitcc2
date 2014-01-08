@@ -1,5 +1,5 @@
 <?php $this->start('title'); ?>
-<h3>カテゴリー<?php echo empty($this->data['Category']['id']) ? '追加' : '編集'; ?></h3>
+カテゴリー<?php echo empty($this->data['Category']['id']) ? '追加' : '編集'; ?>
 <?php $this->end(); ?>
 <div>
 	<?php echo $this->Form->create('Category'); ?>

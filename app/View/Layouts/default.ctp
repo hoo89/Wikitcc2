@@ -77,7 +77,7 @@
 						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
 					</div>
 					<div>
-						<?php echo $this->fetch('title'); ?>
+						<h2><?php echo $this->fetch('title'); ?></h2>
 					</div>		
 					<hr>
 					<?php echo $this->fetch('content'); ?>

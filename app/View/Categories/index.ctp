@@ -1,4 +1,4 @@
-<?php $this->assign('title','<h3>サイトマップ</h3>'); ?>
+<?php $this->assign('title','サイトマップ'); ?>
 
 	<?php echo $this->Html->link('カテゴリーを登録する', array('action' => 'add'), array('class'=>'btn btn-primary btn-sm')); ?>
 	<?php echo $this->Html->link('カテゴリーを削除する', array('action' => 'add'), array('class'=>'btn btn-danger btn-sm','style'=>'display:none')); ?>

@@ -1,5 +1,5 @@
 <?php $this->start('title'); ?>
-	<h3>カテゴリー削除</h3>
+	カテゴリー削除
 <?php $this->end(); ?>
 
 <div>

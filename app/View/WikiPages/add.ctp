@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', '<h3>新規作成</h3>');
+$this->assign('title', '新規作成');
 
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';

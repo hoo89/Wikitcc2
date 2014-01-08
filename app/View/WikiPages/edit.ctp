@@ -1,8 +1,8 @@
 <?php
 if($this->data && $this->data['WikiPage']){
-	$this->assign('title','<h3>編集</h3>');
+	$this->assign('title','編集');
 }else{
-	$this->assign('title', '<h3>新規作成</h3>');
+	$this->assign('title', '新規作成');
 }
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
