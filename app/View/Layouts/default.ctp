@@ -54,7 +54,7 @@
 				?>
 			</div>
 
-			<div class="col-sm-9" id="content">
+			<div class="col-sm-9 col-md-10" id="content">
 				<div id="content-header">
 					<div class="pull-right">
 						<?php
