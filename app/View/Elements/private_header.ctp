@@ -1,12 +1,12 @@
 <div class="row">
-	<div class="col-sm-4 pull-right">
+	<div class="col-sm-4 col-md-3  pull-right">
 		<ul class="nav nav-pills" id="header-link">
 		<li><?php echo $this->Html->link('ログアウト',array('controller' => 'users', 'action' => 'logout')); ?></li>
 		<li><?php echo $this->Html->link('サイトマップ',array('controller' => 'categories', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
 
-	<div class="col-xs-5 col-sm-3 pull-right">
+	<div class="col-sm-3 col-md-2 pull-right">
 		<form action="/wikitcc2/WikiPages/find" class="form-search" id="WikiPageViewForm" method="post" accept-charset="utf-8">
 		<div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
 		<div class="input-group input-group-sm">
