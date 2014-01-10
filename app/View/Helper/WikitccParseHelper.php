@@ -621,14 +621,15 @@ class WikitccParser{
      * Script Insertionを防御
      */
     private function defenceScriptInsertion(){
+        $callback = function ($matches) {
+            return h($matches[1]);
+        };
+
+        $this->text = preg_replace_callback("/(<script.*>.*?<\/script>)/", 
+                                   $callback, $this->text);
         
-        $this->text = preg_replace("/(<script.*>.*?<\/script>)/me", 
-                                   'htmlspecialchars("\\1", ENT_QUOTES)', $this->text);
-        
-        $this->text = preg_replace("/(<style.*>.*?<\/style>)/me", 
-                                   'htmlspecialchars("\\1", ENT_QUOTES)', $this->text);
-        
-        
+        $this->text = preg_replace_callback("/(<style.*>.*?<\/style>)/", 
+                                   $callback, $this->text);
     }
     
     /**
