@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" id="container">
 		<div class="row">
 			<div id="header">
 				<?php
@@ -77,9 +77,9 @@
 						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
 					</div>
 					<div>
-						<h2><?php echo $this->fetch('title'); ?></h2>
+						<h2><?php echo $title=$this->fetch('title'); ?></h2>
 					</div>		
-					<hr>
+					<?php if(!empty($title)) echo'<hr>'; ?>
 					<?php echo $this->fetch('content'); ?>
 					<hr class="col-sm-12">
 				</div>

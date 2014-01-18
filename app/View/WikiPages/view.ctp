@@ -7,10 +7,11 @@ if($this->Html->url()!=$this->Html->webroot){
 		}
 	}
 	$this->Html->addCrumb($data['WikiPage']['title']);
+	$this->assign('title', $data['WikiPage']['title']);
 }
 
 $this->assign('breadcrumb', $this->Html->getCrumbList(array('class'=>'breadcrumb')));
-$this->assign('title', $data['WikiPage']['title']);
+//$this->assign('title', $data['WikiPage']['title']);
 
 ?>
 <div class="wiki_content">

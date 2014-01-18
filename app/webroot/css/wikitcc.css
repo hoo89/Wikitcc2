@@ -1,5 +1,4 @@
 body {
-	margin-top: 5px;
 	background-color: #EEE;
 }
 #WikiPageEditForm>div>.form-control,
@@ -42,8 +41,9 @@ h4.headline{
 	background-color: #F4FAFF;
 	margin-right: 5px;
 	margin-left: -5px;
+	padding-bottom: 20px;
 	border-radius: 5px;
-	margin-top: -50px;
+	margin-top: -40px;
 }
 #wikitcc-nav>li>a{
 	padding: 2px 10px;
@@ -156,6 +156,9 @@ pre, code{
 #message{
 	margin-top: 5px;
 }
+.form-search{
+	margin-top: 5px;
+}
 
 @media screen and (max-width: 768px) {
 	#content{
@@ -174,9 +177,13 @@ pre, code{
 	}
 	#sidebar{
 		margin: 0;
+		padding-bottom: 5px;
 		border-radius: 0;
 	}
 	.nav>li>a{
 		padding:10px 10px;
+	}
+	.form-search{
+		margin-top: 0;
 	}
 }
