@@ -157,6 +157,10 @@ pre, code{
 	margin-top: 5px;
 }
 
+#title{
+	margin-top: 10px;
+}
+
 @media screen and (max-width: 768px) {
 	#content{
 		max-width: 100%;
