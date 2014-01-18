@@ -4,7 +4,6 @@
 ?>
 
 <div class="row">
-    <div class="span9">
         <p>
             <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
         </p>
@@ -30,7 +29,5 @@
             </tr>
         <?php endforeach; ?>
         </table>
-
         <?php echo $this->BootstrapPaginator->pagination(array('div' => 'text-center')); ?>
-    </div>
 </div>
