@@ -27,7 +27,7 @@
 	echo $this->fetch('css');
 
 	$this->startIfEmpty('rss');
-	echo $this->Html->meta('RSS2.0','/wikiPages/public_index.rss',array('type' => 'rss'));
+	echo $this->Html->meta('京都工芸繊維大学コンピュータ部','/wikiPages/public_index.rss',array('type' => 'rss'));
 	$this->end();
 	
 	echo $this->fetch('rss');
