@@ -1,15 +1,24 @@
 <?php
 class WikiPagesController extends AppController {
-    public $components = array('Search.Prg');
+    public $components = array('Search.Prg','RequestHandler');
     public $presetVars = true;
     public $helpers = array('Cache');
     public $cacheAction = array(
         'view/' => '1 week'
     );
+    var $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'WikiPage.modified' => 'desc'
+        )
+    );
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('find_public','view');
+        if($this->RequestHandler->isRSS()){
+            $this->Auth->authenticate = array('Form','Basic');
+        }
+        $this->Auth->allow('public_find','view','public_index');
         if($this->action === 'view'){
             $title = $this->request->params['pass'][0];
             if (!$this->WikiPage->isPublic($title)){
