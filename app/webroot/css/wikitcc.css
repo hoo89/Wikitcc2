@@ -160,6 +160,9 @@ pre, code{
 #title{
 	margin-top: 10px;
 }
+.comment-form {
+	margin: 5px 0;
+}
 
 @media screen and (max-width: 768px) {
 	#content{
