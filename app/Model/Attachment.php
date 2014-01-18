@@ -3,7 +3,7 @@ class Attachment extends AppModel {
     public $validate = array(
         'name' => array(
             array('rule' => 'notEmpty'),
-            array('rule' => 'isUnique','message' => '別のファイル名を指定してください')
+            array('rule' => 'isUnique','message' => '既にそのファイル名のファイルが存在するようです.別のファイル名を指定してください.')
             )
         );
 
@@ -15,8 +15,11 @@ class Attachment extends AppModel {
     }
     public function beforeSave($options = array()){
         $upload_dir = 'files/attachment';
-        $filename=$this->data[$this->alias]['name'];
+        $filename = $this->data[$this->alias]['name'];
         $upload_file = $upload_dir.DS.$filename;
+        if(file_exists($upload_file)){
+            return false;
+        }
         move_uploaded_file($this->data['Attachment']['attachment']['tmp_name'],$upload_file);
         $this->data[$this->alias]['dir'] = $upload_file;
         return true;
