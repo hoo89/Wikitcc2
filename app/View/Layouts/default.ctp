@@ -25,6 +25,12 @@
 	<?php
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
+
+	$this->startIfEmpty('rss');
+	echo $this->Html->meta('RSS2.0','/wikiPages/public_index.rss',array('type' => 'rss'));
+	$this->end();
+	
+	echo $this->fetch('rss');
 	?>
 </head>
 
