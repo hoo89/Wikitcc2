@@ -2,6 +2,10 @@
 class WikiPagesController extends AppController {
     public $components = array('Search.Prg');
     public $presetVars = true;
+    public $helpers = array('Cache');
+    public $cacheAction = array(
+        'view/' => '1 week'
+    );
 
     public function beforeFilter() {
         parent::beforeFilter();
