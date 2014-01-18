@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="col-sm-3 col-md-2 pull-right">
-		<form action="/wikitcc2/WikiPages/find_public" class="form-search" id="WikiPageViewForm" method="post" accept-charset="utf-8">
+		<form action="/wikitcc2/WikiPages/public_find" class="form-search" id="WikiPageViewForm" method="post" accept-charset="utf-8">
 		<div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
 		<div class="input-group input-group-sm">
 		<input name="data[WikiPage][keyword]" placeholder="ページを検索" class="form-control" type="text" id="WikiPageKeyword">

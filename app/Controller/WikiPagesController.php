@@ -28,39 +28,48 @@ class WikiPagesController extends AppController {
     }
 
     public function index() {
-        $posts = $this->paginate();
+        $wikiPages = $this->paginate();
         if ($this->request->is('requested')) {
-            return $posts;
+            return $wikiPages;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $wikiPages);
+        }
+    }
+
+    public function public_index() {
+        $this->paginate['conditions'] = array('WikiPage.is_public'=>true);
+        $wikiPages = $this->paginate();
+        if ($this->request->is('requested')) {
+            return $wikiPages;
+        } else {
+            $this->set('wikiPages', $wikiPages);
+            $this->render('index');
         }
     }
 
     public function find(){
         $this->Prg->commonProcess();
-        $this->paginate = array(
-            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
-        );
+        $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
         $posts = $this->paginate();
         if ($this->request->is('requested')) {
             return $posts;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $posts);
+            $this->render('index');
         }
     }
 
-    public function find_public(){
+    public function public_find(){
         $this->Prg->commonProcess();
         $this->passedArgs['is_public'] = 1;
-        $this->paginate = array(
-            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
-        );
+        $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
         $posts = $this->paginate();
         $this->set('posts', $posts);
         if ($this->request->is('requested')) {
             return $posts;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $posts);
+            $this->render('index');
         }
     }
 

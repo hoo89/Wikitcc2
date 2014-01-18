@@ -1,9 +1,14 @@
 <?php 
     $this->assign('title', 'ページ一覧');
-?>
+    echo $this->Html->link(
+    'Add WikiPage',
+    array('controller' => 'wikiPages', 'action' => 'add')
+); ?>
 
 <div class="row">
     <div class="span9">
+        <h2><?php echo __('List %s', __('Wiki Pages'));?></h2>
+
         <p>
             <?php echo $this->BootstrapPaginator->counter(array('format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')));?>
         </p>
