@@ -81,7 +81,6 @@
 					</div>		
 					<?php if(!empty($title)) echo'<hr>'; ?>
 					<?php echo $this->fetch('content'); ?>
-					<hr class="col-sm-12">
 				</div>
 			</div>
 		</div>
