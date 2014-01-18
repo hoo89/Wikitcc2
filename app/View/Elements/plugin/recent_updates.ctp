@@ -1,5 +1,5 @@
 <div class="updates">
-<?php $posts = $this->requestAction('wikiPages/find_public/sort:modified/direction:desc/limit:10');?>
+<?php $posts = $this->requestAction('wikiPages/find/sort:modified/direction:desc/limit:10');?>
 
 <?php foreach ($posts as $post): ?>
 	<?php 
