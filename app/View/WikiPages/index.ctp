@@ -1,6 +1,6 @@
 <?php 
     $this->assign('title', 'ページ一覧');
-    $this->assign('rss', '<link rel="alternate" type="application/rss+xml" href=".rss" title="RSS2.0" />');
+    $this->assign('rss', '<link rel="alternate" type="application/rss+xml" href="'.$this->Html->url().'.rss" title="RSS2.0" />');
 ?>
 
 <div class="row">
