@@ -12,8 +12,8 @@
 		<?php echo $this->Nav->tab('トップページ','/');?>
 		<li <?php 
 		$url = $this->Html->url();
-		if($url === $this->Html->url('/categories/')||$url === $this->Html->url('/categories/public_index')){echo 'class="active"';}?> >
-       <?php echo $this->Html->link('サイトマップ','/categories/')?>
+		if($url === $this->Html->url('/categories')||$url === $this->Html->url('/categories/public_index')){echo 'class="active"';}?> >
+       <?php echo $this->Html->link('サイトマップ','/categories')?>
 		</li>
 		<?php
 		echo $this->Nav->tab('プロジェクト',array('controller' => 'wikiPages', 'action' => 'view','プロジェクト'));
