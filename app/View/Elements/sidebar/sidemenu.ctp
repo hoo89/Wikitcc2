@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
      </button>
-	<ul class="nav nav-stacked collapse navbar-collapse" id="wikitcc-nav">
-		<li><?php echo $this->Html->link('トップページ','/'); ?></li>
-		<li><?php echo $this->Html->link('サイトマップ',array('controller' => 'categories', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link('プロジェクト',array('controller' => 'wikiPages', 'action' => 'view','プロジェクト')); ?></li>
-		<li><?php echo $this->Html->link('イベント',array('controller' => 'wikiPages', 'action' => 'view','イベント')); ?></li>
-		<li><?php echo $this->Html->link('部員',array('controller' => 'wikiPages', 'action' => 'view','部員')); ?></li>
-		<li><?php echo $this->Html->link('クラブ紹介',array('controller' => 'wikiPages', 'action' => 'view','クラブ紹介')); ?></li>
-		<li><?php echo $this->Html->link('活動場所',array('controller' => 'wikiPages', 'action' => 'view','活動場所')); ?></li>
-		<li><?php echo $this->Html->link('リンク',array('controller' => 'wikiPages', 'action' => 'view','リンク')); ?></li>
+	<ul class="nav nav-pills nav-stacked collapse navbar-collapse" id="wikitcc-nav">
+		<?php echo $this->Nav->tab('トップページ','/');
+		echo $this->Nav->tab('サイトマップ',array('controller' => 'categories', 'action' => 'index'));
+		echo $this->Nav->tab('プロジェクト',array('controller' => 'wikiPages', 'action' => 'view','プロジェクト'));
+		echo $this->Nav->tab('イベント',array('controller' => 'wikiPages', 'action' => 'view','イベント'));
+		echo $this->Nav->tab('部員',array('controller' => 'wikiPages', 'action' => 'view','部員'));
+		echo $this->Nav->tab('クラブ紹介',array('controller' => 'wikiPages', 'action' => 'view','クラブ紹介'));
+		echo $this->Nav->tab('活動場所',array('controller' => 'wikiPages', 'action' => 'view','活動場所'));
+		echo $this->Nav->tab('リンク',array('controller' => 'wikiPages', 'action' => 'view','リンク'));?>
 	</ul>
 </div>
