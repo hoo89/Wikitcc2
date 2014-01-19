@@ -9,8 +9,13 @@
         <span class="icon-bar"></span>
      </button>
 	<ul class="nav nav-pills nav-stacked collapse navbar-collapse" id="wikitcc-nav">
-		<?php echo $this->Nav->tab('トップページ','/');
-		echo $this->Nav->tab('サイトマップ',array('controller' => 'categories', 'action' => 'index'));
+		<?php echo $this->Nav->tab('トップページ','/');?>
+		<li <?php 
+		$url = $this->Html->url();
+		if($url === $this->Html->url('/categories/index')||$url === $this->Html->url('/categories/public_index')){echo 'class="active"';}?> >
+       <?php echo $this->Html->link('サイトマップ','/categories/index')?>
+		</li>
+		<?php
 		echo $this->Nav->tab('プロジェクト',array('controller' => 'wikiPages', 'action' => 'view','プロジェクト'));
 		echo $this->Nav->tab('イベント',array('controller' => 'wikiPages', 'action' => 'view','イベント'));
 		echo $this->Nav->tab('部員',array('controller' => 'wikiPages', 'action' => 'view','部員'));
