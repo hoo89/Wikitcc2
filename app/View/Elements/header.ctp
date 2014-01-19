@@ -2,7 +2,9 @@
 	<div class="col-sm-4 pull-right">
 		<ul class="nav nav-pills" id="header-link">
 		<li><?php echo $this->Html->link('ログイン',array('controller' => 'users', 'action' => 'login')); ?></li>
+
 		<li><?php echo $this->Html->link('サイトマップ',array('controller' => 'categories', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('ページ一覧','/wikiPages/public_index');?></li>
 		</ul>
 	</div>
 
