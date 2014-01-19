@@ -72,7 +72,7 @@
 						}
 						?>
 					</div>
-					<div class="pull-right" id="breadcrumb">
+					<div class="pull-right" id="content-header-breadcrumb">
 						<?php
 						echo $this->fetch('breadcrumb');
 						?>

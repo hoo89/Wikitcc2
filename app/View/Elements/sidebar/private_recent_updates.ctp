@@ -1,4 +1,4 @@
-<div class="updates">
+<div id="sidebar-updates">
 <h4>Latest Updates</h4>
 <?php $posts = $this->requestAction('wikiPages/index/sort:modified/direction:desc/limit:5');?>
 
