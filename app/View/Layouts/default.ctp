@@ -87,6 +87,7 @@
 					</div>		
 					<?php if(!empty($title)) echo'<hr>'; ?>
 					<?php echo $this->fetch('content'); ?>
+					<?php echo $title=$this->fetch('contentInfo'); ?>
 				</div>
 			</div>
 		</div>
