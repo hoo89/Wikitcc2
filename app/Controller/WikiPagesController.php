@@ -1,6 +1,6 @@
 <?php
 class WikiPagesController extends AppController {
-    public $components = array('Search.Prg','RequestHandler');
+    public $components = array('Search.Prg','RequestHandler','Security');
     public $presetVars = true;
     public $helpers = array('Cache');
     public $cacheAction = array(
@@ -17,6 +17,8 @@ class WikiPagesController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Security->requireAuth('add', 'edit', 'add_comment');
+
         if($this->RequestHandler->isRSS()){
             $this->Auth->authenticate = array('Form','Basic');
         }
@@ -164,7 +166,7 @@ class WikiPagesController extends AppController {
             $this->WikiPage->id = $post['WikiPage']['id'];
             $content = $post['WikiPage']['body'];
             $name = h($this->request->data['WikiPage']['name']);
-            $message = h($this->request->data['WikiPage']['comment']);
+            $message = nl2br(h($this->request->data['WikiPage']['comment']));
             if(empty($name)){
                 $name = "名無しさん";
             }
