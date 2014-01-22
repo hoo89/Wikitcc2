@@ -36,6 +36,7 @@ CREATE table attachments (
     id INT unsigned NOT NULL auto_increment PRIMARY KEY,
     name varchar(255) NOT NULL,
     dir varchar(255) DEFAULT NULL,
+    thumb_dir varchar(255) DEFAULT NULL,
     wiki_page_id INT UNSIGNED DEFAULT 0,
     created DATETIME DEFAULT NULL
 );
