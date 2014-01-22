@@ -8,14 +8,13 @@
 	</div>
 
 	<div class="col-sm-3 col-md-2 pull-right">
-		<form action="/wikitcc2/WikiPages/find" class="form-search" id="WikiPageViewForm" method="post" accept-charset="utf-8">
-		<div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
+		<?php echo $this->Form->create('WikiPage',array('action'=>'find','class'=>'form-search'));?>
 		<div class="input-group input-group-sm">
 		<input name="data[WikiPage][keyword]" placeholder="ページを検索" class="form-control" type="text" id="WikiPageKeyword">
 		<span class="input-group-btn">
 		<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>
 		</span>
 		</div>
-		</form>
+		<?php echo $this->Form->end();?>
 	</div>
 </div>

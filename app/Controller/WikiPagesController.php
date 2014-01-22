@@ -1,6 +1,6 @@
 <?php
 class WikiPagesController extends AppController {
-    public $components = array('Search.Prg','RequestHandler','Security');
+    public $components = array('Search.Prg','RequestHandler','Security' => array('validatePost' => false));
     public $presetVars = true;
     public $helpers = array('Cache');
     public $cacheAction = array(
@@ -17,6 +17,7 @@ class WikiPagesController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Security->blackHoleCallback = 'blackhole';
         $this->Security->requireAuth('add', 'edit', 'add_comment');
 
         if($this->RequestHandler->isRSS()){
@@ -222,5 +223,21 @@ class WikiPagesController extends AppController {
         $diff = array_merge_recursive($current, $old);
         $this->set('diff',$diff);
         $this->render('view_prev_diff');
+    }
+
+    /**
+     * blackhole
+     * - for SecurityComponent
+     */
+    public function blackhole($type){
+        switch($type){
+            case 'csrf' :
+                $this->Session->setFlash('送信できませんでした.セッションがタイムアウトした可能性があります.もう一度再読み込みしてやり直してください');
+                $this->redirect(array('action' => $this->action));
+                break;
+            default :
+                $this->redirect(array('action' => 'index'));
+                break;
+        }
     }
 }
