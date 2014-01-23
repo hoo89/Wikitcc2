@@ -4,12 +4,12 @@ App::uses('AppController', 'Controller');
 class WikiPagesController extends AppController {
     public $components = array('Search.Prg','RequestHandler','Security' => array('validatePost' => false));
     public $presetVars = true;
-    public $helpers = array('Cache');
+
+    /*public $helpers = array('Cache');
     public $cacheAction = array(
-        'index' => '1 week',
-        'public_index' => '1 week',
         'view' => '1 week'
-    );
+    );*/
+
     var $paginate = array(
         'limit' => 20,
         'order' => array(
