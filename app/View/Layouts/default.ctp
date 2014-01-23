@@ -39,7 +39,7 @@
 		<div class="row">
 			<div id="header">
 				<?php
-				if(!$logged_in){
+				if(!$this->Session->check('name')){
 					echo $this->element('header');
 				}else{
 					echo $this->element('private_header');
@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
-				if(!$logged_in){
+				if(!$this->Session->check('name')){
 					echo $this->element('sidebar/sidemenu');
 					echo $this->element('sidebar/recent_updates');
 				}else{

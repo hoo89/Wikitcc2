@@ -1,4 +1,6 @@
 <?php
+App::uses('AppController', 'Controller');
+
 class WikiPagesController extends AppController {
     public $components = array('Search.Prg','RequestHandler','Security' => array('validatePost' => false));
     public $presetVars = true;

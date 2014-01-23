@@ -27,6 +27,7 @@ class UsersController extends AppController {
         App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+                $this->Session->write('name', $this->Auth->user('username'));
                 $this->redirect('/');
             } else {
                 $this->Session->setFlash(__('ユーザ名かパスワードが間違っています.'));
@@ -35,6 +36,7 @@ class UsersController extends AppController {
     }
 
     public function logout() {
+        $this->Session->delete('name');
         $this->redirect($this->Auth->logout());
     }
 
