@@ -50,17 +50,19 @@
 			<!--/nocache-->
 		</div>
 		<div class="row">
+			<!--nocache-->
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
-				//if(!$this->Session->check('name')){
-					//echo $this->element('sidebar/sidemenu');
-					//echo $this->element('sidebar/recent_updates');
-				//}else{
+				if(!$this->Session->check('name')){
+					echo $this->element('sidebar/sidemenu');
+					echo $this->element('sidebar/recent_updates');
+				}else{
 					echo $this->element('sidebar/sidemenu');
 					echo $this->element('sidebar/private_recent_updates');
-				//}
+				}
 				?>
 			</div>
+			<!--/nocache-->
 
 			<div class="col-sm-9 col-md-10" id="content">
 				<div id="content-header">
