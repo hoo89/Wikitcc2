@@ -1,6 +1,7 @@
 <?php 
     $this->assign('title', 'ページ一覧');
     $this->assign('rss', $this->Html->meta('京都工芸繊維大学コンピュータ部',$this->Html->url().'.rss',array('type' => 'rss')));
+    if(!empty($searchword)) $this->BootstrapPaginator->options(array('url' => $searchword));
 ?>
 
 <div>

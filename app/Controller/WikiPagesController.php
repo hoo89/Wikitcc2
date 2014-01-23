@@ -9,7 +9,7 @@ class WikiPagesController extends AppController {
         'public_index/' => '1 week'
     );
     var $paginate = array(
-        'limit' => 10,
+        'limit' => 20,
         'order' => array(
             'WikiPage.modified' => 'desc'
         )
@@ -55,6 +55,7 @@ class WikiPagesController extends AppController {
     public function find(){
         $this->Prg->commonProcess();
         $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
+        $this->set('searchword',$this->request->named);
         $posts = $this->paginate();
         if ($this->request->is('requested')) {
             return $posts;
@@ -68,6 +69,7 @@ class WikiPagesController extends AppController {
         $this->Prg->commonProcess();
         $this->passedArgs['is_public'] = 1;
         $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
+        $this->set('searchword',$this->request->named);
         $posts = $this->paginate();
         $this->set('posts', $posts);
         if ($this->request->is('requested')) {
