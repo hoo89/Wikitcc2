@@ -201,7 +201,7 @@ class WikiPagesController extends AppController {
 
         $this->WikiPage->id = $post['WikiPage']['id'];
         //$this->WikiPage->newest();
-        $revisions = $this->WikiPage->revisions(array('limit'=>10));
+        $revisions = $this->WikiPage->revisions(array('limit'=>10), true);
         $this->set('revisions',$revisions);
         $this->set('content_title',$post['WikiPage']['title']);
     }
