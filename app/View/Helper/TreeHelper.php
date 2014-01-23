@@ -33,7 +33,7 @@ class TreeHelper extends AppHelper {
 			}
 			echo "</ul>\n";
 			if($first){
-				$this->Html->scriptBlock('$(document).ready(
+				$this->append('script','$(document).ready(
 					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie"});}
 					);',array('inline'=>false));
 			}
