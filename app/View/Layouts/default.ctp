@@ -80,7 +80,7 @@
 					<div>
 						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>
 					</div>		
-					<?php if(!empty($title)) echo'<hr>'; ?>
+					<?php if(!empty($title)) echo'<hr style="margin-top:0">'; ?>
 					<?php echo $this->fetch('content'); ?>
 					<?php echo $title=$this->fetch('contentInfo'); ?>
 				</div>
