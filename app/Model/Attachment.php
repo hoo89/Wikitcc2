@@ -33,7 +33,6 @@ class Attachment extends AppModel {
     function createThumnail($filename){
         $file = new File($filename);
         $type = $file->mime();
-        $this->log($type);
         if($type !== "image/jpeg" && $type !== "image/png" && $type !== "image/gif"){
             return false;
         }

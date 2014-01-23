@@ -21,7 +21,6 @@ class AttachmentsController extends AppController{
 	}
 
     public function index() {
-        $this->log($this->request);
         if(!empty($this->request['named']['title'])){
             $post = $this->Attachment->WikiPage->findByTitle($this->request['named']['title']);
             $wiki_page_id = 0;
