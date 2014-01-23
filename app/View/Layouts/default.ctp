@@ -37,6 +37,7 @@
 <body>
 	<div class="container" id="container">
 		<div class="row">
+			<!--nocache-->
 			<div id="header">
 				<?php
 				if(!$this->Session->check('name')){
@@ -46,8 +47,10 @@
 				}
 				?>
 			</div>
+			<!--/nocache-->
 		</div>
 		<div class="row">
+			<!--nocache-->
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
 				if(!$this->Session->check('name')){
@@ -59,6 +62,7 @@
 				}
 				?>
 			</div>
+			<!--/nocache-->
 
 			<div class="col-sm-9 col-md-10" id="content">
 				<div id="content-header">

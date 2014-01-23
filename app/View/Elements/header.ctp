@@ -1,3 +1,4 @@
+<?php App::uses('Security', 'Utility'); ?>
 <div class="row">
 	<div class="col-sm-4 pull-right">
 		<ul class="nav nav-pills" id="header-link">
