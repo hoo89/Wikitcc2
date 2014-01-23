@@ -1,4 +1,7 @@
-<?php $this->assign('title','サイトマップ'); ?>
+<?php $this->assign('title','サイトマップ');
+$this->append('css',$this->Html->css('jquery.treeview'));
+$this->append('script',$this->Html->script('jquery.treeview'));
+$this->append('script',$this->Html->script('jquery.cookie')); ?>
 
 <div class="category">
 TOP

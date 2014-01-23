@@ -3,12 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		<?php echo __('京都工芸繊維大学コンピュータ部'); ?>
-		<?php
-		if(!empty($content_title)){
-			echo ' : '.$content_title;
-		}
-		?>
+		京都工芸繊維大学コンピュータ部
+		<?php if(!empty($content_title)){echo ' : '.$content_title;} ?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="京都工芸繊維大学コンピュータ部のウェブページ">
@@ -17,12 +13,9 @@
 	<!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-	<?php echo $this->Html->css('cake.generic'); ?>
-	<?php echo $this->Html->css('bootstrap.min'); ?>
-	<?php echo $this->Html->css('jquery.treeview'); ?>
-	<?php echo $this->Html->css('wikitcc'); ?>
+	<?php echo $this->Html->css('bootstrap.min');
+	echo $this->Html->css('wikitcc');
 
-	<?php
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
 
@@ -31,29 +24,28 @@
 	$this->end();
 	
 	echo $this->fetch('rss');
+
+	$isLoggedIn = $this->Session->check('name');
 	?>
 </head>
 
 <body>
 	<div class="container" id="container">
 		<div class="row">
-			<!--nocache-->
 			<div id="header">
 				<?php
-				if(!$this->Session->check('name')){
+				if(!$isLoggedIn){
 					echo $this->element('header');
 				}else{
 					echo $this->element('private_header');
 				}
 				?>
 			</div>
-			<!--/nocache-->
 		</div>
 		<div class="row">
-			<!--nocache-->
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
-				if(!$this->Session->check('name')){
+				if(!$isLoggedIn){
 					echo $this->element('sidebar/sidemenu');
 					echo $this->element('sidebar/recent_updates');
 				}else{
@@ -62,22 +54,19 @@
 				}
 				?>
 			</div>
-			<!--/nocache-->
 
 			<div class="col-sm-9 col-md-10" id="content">
 				<div id="content-header">
-					<!--nocache-->
 					<div class="pull-right">
 						<?php
 						if(empty($content_title)){
 							$content_title=null;
 						}
-						if($this->Session->check('name')){
+						if($isLoggedIn){
 							echo $this->element('content_header',array('logged_in'=>$this->Session->check('name'),'content_title'=>$content_title));
 						}
 						?>
 					</div>
-					<!--/nocache-->
 					<div class="pull-right" id="content-header-breadcrumb">
 						<?php
 						echo $this->fetch('breadcrumb');
@@ -97,13 +86,11 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer">Copyright© KITCC All Rights Reserved. Since 2013 - <?php echo date('Y')?><br/>Powered by Wikitcc2 with CakePHP2.4.4 and PHP5</div>
+		<div id="footer">Copyright© KITCC All Rights Reserved. Since 2013 - <?php echo date('Y')?><br />Powered by Wikitcc2 with CakePHP2.4.4 and PHP5</div>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<?php echo $this->Html->script('bootstrap.min'); ?>
-	<?php echo $this->Html->script('jquery.treeview'); ?>
-	<?php echo $this->Html->script('jquery.cookie'); ?>
 	<?php echo $this->fetch('script'); ?>
 </body>
 </html>
