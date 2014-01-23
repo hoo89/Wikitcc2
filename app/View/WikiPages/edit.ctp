@@ -4,6 +4,7 @@ if($this->data && $this->data['WikiPage']){
 }else{
 	$this->assign('title', '新規作成');
 }
+echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;Wikitcc記法は',$this->Html->link('こちら',array('controller' => 'wikiPages', 'action' => 'view','Wikitcc記法一覧')),'</p>';
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
 if($this->data && $this->data['WikiPage']){
