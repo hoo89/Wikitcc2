@@ -1,6 +1,6 @@
 <?php App::uses('Security', 'Utility'); ?>
 <div class="row">
-	<div class="col-sm-4 pull-right">
+	<div class="col-sm-5 pull-right">
 		<ul class="nav nav-pills" id="header-link">
 		<li><?php echo $this->Html->link('ログアウト',array('controller' => 'users', 'action' => 'logout')); ?></li>
 		<li><?php echo $this->Html->link('サイトマップ',array('controller' => 'categories', 'action' => 'index')); ?></li>

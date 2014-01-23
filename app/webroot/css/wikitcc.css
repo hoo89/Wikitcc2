@@ -166,7 +166,7 @@ pre, code{
 	margin: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	#content{
 		max-width: 100%;
 		border-radius: 0;
