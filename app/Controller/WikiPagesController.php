@@ -4,9 +4,9 @@ class WikiPagesController extends AppController {
     public $presetVars = true;
     public $helpers = array('Cache');
     public $cacheAction = array(
-        'view/' => '1 week',
-        'index/' => '1 week',
-        'public_index/' => '1 week'
+        'view' => '1 week',
+        'index' => '1 week',
+        'public_index' => '1 week'
     );
     var $paginate = array(
         'limit' => 20,
