@@ -32,6 +32,9 @@ class WikiPagesController extends AppController {
                 $this->Auth->deny('view');
             }
         }
+        if($this->action === 'find'||$this->action === 'public_find'){
+            $this->Security->csrfCheck = false;
+        }
     }
 
     public function index() {

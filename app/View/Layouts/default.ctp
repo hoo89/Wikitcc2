@@ -66,16 +66,18 @@
 
 			<div class="col-sm-9 col-md-10" id="content">
 				<div id="content-header">
+					<!--nocache-->
 					<div class="pull-right">
 						<?php
 						if(empty($content_title)){
 							$content_title=null;
 						}
-						if($logged_in){
-							echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+						if($this->Session->check('name')){
+							echo $this->element('content_header',array('logged_in'=>$this->Session->check('name'),'content_title'=>$content_title));
 						}
 						?>
 					</div>
+					<!--/nocache-->
 					<div class="pull-right" id="content-header-breadcrumb">
 						<?php
 						echo $this->fetch('breadcrumb');
