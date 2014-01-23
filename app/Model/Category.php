@@ -5,7 +5,8 @@ class Category extends AppModel {
     public $hasMany = 
     array(
     	'WikiPage'=>array(
-    		'fields' => array('id','title','category_id','is_public')
+    	   'fields' => array('id','title','category_id','is_public'),
+        'order' => 'WikiPage.modified DESC'
     	)
     );
     public function beforeSave($options = array()) {
