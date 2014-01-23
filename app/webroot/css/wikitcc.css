@@ -159,10 +159,11 @@ pre, code{
 .form-search{
 	margin-top: 5px;
 }
-
-
 .comment-form {
 	margin: 5px 0;
+}
+.checkbox{
+	margin: 0;
 }
 
 @media screen and (max-width: 768px) {

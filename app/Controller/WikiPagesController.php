@@ -38,6 +38,16 @@ class WikiPagesController extends AppController {
     }
 
     public function index() {
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
+        $this->set('categoryList',$categoryList);
+        if ($this->request->is('post')){
+            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+                if($selected){
+                    $this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                }
+            }
+        }
+
         $wikiPages = $this->paginate();
         if ($this->request->is('requested')) {
             return $wikiPages;
@@ -58,6 +68,16 @@ class WikiPagesController extends AppController {
     }
 
     public function find(){
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
+        $this->set('categoryList',$categoryList);
+        if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
+            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+                if($selected){
+                    $this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                }
+            }
+        }
+
         $this->Prg->commonProcess();
         $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
         $this->set('searchword',$this->request->named);
