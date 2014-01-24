@@ -40,7 +40,7 @@ class TreeHelper extends AppHelper {
 		}
 	}
 
-	public function generate_public($array,$sub_pages=null,$first=true,$id="tree") {
+	public function generate_public($array,$sub_pages=null,$first=true,$id="public_tree") {
 		if (!empty($array) || !empty($sub_pages)) {
 			if($first){
 				echo '<ul id="'.$id.'" class="treeview">';
