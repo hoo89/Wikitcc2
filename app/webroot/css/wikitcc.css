@@ -165,6 +165,9 @@ pre, code{
 .checkbox{
 	margin: 0;
 }
+.nav>li>a{
+	padding:10px 10px;
+}
 
 @media screen and (max-width: 767px) {
 	#content{
@@ -186,9 +189,7 @@ pre, code{
 		padding-bottom: 5px;
 		border-radius: 0;
 	}
-	.nav>li>a{
-		padding:10px 10px;
-	}
+
 	.form-search{
 		margin-top: 0;
 	}

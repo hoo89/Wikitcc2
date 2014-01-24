@@ -3,7 +3,7 @@
 		"alt" => "KITCC",
 		'url' => '/'
 	)); ?>
-	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#wikitcc-nav">
+	<button type="button" class="navbar-toggle btn btn-default" data-toggle="collapse" data-target="#wikitcc-nav">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
