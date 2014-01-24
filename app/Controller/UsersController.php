@@ -28,18 +28,21 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->write('name', $this->Auth->user('username'));
-                $url = $this->Session->read('url');
-                if(preg_match("/\\/user\\/login$/", $url)){
+                $url = $this->Session->read('redirect_url');
+                if(preg_match("/\\/users\\/login$/", $url)){
                     $url='/';
                 }
-                $this->Session->delete('url');
+                $this->Session->delete('redirect_url');
                 $this->redirect($url);
-                
             } else {
                 $this->Session->setFlash(__('ユーザ名かパスワードが間違っています.'));
             }
         }else{
-            $this->Session->write('url', $this->request->referer(null,true));
+            $url = $this->Auth->redirectUrl();
+            if($url === '/'){
+                $url = $this->referer(null,true);
+            }
+            $this->Session->write('redirect_url', $url);
         }
     }
 
