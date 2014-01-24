@@ -49,7 +49,7 @@ h4.headline{
 	margin-left: 10px;
 }
 #content{
-	padding-top: 5px;
+	padding-top: 10px;
 	padding-bottom: 20px;
 	background-color: #FFF;
 	border-radius: 10px;
@@ -159,8 +159,8 @@ pre, code{
 .checkbox{
 	margin: 0;
 }
-#header>nav{
-	margin-bottom: 0;
+.nav-pills>li>a{
+	padding:10px 10px;
 }
 
 @media screen and (max-width: 767px) {
@@ -183,8 +183,8 @@ pre, code{
 		padding-bottom: 5px;
 		border-radius: 0;
 	}
-	.nav>li>a{
-		padding:10px 10px;
+	.nav-pills>li>a{
+		padding:5px 5px;
 	}
 	.form-search{
 		margin-top: 0;

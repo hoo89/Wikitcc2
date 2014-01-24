@@ -9,6 +9,6 @@ class NavHelper extends AppHelper {
     		return '<li class="active">'.$this->Html->link($title,$link,array('escape' => false)).'</li>';
     	}else{
     		return '<li>'.$this->Html->link($title,$link,array('escape' => false)).'</li>';
-    	}
+        }
     }
 }
