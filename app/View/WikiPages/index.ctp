@@ -6,6 +6,7 @@
                 $(".edit").hide();
                 $("#editEnable").click(function(){
                     $(".edit").toggle();
+                    $(this).toggleClass("active");
                 });
                 $("#checkAll").click(function(){
                     $(".checkbox").prop("checked", $(this).prop("checked"));
@@ -20,6 +21,10 @@
     <?php if(!empty($categoryList)){ ?>
     <div class="control-group">
     <button type="button" class="btn btn-default btn-sm" id="editEnable">カテゴリー変更</button>
+    </div>
+    <div class="edit">
+        左のチェックが入っているページのカテゴリーをまとめて変更できます.<br />
+        すべてにチェックを入れたい時は一番上のチェックを押してください.<br />
     </div>
     <?php
     echo $this->Form->create('WikiPage');

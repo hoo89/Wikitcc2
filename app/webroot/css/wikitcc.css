@@ -5,15 +5,10 @@ body {
 #WikiPageAddForm>div>.form-control{
 	margin: 10px 0px;
 }
-#header>form{
-	margin: 10px 0px;
-}
-
 #content-body{
 	font-size: 110%;
 	color: black;
 }
-
 h2.headline{
 	border-left: 3px solid #eee;
 	background-color: #EFF6FA;
@@ -21,18 +16,15 @@ h2.headline{
 	padding: 5px;
 	color: black;
 }
-
 h3.headline{
 	border-left: 3px solid #bbb;
 	background-color: #f5f5f5;
 	padding: 5px;
 	color: black;
 }
-
 h4.headline{
 	color: black;
 }
-
 #sidebar{
 	background-color: #F4FAFF;
 	margin-right: 5px;
@@ -68,40 +60,27 @@ h4.headline{
 	margin-bottom: 0;
 	padding: 10px 20px;
 }
-
-#header{
-	margin-bottom: 5px;
-}
-
 #footer{
 	text-align: right;
 	margin: 30px 10px;
 	font-size: 90%;
 }
-
 th{
 	background-color: #EFF6FA;
 }
 .control-group>button{
 	margin: 15px 0px;
 }
-
-.navbar-toggle .icon-bar{
-	background-color: #cccccc;
-}
-
 pre, code{
 	font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
 	font-size: 14px;
 	line-height: 1.2;
 }
-
 .aa {
 	font-family:"ＭＳ Ｐゴシック","Mona","mona-gothic-jisx0208.1990-0",sans-serif;
 	font-size:12px;
 	line-height:14px;
 }
-
 .error .help-block,
 .error .control-label,
 .error .radio,
@@ -110,29 +89,24 @@ pre, code{
 .error .checkbox-inline {
 	color: #a94442;
 }
-
 .error .form-control {
 	border-color: #a94442;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-
 .error .form-control:focus {
 	border-color: #843534;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
 			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
 }
-
 .error .input-group-addon {
 	color: #a94442;
 	background-color: #f2dede;
 	border-color: #a94442;
 }
-
 .error .error-message{
 	color: #a94442;
 }
-
 .diff>.info{
 	color:blue;
 }
@@ -142,15 +116,10 @@ pre, code{
 .diff>.del{
 	color:red;
 }
-
 .category{
 	margin-top: 15px;
 }
-
 #message{
-	margin-top: 5px;
-}
-.form-search{
 	margin-top: 5px;
 }
 .comment-form {
@@ -168,9 +137,7 @@ pre, code{
 		max-width: 100%;
 		border-radius: 0;
 	}
-	#header{
-		margin: 0px 10px;
-	}
+
 	#content-header>div{
 		float:inherit!important;
 	}
@@ -180,13 +147,11 @@ pre, code{
 	}
 	#sidebar{
 		margin: 0;
+		padding-top: 5px;
 		padding-bottom: 5px;
 		border-radius: 0;
 	}
 	.nav-pills>li>a{
 		padding:5px 5px;
-	}
-	.form-search{
-		margin-top: 0;
 	}
 }
