@@ -9,7 +9,7 @@
 		</button>
 		<?php echo $this->Html->link('KITCC', '/' ,array('class'=>'navbar-brand')); ?>
   	</div>
-  	<div class="collapse navbar-collapse"id="wikitcc-header">
+  	<div class="collapse navbar-collapse" id="wikitcc-header">
 		<ul class="nav navbar-nav navbar-right">
 		<?php if($isLoggedIn): ?>
 		  <li class="dropdown">
@@ -39,7 +39,11 @@
 		if($url === $this->Html->url('/categories')||$url === $this->Html->url('/categories/public_index')){echo 'class="active"';}?> >
 	   <?php echo $this->Html->link('サイトマップ','/categories')?>
 		</li>
-		<?php echo $this->Nav->tab('ページ一覧','/wikiPages/public_index'); ?>
+		<?php if($isLoggedIn):
+		echo $this->Nav->tab('ページ一覧','/wikiPages/index');
+		else:
+		echo $this->Nav->tab('ページ一覧','/wikiPages/public_index');
+		endif; ?>
 		</ul>
 
 		<div class="col-sm-4 col-md-4  navbar-right">
