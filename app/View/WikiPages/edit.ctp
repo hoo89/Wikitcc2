@@ -4,10 +4,11 @@ if($this->data && $this->data['WikiPage']){
 }else{
 	$this->assign('title', '新規作成');
 }
+echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;Wikitcc記法は',$this->Html->link('こちら',array('controller' => 'wikiPages', 'action' => 'view','Wikitcc記法一覧')),'</p>';
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
 if($this->data && $this->data['WikiPage']){
-	echo $this->Form->input('title',array('disabled' => true, 'class' => 'form-control', 'label'=>'タイトル','error' => array('attributes' => array('class' => 'has-error'))));
+	echo $this->Form->input('title',array('disabled' => true, 'class' => 'form-control', 'label'=>false,'error' => array('attributes' => array('class' => 'has-error'))));
 }else{
 	echo $this->Form->input('title',array('class' => 'form-control', 'label'=>'タイトル','error' => array('attributes' => array('class' => 'has-error'))));
 }

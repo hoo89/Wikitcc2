@@ -1,9 +1,11 @@
 <?php
 class CategoriesController extends AppController {
 	public $helpers = array('Tree');
+	public $components = array('Security');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->Security->requireAuth('add','edit','delete');
 		$this->Auth->allow('index', 'public_index');
 	}
 
@@ -29,7 +31,6 @@ class CategoriesController extends AppController {
 	}
 
 	public function delete($id) {
-
 		if($this->request->isDelete()) {
 			if ($this->Category->delete($id)) {
 				$this->Session->setFlash('カテゴリーを削除しました');

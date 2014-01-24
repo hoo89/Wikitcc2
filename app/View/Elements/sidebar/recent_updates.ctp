@@ -1,6 +1,6 @@
-<div id="updates">
+<div id="sidebar-updates">
 <h4>Latest Updates</h4>
-<?php $posts = $this->requestAction('wikiPages/find_public/sort:modified/direction:desc/limit:5');?>
+<?php $posts = $this->requestAction('wikiPages/public_find/sort:modified/direction:desc/limit:5');?>
 
 <?php foreach ($posts as $post): ?>
 	<?php 

@@ -3,12 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		<?php echo __('京都工芸繊維大学コンピュータ部'); ?>
-		<?php
-		if(!empty($content_title)){
-			echo ' : '.$content_title;
-		}
-		?>
+		京都工芸繊維大学コンピュータ部
+		<?php if(!empty($content_title)){echo ' : '.$content_title;} ?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="京都工芸繊維大学コンピュータ部のウェブページ">
@@ -17,14 +13,19 @@
 	<!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-	<?php echo $this->Html->css('cake.generic'); ?>
-	<?php echo $this->Html->css('bootstrap.min'); ?>
-	<?php echo $this->Html->css('jquery.treeview'); ?>
-	<?php echo $this->Html->css('wikitcc'); ?>
+	<?php echo $this->Html->css('bootstrap.min');
+	echo $this->Html->css('wikitcc');
 
-	<?php
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
+
+	$this->startIfEmpty('rss');
+	echo $this->Html->meta('京都工芸繊維大学コンピュータ部','/wikiPages/public_index.rss',array('type' => 'rss'));
+	$this->end();
+	
+	echo $this->fetch('rss');
+
+	$isLoggedIn = $this->Session->check('name');
 	?>
 </head>
 
@@ -33,18 +34,17 @@
 		<div class="row">
 			<div id="header">
 				<?php
-				if(!$logged_in){
-					echo $this->element('header');
-				}else{
-					echo $this->element('private_header');
+				if(empty($content_title)){
+					$content_title=null;
 				}
+				echo $this->element('header',array('isLoggedIn'=>$isLoggedIn,'content_title'=>$content_title));
 				?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
-				if(!$logged_in){
+				if(!$isLoggedIn){
 					echo $this->element('sidebar/sidemenu');
 					echo $this->element('sidebar/recent_updates');
 				}else{
@@ -61,12 +61,12 @@
 						if(empty($content_title)){
 							$content_title=null;
 						}
-						if($logged_in){
-							echo $this->element('content_header',array('logged_in'=>$logged_in,'content_title'=>$content_title));
+						if($isLoggedIn){
+							echo $this->element('content_header',array('logged_in'=>$this->Session->check('name'),'content_title'=>$content_title));
 						}
 						?>
 					</div>
-					<div class="pull-right" id="breadcrumb">
+					<div class="pull-right" id="content-header-breadcrumb">
 						<?php
 						echo $this->fetch('breadcrumb');
 						?>
@@ -79,18 +79,17 @@
 					<div>
 						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>
 					</div>		
-					<?php if(!empty($title)) echo'<hr>'; ?>
+					<?php if(!empty($title)) echo'<hr style="margin-top:0">'; ?>
 					<?php echo $this->fetch('content'); ?>
+					<?php echo $title=$this->fetch('contentInfo'); ?>
 				</div>
 			</div>
 		</div>
-		<div id="footer">Copyright© KITCC All Rights Reserved. Since 2013 - <?php echo date('Y')?><br/>Powered by Wikitcc2 with CakePHP2.4.4 and PHP5</div>
+		<div id="footer">Copyright© KITCC All Rights Reserved. Since 2013 - <?php echo date('Y')?><br />Powered by Wikitcc2 with CakePHP2.4.4 and PHP5</div>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<?php echo $this->Html->script('bootstrap.min'); ?>
-	<?php echo $this->Html->script('jquery.treeview'); ?>
-	<?php echo $this->Html->script('jquery.cookie'); ?>
 	<?php echo $this->fetch('script'); ?>
 </body>
 </html>

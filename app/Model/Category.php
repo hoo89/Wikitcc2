@@ -5,7 +5,8 @@ class Category extends AppModel {
     public $hasMany = 
     array(
     	'WikiPage'=>array(
-    		'fields' => array('id','title','category_id','is_public')
+    	   'fields' => array('id','title','category_id','is_public'),
+        'order' => 'WikiPage.modified DESC'
     	)
     );
     public function beforeSave($options = array()) {
@@ -16,7 +17,7 @@ class Category extends AppModel {
     }
     public function beforeDelete($options = array()){
         $category = $this->findById($this->id);
-        $this->log($category);
+
         if(array_key_exists('WikiPage',$category)){
             //カテゴリを削除する前にそのカテゴリに属していたページのページカテゴリをnullに戻す
             foreach($category['WikiPage'] as $page){

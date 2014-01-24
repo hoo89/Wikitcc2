@@ -37,19 +37,19 @@ h4.headline{
 	background-color: #F4FAFF;
 	margin-right: 5px;
 	margin-left: -5px;
-	padding-bottom: 20px;
+	padding-top: 20px;
+	padding-bottom: 10px;
 	border-radius: 5px;
-	margin-top: -40px;
 }
 #wikitcc-nav>li>a{
 	padding: 2px 10px;
 }
-#updates{
+#sidebar-updates{
 	margin-top: 20px;
 	margin-left: 10px;
 }
 #content{
-	padding-top: 5px;
+	padding-top: 10px;
 	padding-bottom: 20px;
 	background-color: #FFF;
 	border-radius: 10px;
@@ -58,10 +58,13 @@ h4.headline{
 	margin-bottom: 5px;
 	margin-left: 5px;
 }
-#breadcrumb{
+#content-header-breadcrumb{
 	margin-right: 30px;
 }
-#breadcrumb>ul{
+#content-header-breadcrumb>.breadcrumb{
+	margin-bottom: 0px;
+}
+.breadcrumb>ul{
 	margin-bottom: 0;
 	padding: 10px 20px;
 }
@@ -130,12 +133,6 @@ pre, code{
 	color: #a94442;
 }
 
-#header-link > li > a:hover,
-#header-link > li > a:focus {
-  text-decoration: none;
-  background-color: #DDD;
-}
-
 .diff>.info{
 	color:blue;
 }
@@ -156,12 +153,17 @@ pre, code{
 .form-search{
 	margin-top: 5px;
 }
-
-#title{
-	margin-top: 10px;
+.comment-form {
+	margin: 5px 0;
+}
+.checkbox{
+	margin: 0;
+}
+.nav-pills>li>a{
+	padding:10px 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	#content{
 		max-width: 100%;
 		border-radius: 0;
@@ -172,8 +174,8 @@ pre, code{
 	#content-header>div{
 		float:inherit!important;
 	}
-	#updates,
-	#breadcrumb{
+	#sidebar-updates,
+	#content-header-breadcrumb{
 		display: none;
 	}
 	#sidebar{
@@ -181,8 +183,8 @@ pre, code{
 		padding-bottom: 5px;
 		border-radius: 0;
 	}
-	.nav>li>a{
-		padding:10px 10px;
+	.nav-pills>li>a{
+		padding:5px 5px;
 	}
 	.form-search{
 		margin-top: 0;

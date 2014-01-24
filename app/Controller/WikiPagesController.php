@@ -1,57 +1,107 @@
 <?php
+App::uses('AppController', 'Controller');
+
 class WikiPagesController extends AppController {
-    public $components = array('Search.Prg');
+    public $components = array('Search.Prg','RequestHandler','Security' => array('validatePost' => false));
     public $presetVars = true;
-    public $helpers = array('Cache');
+
+    /*public $helpers = array('Cache');
     public $cacheAction = array(
-        'view/' => '1 week'
+        'view' => '1 week'
+    );*/
+
+    var $paginate = array(
+        'limit' => 20,
+        'order' => array(
+            'WikiPage.modified' => 'desc'
+        )
     );
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('find_public','view');
+        $this->Security->blackHoleCallback = 'blackhole';
+        $this->Security->requireAuth('add', 'edit', 'add_comment');
+
+        if($this->RequestHandler->isRSS()){
+            $this->Auth->authenticate = array('Form','Basic');
+        }
+        $this->Auth->allow('public_find','view','public_index');
         if($this->action === 'view'){
             $title = $this->request->params['pass'][0];
             if (!$this->WikiPage->isPublic($title)){
                 $this->Auth->deny('view');
             }
         }
+        if($this->action === 'find'||$this->action === 'public_find'){
+            $this->Security->csrfCheck = false;
+        }
     }
 
     public function index() {
-        $posts = $this->paginate();
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
+        $this->set('categoryList',$categoryList);
+        if ($this->request->is('post')){
+            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+                if($selected){
+                    $this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                }
+            }
+        }
+
+        $wikiPages = $this->paginate();
         if ($this->request->is('requested')) {
-            return $posts;
+            return $wikiPages;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $wikiPages);
+        }
+    }
+
+    public function public_index() {
+        $this->paginate['conditions'] = array('WikiPage.is_public'=>true);
+        $wikiPages = $this->paginate();
+        if ($this->request->is('requested')) {
+            return $wikiPages;
+        } else {
+            $this->set('wikiPages', $wikiPages);
+            $this->render('index');
         }
     }
 
     public function find(){
+        $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
+        $this->set('categoryList',$categoryList);
+        if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
+            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+                if($selected){
+                    $this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                }
+            }
+        }
+
         $this->Prg->commonProcess();
-        $this->paginate = array(
-            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
-        );
+        $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
+        $this->set('searchword',$this->request->named);
         $posts = $this->paginate();
         if ($this->request->is('requested')) {
             return $posts;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $posts);
+            $this->render('index');
         }
     }
 
-    public function find_public(){
+    public function public_find(){
         $this->Prg->commonProcess();
         $this->passedArgs['is_public'] = 1;
-        $this->paginate = array(
-            'conditions' => $this->WikiPage->parseCriteria($this->passedArgs),
-        );
+        $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
+        $this->set('searchword',$this->request->named);
         $posts = $this->paginate();
         $this->set('posts', $posts);
         if ($this->request->is('requested')) {
             return $posts;
         } else {
-            $this->set('posts', $posts);
+            $this->set('wikiPages', $posts);
+            $this->render('index');
         }
     }
 
@@ -144,7 +194,7 @@ class WikiPagesController extends AppController {
             $this->WikiPage->id = $post['WikiPage']['id'];
             $content = $post['WikiPage']['body'];
             $name = h($this->request->data['WikiPage']['name']);
-            $message = h($this->request->data['WikiPage']['comment']);
+            $message = nl2br(h($this->request->data['WikiPage']['comment']));
             if(empty($name)){
                 $name = "名無しさん";
             }
@@ -171,7 +221,7 @@ class WikiPagesController extends AppController {
 
         $this->WikiPage->id = $post['WikiPage']['id'];
         //$this->WikiPage->newest();
-        $revisions = $this->WikiPage->revisions(array('limit'=>10));
+        $revisions = $this->WikiPage->revisions(array('limit'=>10), true);
         $this->set('revisions',$revisions);
         $this->set('content_title',$post['WikiPage']['title']);
     }
@@ -200,5 +250,21 @@ class WikiPagesController extends AppController {
         $diff = array_merge_recursive($current, $old);
         $this->set('diff',$diff);
         $this->render('view_prev_diff');
+    }
+
+    /**
+     * blackhole
+     * - for SecurityComponent
+     */
+    public function blackhole($type){
+        switch($type){
+            case 'csrf' :
+                $this->Session->setFlash('送信できませんでした.セッションがタイムアウトした可能性があります.もう一度再読み込みしてやり直してください');
+                $this->redirect(array('action' => $this->action));
+                break;
+            default :
+                $this->redirect(array('action' => 'index'));
+                break;
+        }
     }
 }

@@ -1,15 +1,15 @@
 <?php
 $this->assign('title', '新規作成');
-
+echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;Wikitcc記法は',$this->Html->link('こちら',array('controller' => 'wikiPages', 'action' => 'view','Wikitcc記法一覧')),'</p>';
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
-echo $this->Form->input('title',array('class' => 'form-control', 'label'=>'タイトル','error' => array('attributes' => array('class' => 'has-error'))));
+echo $this->Form->input('title',array('class' => 'form-control', 'label'=>false, 'placeholder'=>'タイトル', 'error' => array('attributes' => array('class' => 'has-error'))));
 echo '</div>';
 echo '<div class="col-sm-12">';
 echo $this->Form->textarea('body', array(
             "rows"=>20,
             "class"=>"form-control",
-            'label'=>'本文'
+            'placeholder'=>'本文'
         ));
 
 echo 'カテゴリー ';
