@@ -1,14 +1,5 @@
 <div id="sidemenu">
-	<?php echo $this->Html->image("wikitcc.png", array(
-		"alt" => "KITCC",
-		'url' => '/'
-	)); ?>
-	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#wikitcc-nav">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-     </button>
-	<ul class="nav nav-pills nav-stacked collapse navbar-collapse" id="wikitcc-nav">
+	<ul class="nav nav-pills nav-stacked" id="wikitcc-nav">
 		<?php echo $this->Nav->tab('トップページ','/');?>
 		<li <?php 
 		$url = $this->Html->url();

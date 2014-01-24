@@ -34,11 +34,10 @@
 		<div class="row">
 			<div id="header">
 				<?php
-				if(!$isLoggedIn){
-					echo $this->element('header');
-				}else{
-					echo $this->element('private_header');
+				if(empty($content_title)){
+					$content_title=null;
 				}
+				echo $this->element('header',array('isLoggedIn'=>$isLoggedIn,'content_title'=>$content_title));
 				?>
 			</div>
 		</div>
