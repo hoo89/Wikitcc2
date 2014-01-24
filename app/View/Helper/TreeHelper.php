@@ -34,7 +34,7 @@ class TreeHelper extends AppHelper {
 			echo "</ul>\n";
 			if($first){
 				$this->Html->scriptBlock('$(document).ready(
-					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie"});}
+					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie",cookieId: "'.$id.'"});}
 					);',array('inline'=>false));
 			}
 		}
@@ -77,7 +77,7 @@ class TreeHelper extends AppHelper {
 			echo "</ul>\n";
 			if($first){
 				$this->Html->scriptBlock('$(document).ready(
-					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie",cookieId: '.$id.'});}
+					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie",cookieId: "'.$id.'"});}
 					);',array('inline'=>false));
 			}
 		}
@@ -107,7 +107,7 @@ class TreeHelper extends AppHelper {
 			echo "</ul>\n";
 			if($first){
 				$this->Html->scriptBlock('$(document).ready(
-					function(){$("#'.$id.'").treeview({animated:"fast",persist: "cookie",cookieId: '.$id.'});}
+					function(){$("#'.$id.'").treeview({animated:"fast"});}
 					);',array('inline'=>false));
 			}
 		}
