@@ -359,7 +359,7 @@ class WikitccParser{
             if(preg_match("/^,/", $line) && $is_spre == false){
                 $in_table_flag = true;
                 if($is_header){
-                    $text .= '<table  class="table table-condensed table-bordered">'.WikitccParser::LINE_FEED.'<tr>';
+                    $text .= '<table  class="table table-bordered">'.WikitccParser::LINE_FEED.'<tr>';
                     $tag = "th";
                 }
                 else{

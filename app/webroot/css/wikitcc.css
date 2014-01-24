@@ -133,12 +133,6 @@ pre, code{
 	color: #a94442;
 }
 
-#header-link > li > a:hover,
-#header-link > li > a:focus {
-  text-decoration: none;
-  background-color: #DDD;
-}
-
 .diff>.info{
 	color:blue;
 }
