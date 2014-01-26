@@ -10,11 +10,15 @@ class Attachment extends AppModel {
     public $belongsTo = 'WikiPage';
     public function beforeValidate($options = array()) {
         setlocale(LC_ALL, 'ja_JP.UTF-8');
-        $this->data[$this->alias]['name'] = basename(h($this->data[$this->alias]['name']));
+        if(array_key_exists('name',($this->data[$this->alias])))
+            $this->data[$this->alias]['name'] = basename($this->data[$this->alias]['name']);
         return true;
     }
     public function beforeSave($options = array()){
         $upload_dir = 'files/attachment';
+        if(!array_key_exists('name',($this->data[$this->alias]))){
+            return false;
+        }
         $filename = $this->data[$this->alias]['name'];
         $upload_file = $upload_dir.DS.$filename;
         if(file_exists($upload_file)){
