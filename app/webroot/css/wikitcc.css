@@ -30,8 +30,8 @@ h4.headline{
 	background-color: #F4FAFF;
 	margin-right: 5px;
 	margin-left: -5px;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	border-radius: 5px;
 }
 #wikitcc-nav>li>a{
@@ -136,8 +136,8 @@ pre, code{
 	margin-bottom: 20px;
 }
 .navbar{
-		margin-bottom: 10px;
-	}
+	margin-bottom: 10px;
+}
 
 @media screen and (max-width: 767px) {
 	#content{
@@ -153,11 +153,14 @@ pre, code{
 	}
 	#sidebar{
 		margin: 0;
+		border-radius: 0;
 		padding-top: 5px;
 		padding-bottom: 5px;
-		border-radius: 0;
 	}
 	.nav-pills>li>a{
 		padding:5px 5px;
+	}
+	.navbar{
+		margin-bottom: 0px;
 	}
 }
