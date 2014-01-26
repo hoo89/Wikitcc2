@@ -1,4 +1,5 @@
 <?php 
+    $this->append('script',$this->Html->script('jquery.cookie'));
     if(empty($title)){
         $this->assign('title', 'ページ一覧');
     }else{
@@ -6,26 +7,35 @@
     }
     $this->assign('rss', $this->Html->meta('京都工芸繊維大学コンピュータ部',$this->Html->url().'.rss',array('type' => 'rss')));
     if(!empty($searchword)) $this->BootstrapPaginator->options(array('url' => $searchword));
-    $this->assign('script','<script>$(function(){
-                $(".edit").hide();
-                $("#editEnable").click(function(){
-                    $(".edit").toggle();
-                    $(this).toggleClass("active");
-                });
-                $("#checkAll").click(function(){
-                    $(".checkbox").prop("checked", $(this).prop("checked"));
-                });
-            });</script>');
+    $this->append('script','<script>
+        $(function(){
+            $(".edit").hide();
+            $("#editEnable").click(function(){
+                $(".edit").toggle();
+                $(this).toggleClass("active");
+            });
+            $("#checkAll").click(function(){
+                $(".checkbox").prop("checked", $(this).prop("checked"));
+            });
+
+            if($.cookie("openTab")){
+                $(\'a[data-toggle="tab"]\').parent().removeClass("active");
+                $("a[href=#" + $.cookie("openTab") +"]").tab("show");
+            }
+            $(\'a[data-toggle="tab"]\').on("shown.bs.tab", function (e) {
+                $.cookie("openTab",e.target.href.split("#")[1]);
+            });
+        });
+        </script>');
 ?>
 
-    <p>
-        <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
-    </p>
-    <ul class="nav nav-tabs">
+<p>
+    <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
+</p>
+<ul class="nav nav-tabs" id="view-tab">
   <li class="active"><a href="#normal" data-toggle="tab">一覧</a></li>
   <li><a href="#table" data-toggle="tab">詳細</a></li>
 </ul>
-
 
 <div class="tab-content">
     <div class="tab-pane active" id="normal">
