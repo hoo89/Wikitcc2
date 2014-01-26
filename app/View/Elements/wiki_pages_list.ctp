@@ -1,13 +1,13 @@
 <?php foreach ($wikiPages as $wikiPage):?>
 <div class="media">
   <?php if(!empty($wikiPage['Attachment']) && !empty($wikiPage['Attachment'][0]['thumb_dir'])): ?>
-  <a class="pull-left" href="#">
+  <a class="pull-left" href="<?php echo $this->Html->url('/wiki_pages/view/'.h($wikiPage['WikiPage']['title']));?>">
     <img class="media-object img-thumbnail" src="<?php echo $this->webroot,$wikiPage['Attachment'][0]['thumb_dir'];?>" width="70" height="70">
   </a>
 <?php endif; ?>
   <div class="media-body">
   	<h4 class="media-heading">
-    <?php echo $this->Html->link($wikiPage['WikiPage']['title'],array('controller'=>'wiki_pages','action'=>'view',$wikiPage['WikiPage']['title']),array('escape'=>false));?>
+    <?php echo $this->Html->link($wikiPage['WikiPage']['title'],array('controller'=>'wiki_pages','action'=>'view',$wikiPage['WikiPage']['title']));?>
     <small>
       -
       <?php
