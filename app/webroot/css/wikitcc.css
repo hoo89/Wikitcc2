@@ -132,6 +132,9 @@ pre, code{
 .content-header-nav>li>a{
 	padding:10px 10px;
 }
+.page-tabs{
+	margin-bottom: 20px;
+}
 
 @media screen and (max-width: 767px) {
 	#content{
