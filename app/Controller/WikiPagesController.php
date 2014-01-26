@@ -40,7 +40,7 @@ class WikiPagesController extends AppController {
     public function index() {
         $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
         $this->set('categoryList',$categoryList);
-        if ($this->request->is('post')){
+        if ($this->request->is('post') && !$this->request->is('requested')){
             foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
                 if($selected){
                     $this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
