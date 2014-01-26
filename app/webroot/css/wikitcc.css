@@ -128,7 +128,7 @@ pre, code{
 .checkbox{
 	margin: 0;
 }
-.nav-pills>li>a{
+.content-header-nav>li>a{
 	padding:10px 10px;
 }
 
