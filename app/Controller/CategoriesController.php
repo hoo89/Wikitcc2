@@ -161,9 +161,9 @@ class CategoriesController extends AppController {
 		$categoryList = $this->Category->generateTreeList(null,null,null, '-');
         $this->set('categoryList',$categoryList);
         if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
-            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+            foreach ($this->request->data['WikiPage']['id'] as $wiki_id => $selected) {
                 if($selected){
-                    $this->Category->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                    $this->Category->WikiPage->save(array('id'=>$wiki_id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
                 }
             }
         }
