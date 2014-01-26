@@ -218,11 +218,9 @@ class WikiPagesController extends AppController {
         if(!$post){
             throw new NotFoundException('ページが見つかりません');
         }
-
         $this->WikiPage->id = $post['WikiPage']['id'];
-        //$this->WikiPage->newest();
-        $revisions = $this->WikiPage->revisions(array('limit'=>10), true);
-        $this->set('revisions',$revisions);
+        $revisions = $this->paginate('WikiPage.ShadowModel',array('id'=>$this->WikiPage->id));
+        $this->set('wikiPages',$revisions);
         $this->set('content_title',$post['WikiPage']['title']);
     }
 
