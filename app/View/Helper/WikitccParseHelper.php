@@ -75,6 +75,7 @@ class WikitccParser{
      * 
      */
     public function parse(){
+        $this->defenceScriptInsertion();
         $this->unifyKaigyo();
         $this->addBrTag();
         $this->joinLine();
@@ -96,7 +97,7 @@ class WikitccParser{
         $this->createInnerLink();
         $this->rmIgnoreDelimiter();
         $this->createPre();
-        $this->defenceScriptInsertion();
+        
     }
     
     /**
@@ -625,11 +626,12 @@ class WikitccParser{
             return h($matches[1]);
         };
 
-        $this->text = preg_replace_callback("/(<script.*>.*?<\/script>)/", 
-                                   $callback, $this->text);
+        $this->text = strip_tags($this->text,'<b><br><em><span><i><s><u><strong><small>');
+        $this->text = preg_replace("/(<[^\\/]*?(br|b|em|span|u|strong|small|s).*?>)/", "<\\2>", $this->text);
+
+        //$this->text = preg_replace_callback("/(<script.*>.*?<\/script>)/", $callback, $this->text);
         
-        $this->text = preg_replace_callback("/(<style.*>.*?<\/style>)/", 
-                                   $callback, $this->text);
+        //$this->text = preg_replace_callback("/(<style.*>.*?<\/style>)/", $callback, $this->text);
     }
     
     /**
