@@ -68,6 +68,7 @@ class WikiPagesController extends AppController {
     }
 
     public function find(){
+        $this->set('title','検索結果');
         $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
         $this->set('categoryList',$categoryList);
         if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
@@ -91,6 +92,7 @@ class WikiPagesController extends AppController {
     }
 
     public function public_find(){
+        $this->set('title','検索結果');
         $this->Prg->commonProcess();
         $this->passedArgs['is_public'] = 1;
         $this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
