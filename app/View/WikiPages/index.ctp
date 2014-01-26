@@ -23,7 +23,8 @@
                 $("#"+$.cookie("openTab")).tab("show");
             }
             $(\'a[data-toggle="tab"]\').on("shown.bs.tab", function (e) {
-                $.cookie("openTab",e.target.id);
+                $.cookie("openTab",e.target.id,{path:"/"});
+                console.log(e.target.id);
             });
         });
         </script>');
