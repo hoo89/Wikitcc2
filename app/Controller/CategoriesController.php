@@ -157,6 +157,17 @@ class CategoriesController extends AppController {
 			$a = $this->Category->findById($id);
 			$this->set('title','カテゴリー： '.$a['Category']['name']);
 		}
+
+		$categoryList = $this->Category->generateTreeList(null,null,null, '-');
+        $this->set('categoryList',$categoryList);
+        if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
+            foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+                if($selected){
+                    $this->Category->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+                }
+            }
+        }
+
 		$category_ids = $this->Category->children($id,false,'id');
 		$ids = array_map(function($item){return $item['Category']['id'];},$category_ids);
 		$ids[] = $id;
