@@ -135,13 +135,15 @@ pre, code{
 .page-tabs{
 	margin-bottom: 20px;
 }
+.navbar{
+		margin-bottom: 10px;
+	}
 
 @media screen and (max-width: 767px) {
 	#content{
 		max-width: 100%;
 		border-radius: 0;
 	}
-
 	#content-header>div{
 		float:inherit!important;
 	}
