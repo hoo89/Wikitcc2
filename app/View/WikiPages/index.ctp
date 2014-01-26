@@ -20,10 +20,10 @@
 
             if($.cookie("openTab")){
                 $(\'a[data-toggle="tab"]\').parent().removeClass("active");
-                $("a[href=#" + $.cookie("openTab") +"]").tab("show");
+                $("#"+$.cookie("openTab")).tab("show");
             }
             $(\'a[data-toggle="tab"]\').on("shown.bs.tab", function (e) {
-                $.cookie("openTab",e.target.href.split("#")[1]);
+                $.cookie("openTab",e.target.id);
             });
         });
         </script>');
@@ -33,8 +33,8 @@
     <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
 </p>
 <ul class="nav nav-tabs" id="view-tab">
-  <li class="active"><a href="#normal" data-toggle="tab">一覧</a></li>
-  <li><a href="#table" data-toggle="tab">詳細</a></li>
+  <li class="active"><a href="#normal" data-toggle="tab" id="view-tab-1">一覧</a></li>
+  <li><a href="#table" data-toggle="tab" id="view-tab-2">詳細</a></li>
 </ul>
 
 <div class="tab-content">
