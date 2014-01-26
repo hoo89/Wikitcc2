@@ -25,8 +25,8 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	Router::connect('/', array('controller' => 'wikiPages', 'action' => 'view','TOP'));
-	Router::connect('/wiki/*', array('controller' => 'wikiPages', 'action' => 'view'));
+	Router::connect('/', array('controller' => 'wiki_pages', 'action' => 'view','TOP'));
+	Router::connect('/wiki/*', array('controller' => 'wiki_pages', 'action' => 'view'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

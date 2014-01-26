@@ -9,7 +9,7 @@
 	?>
 	<ul>
     <li><?php echo $this->Html->link($post['WikiPage']['title'],
-array('controller' => 'wikiPages', 'action' => 'view', $post['WikiPage']['title']),array('escape' => false)); ?></li>
+array('controller' => 'wiki_pages', 'action' => 'view', $post['WikiPage']['title']),array('escape' => false)); ?></li>
 	</ul>
 <?php endforeach; ?>
 </div>

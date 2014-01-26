@@ -17,12 +17,12 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">ページ編集 <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 			  <?php
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-plus"></span> 新規ページ',array('controller' => 'wikiPages', 'action' => 'add'));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-edit"></span> 編集',array('controller' => 'wikiPages', 'action' => 'edit',$content_title),empty($content_title));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-time"></span> 編集履歴',array('controller' => 'wikiPages', 'action' => 'revisions',$content_title),empty($content_title));
+			  echo $this->Nav->tab('<span class="glyphicon glyphicon-plus"></span> 新規ページ',array('controller' => 'wiki_pages', 'action' => 'add'));
+			  echo $this->Nav->tab('<span class="glyphicon glyphicon-edit"></span> 編集',array('controller' => 'wiki_pages', 'action' => 'edit',$content_title),empty($content_title));
+			  echo $this->Nav->tab('<span class="glyphicon glyphicon-time"></span> 編集履歴',array('controller' => 'wiki_pages', 'action' => 'revisions',$content_title),empty($content_title));
 			  echo $this->Nav->tab('<span class="glyphicon glyphicon-upload"></span> アップロード',array('controller' => 'attachments', 'action' => 'index','title:'.$content_title),empty($content_title));
 			  
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-file"></span> ページ',array('controller' => 'wikiPages', 'action' => 'view',$content_title),empty($content_title));
+			  echo $this->Nav->tab('<span class="glyphicon glyphicon-file"></span> ページ',array('controller' => 'wiki_pages', 'action' => 'view',$content_title),empty($content_title));
 			  ?>
 			</ul>
 		  </li>
@@ -40,9 +40,9 @@
 	   <?php echo $this->Html->link('サイトマップ','/categories')?>
 		</li>
 		<?php if($isLoggedIn):
-		echo $this->Nav->tab('ページ一覧','/wikiPages/index');
+		echo $this->Nav->tab('ページ一覧','/wiki_pages/index');
 		else:
-		echo $this->Nav->tab('ページ一覧','/wikiPages/public_index');
+		echo $this->Nav->tab('ページ一覧','/wiki_pages/public_index');
 		endif; ?>
 		</ul>
 

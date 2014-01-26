@@ -11,12 +11,14 @@ class TreeHelper extends AppHelper {
 
 			foreach ($array as $vals) {
 				echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
+				echo ' ';
+				echo $this->Html->link('<p class="glyphicon glyphicon-folder-open"></p>','/categories/view/'.$vals['Category']['id'],array('escape'=>false));
 				$this->generate($vals['children'],null,false);
 				if(!empty($vals['WikiPage'])){
 					echo '<ul>';
 					foreach ($vals['WikiPage'] as $page){
 						$link = $this->Html->link($page['title'],
-							array('controller' => 'wikiPages', 'action' => 'view', $page['title']));
+							array('controller' => 'wiki_pages', 'action' => 'view', $page['title']));
 						echo "<li>".$link;
 					}
 					echo '</ul>';
@@ -27,7 +29,7 @@ class TreeHelper extends AppHelper {
 			if($first && !empty($sub_pages)){
 				foreach ($sub_pages as $page){
 					$link = $this->Html->link($page['WikiPage']['title'],
-							array('controller' => 'wikiPages', 'action' => 'view', $page['WikiPage']['title']));
+							array('controller' => 'wiki_pages', 'action' => 'view', $page['WikiPage']['title']));
 						echo "<li>".$link;
 					}
 			}
@@ -50,13 +52,16 @@ class TreeHelper extends AppHelper {
 
 			foreach ($array as $vals) {
 				echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
+				echo ' ';
+				echo $this->Html->link('<p class="glyphicon glyphicon-folder-open"></p>','/categories/view/'.$vals['Category']['id'],array('escape'=>false));
+				
 				$this->generate_public($vals['children'],null,false);
 				if(!empty($vals['WikiPage'])){
 					echo '<ul>';
 					foreach ($vals['WikiPage'] as $page){
 						if($page['is_public']){
 							$link = $this->Html->link($page['title'],
-								array('controller' => 'wikiPages', 'action' => 'view', $page['title']));
+								array('controller' => 'wiki_pages', 'action' => 'view', $page['title']));
 							echo "<li>".$link;
 						}
 					}
@@ -69,7 +74,7 @@ class TreeHelper extends AppHelper {
 				foreach ($sub_pages as $page){
 					if($page['WikiPage']['is_public']){
 						$link = $this->Html->link($page['WikiPage']['title'],
-								array('controller' => 'wikiPages', 'action' => 'view', $page['WikiPage']['title']));
+								array('controller' => 'wiki_pages', 'action' => 'view', $page['WikiPage']['title']));
 						echo "<li>".$link;
 					}
 				}

@@ -4,7 +4,7 @@ if($this->data && $this->data['WikiPage']){
 }else{
 	$this->assign('title', '新規作成');
 }
-echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;Wikitcc記法は',$this->Html->link('こちら',array('controller' => 'wikiPages', 'action' => 'view','Wikitcc記法一覧')),'</p>';
+echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;Wikitcc記法は',$this->Html->link('こちら',array('controller' => 'wiki_pages', 'action' => 'view','Wikitcc記法一覧')),'</p>';
 echo $this->Form->create('WikiPage');
 echo '<div class="col-sm-6">';
 if($this->data && $this->data['WikiPage']){
@@ -26,7 +26,7 @@ echo $this->Form->radio('is_public', array(0=>'部内のみに公開する',1=>'
 echo $this->Form->input('id', array('type' => 'hidden'));
 echo $this->Form->end(array('label'=>'保存する','class'=>'btn btn-primary'));
 if($this->data && $this->data['WikiPage']){
-	echo $this->Form->create('WikiPage',array('onsubmit'=>"return confirm('このページを削除してよろしいですか？');",'class'=>'form-inline','url' => array('controller' => 'WikiPages', 'action' => 'delete',$this->data['WikiPage']['title'])));
+	echo $this->Form->create('WikiPage',array('onsubmit'=>"return confirm('このページを削除してよろしいですか？');",'class'=>'form-inline','url' => array('controller' => 'wiki_pages', 'action' => 'delete',$this->data['WikiPage']['title'])));
 	echo $this->Form->end(array('label'=>'このページを削除する','class'=>'btn btn-warning'));
 }
 echo '</div>';
