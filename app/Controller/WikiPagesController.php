@@ -32,7 +32,7 @@ class WikiPagesController extends AppController {
                 $this->Auth->deny('view');
             }
         }
-        if($this->action === 'find'||$this->action === 'public_find'){
+        if($this->action === 'find'||$this->action === 'public_find'||$this->action === 'preview'){
             $this->Security->csrfCheck = false;
         }
     }
@@ -250,6 +250,12 @@ class WikiPagesController extends AppController {
         $diff = array_merge_recursive($current, $old);
         $this->set('diff',$diff);
         $this->render('view_prev_diff');
+    }
+
+    public function preview(){
+        $this->log($this->request->data);
+
+        $this->set('body',$this->request->data['body']);
     }
 
     /**
