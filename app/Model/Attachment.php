@@ -20,6 +20,11 @@ class Attachment extends AppModel {
             return false;
         }
         $filename = $this->data[$this->alias]['name'];
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if($ext === "php" || $ext === "cgi"){
+            return false;
+        }
+
         $upload_file = $upload_dir.DS.$filename;
         if(file_exists($upload_file)){
             return false;
