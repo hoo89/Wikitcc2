@@ -3,7 +3,7 @@ if($this->Html->url()!=$this->Html->webroot){
 	$this->Html->addCrumb('TOP', '/');
 	if(!empty($parents)){
 		foreach($parents as $parent){
-			$this->Html->addCrumb($parent['Category']['name']);
+			$this->Html->addCrumb($parent['Category']['name'],'/categories/view/'.$parent['Category']['id']);
 		}
 	}
 	$this->Html->addCrumb($data['WikiPage']['title']);

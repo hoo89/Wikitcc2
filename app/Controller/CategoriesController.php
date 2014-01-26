@@ -3,15 +3,23 @@ class CategoriesController extends AppController {
 	public $helpers = array('Tree');
 	public $components = array('Security');
 
+	var $paginate = array(
+        'limit' => 20,
+        'order' => array(
+        	'Category.lft',
+            'WikiPage.modified' => 'desc'
+        )
+    );
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Security->requireAuth('add','edit','delete');
-		$this->Auth->allow('index', 'public_index');
+		$this->Auth->allow('index', 'public_index', 'view', 'public_view');
 	}
 
     public function index() {
     	if(!$this->Auth->loggedIn()){
-    		$this->redirect(array('action' => 'public_index'), null, true);
+    		$this->redirect(array('action' => 'public_index'));
     	}
     	$categories = $this->Category->find('threaded', array( 
             'order' => array('Category.lft')) 
@@ -118,6 +126,9 @@ class CategoriesController extends AppController {
 	}
 
 	public function public_index(){
+		if($this->Auth->loggedIn()){
+    		$this->redirect(array('action' => 'index'));
+    	}
 		$categories = $this->Category->find(
 			'threaded', array(
 				'conditions' => array('Category.is_public' => true),
@@ -134,5 +145,46 @@ class CategoriesController extends AppController {
 
 		$this->set('categories',$categories);
 		$this->set('top_pages',$top_pages);
+	}
+
+	public function view($id = null){
+		if(!$this->Auth->loggedIn()){
+    		$this->redirect(array('action' => 'public_view', $id));
+    	}
+
+		$this->Category->id = $id;
+		if ($this->Category->exists()) {
+			$a = $this->Category->findById($id);
+			$this->set('title','カテゴリー： '.$a['Category']['name']);
+		}
+		$category_ids = $this->Category->children($id,false,'id');
+		$ids = array_map(function($item){return $item['Category']['id'];},$category_ids);
+		$ids[] = $id;
+		$wikiPages = $this->paginate('WikiPage',array('category_id'=>$ids));
+		$this->set('wikiPages', $wikiPages);
+		$this->set('searchword',$id);
+		$this->render('/WikiPages/index');
+	}
+
+	public function public_view($id = null){
+		if($this->Auth->loggedIn()){
+    		$this->redirect(array('action' => 'view', $id));
+    	}
+
+		$this->Category->id = $id;
+		if ($this->Category->exists()) {
+			$a = $this->Category->findById($id);
+			if(!$a['Category']['is_public']){
+				throw new ForbiddenException('ログインが必要です');
+			}
+			$this->set('title','カテゴリー： '.$a['Category']['name']);
+		}
+		$category_ids = $this->Category->children($id);
+		$ids = array_map(function($item){if($item['Category']['is_public']) return $item['Category']['id'];},$category_ids);
+		$ids[] = $id;
+		$wikiPages = $this->paginate('WikiPage',array('WikiPage.category_id'=>$ids,'WikiPage.is_public'=>true));
+		$this->set('wikiPages', $wikiPages);
+		$this->set('searchword',$id);
+		$this->render('/WikiPages/index');
 	}
 }
