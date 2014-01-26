@@ -2,7 +2,7 @@
 <div class="media">
   <?php if(!empty($wikiPage['Attachment']) && !empty($wikiPage['Attachment'][0]['thumb_dir'])): ?>
   <a class="pull-left" href="<?php echo $this->Html->url('/wiki_pages/view/'.h($wikiPage['WikiPage']['title']));?>">
-    <img class="media-object img-thumbnail" src="<?php echo $this->webroot,$wikiPage['Attachment'][0]['thumb_dir'];?>" width="70" height="70">
+    <img class="media-object img-thumbnail" src="<?php echo $this->webroot,h($wikiPage['Attachment'][0]['thumb_dir']);?>" width="70" height="70">
   </a>
 <?php endif; ?>
   <div class="media-body">

@@ -3,7 +3,7 @@
     if(empty($title)){
         $this->assign('title', 'ページ一覧');
     }else{
-        $this->assign('title', $title);
+        $this->assign('title', h($title));
     }
     $this->assign('rss', $this->Html->meta('京都工芸繊維大学コンピュータ部',$this->Html->url().'.rss',array('type' => 'rss')));
     if(!empty($searchword)) $this->BootstrapPaginator->options(array('url' => $searchword));
@@ -72,7 +72,7 @@
                 <td><?php echo $this->Html->link($wikiPage['WikiPage']['title'],array('controller' => 'wiki_pages','action' => 'view',$wikiPage['WikiPage']['title'])); ?>&nbsp;</td>
                 <td><?php echo h($wikiPage['WikiPage']['modified']); ?>&nbsp;</td>
                 <td><?php echo h($wikiPage['WikiPage']['created']); ?>&nbsp;</td>
-                <td><?php echo $wikiPage['Category']['name']; ?></td>
+                <td><?php echo h($wikiPage['Category']['name']); ?></td>
                 <td><?php if($wikiPage['WikiPage']['is_public']) echo '○';else echo '✕'; ?>&nbsp;</td>
             </tr>
         <?php endforeach; ?>

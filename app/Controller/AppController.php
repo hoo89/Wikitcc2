@@ -47,12 +47,6 @@ class AppController extends Controller {
         )
     );
 
-    public function beforeFilter() {
-        //ログイン無しで行えるActionを許可する
-        //$this->Auth->allow();
-        $this->set('logged_in',$this->Auth->loggedIn());
-    }
-
     public function isAuthorized($user) {
         if ($this->Auth->loggedIn()) {
             return true;

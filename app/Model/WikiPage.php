@@ -12,9 +12,6 @@ class WikiPage extends AppModel {
     public $hasMany = 'Attachment';
 
     public function beforeSave($options = array()) {
-    	if (isset($this->data[$this->alias]['title'])) {
-    		$this->data[$this->alias]['title']=h($this->data[$this->alias]['title']);
-    	}
         $this->Behaviors->load('Revision',array('limit'=>$this->limit_revisions));
     	return true;
     }

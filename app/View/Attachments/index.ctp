@@ -35,11 +35,11 @@
             <td>
                 <?php 
                 if($attachment['Attachment']['thumb_dir']){
-                    echo '<a href="',$this->webroot,$attachment['Attachment']['dir'],'" class="img-thumbnail">','<img src="',$this->webroot,$attachment['Attachment']['thumb_dir'],'" width="70" height="70">';
+                    echo '<a href="',$this->webroot,h($attachment['Attachment']['dir']),'" class="img-thumbnail">','<img src="',$this->webroot,h($attachment['Attachment']['thumb_dir']),'" width="70" height="70">';
                 } 
                 ?>
             </td>
-            <td><?php echo '<a href="',$this->webroot,$attachment['Attachment']['dir'],'">',$attachment['Attachment']['name'],'</a>';?>
+            <td><?php echo '<a href="',$this->webroot,h($attachment['Attachment']['dir']),'">',h($attachment['Attachment']['name']),'</a>';?>
             <td><?php echo $this->Html->link($attachment['WikiPage']['title'], array('controller'=>'wikiPages','action'=>'view',$attachment['WikiPage']['title']));?>
             <td><?php echo $this->Form->create('Attachment',array('onsubmit'=>"return confirm('このファイルを削除してよろしいですか？');",'class'=>'form-inline','url' => array('controller' => 'Attachments', 'action' => 'delete',$attachment['Attachment']['id'])));
                 echo $this->Form->end(array('label'=>'削除','class'=>'btn btn-sm btn-warning'));?></td>

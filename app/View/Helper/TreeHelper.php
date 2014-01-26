@@ -10,7 +10,7 @@ class TreeHelper extends AppHelper {
 			}
 
 			foreach ($array as $vals) {
-				echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
+				echo "<li id=\"".$vals['Category']['id']."\">".h($vals['Category']['name']);
 				echo ' ';
 				echo $this->Html->link('<p class="glyphicon glyphicon-folder-open"></p>','/categories/view/'.$vals['Category']['id'],array('escape'=>false));
 				$this->generate($vals['children'],null,false);
@@ -51,7 +51,7 @@ class TreeHelper extends AppHelper {
 			}
 
 			foreach ($array as $vals) {
-				echo "<li id=\"".$vals['Category']['id']."\">".$vals['Category']['name'];
+				echo "<li id=\"".$vals['Category']['id']."\">".h($vals['Category']['name']);
 				echo ' ';
 				echo $this->Html->link('<p class="glyphicon glyphicon-folder-open"></p>','/categories/view/'.$vals['Category']['id'],array('escape'=>false));
 				

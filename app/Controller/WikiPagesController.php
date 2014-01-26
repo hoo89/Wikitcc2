@@ -119,7 +119,6 @@ class WikiPagesController extends AppController {
             throw new NotFoundException('ページが見つかりません');
         }
         $this->set('parents', $this->WikiPage->Category->getPath($post['Category']['id']));
-        //$this->set('content_title', $post['WikiPage']['title']);
         $this->set('data', $post);
     }
 
@@ -132,7 +131,7 @@ class WikiPagesController extends AppController {
             $this->WikiPage->create();
             if ($this->WikiPage->save($this->request->data)) {
                 $this->Session->setFlash('ページが作成されました');
-                return $this->redirect(array('action' => 'view',h($this->request->data['WikiPage']['title'])));
+                return $this->redirect(array('action' => 'view',$this->request->data['WikiPage']['title']));
             }
             $this->Session->setFlash('ページを作成できませんでした');
         }
