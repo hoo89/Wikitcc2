@@ -11,22 +11,6 @@
   	</div>
   	<div class="collapse navbar-collapse" id="wikitcc-header">
 		<ul class="nav navbar-nav navbar-right">
-		<?php if($isLoggedIn): ?>
-		  <li class="dropdown">
-
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">ページ編集 <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-			  <?php
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-plus"></span> 新規ページ',array('controller' => 'wiki_pages', 'action' => 'add'));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-edit"></span> 編集',array('controller' => 'wiki_pages', 'action' => 'edit',$content_title),empty($content_title));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-time"></span> 編集履歴',array('controller' => 'wiki_pages', 'action' => 'revisions',$content_title),empty($content_title));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-upload"></span> アップロード',array('controller' => 'attachments', 'action' => 'index','title:'.$content_title),empty($content_title));
-			  
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-file"></span> ページ',array('controller' => 'wiki_pages', 'action' => 'view',$content_title),empty($content_title));
-			  ?>
-			</ul>
-		  </li>
-		<?php endif; ?>
 		<?php if($isLoggedIn):
 		echo $this->Nav->tab('ログアウト',array('controller' => 'users', 'action' => 'logout'));
 		else:
