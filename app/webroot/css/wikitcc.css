@@ -9,23 +9,6 @@ body {
 	font-size: 110%;
 	color: black;
 }
-h2.headline{
-	border-left: 3px solid #eee;
-	background-color: #EFF6FA;
-	border-color: #2fa4e7;
-	padding: 5px;
-	color: black;
-}
-h3.headline{
-	border-left: 3px solid #bbb;
-	background-color: #f5f5f5;
-	padding: 5px;
-	color: black;
-}
-h4.headline{
-	color: black;
-	margin-top: 20px;
-}
 #sidebar{
 	background-color: #F4FAFF;
 	margin-right: 5px;
@@ -34,7 +17,7 @@ h4.headline{
 	padding-bottom: 15px;
 	border-radius: 5px;
 }
-#wikitcc-nav>li>a{
+#wikitcc-nav a{
 	padding: 2px 10px;
 }
 #sidebar-updates{
@@ -66,11 +49,25 @@ h4.headline{
 	margin: 30px 10px;
 	font-size: 90%;
 }
+.wiki-content h2{
+	border-left: 3px solid #eee;
+	background-color: #EFF6FA;
+	border-color: #2fa4e7;
+	padding: 5px;
+	color: black;
+}
+.wiki-content h3{
+	border-left: 3px solid #bbb;
+	background-color: #f5f5f5;
+	padding: 5px;
+	color: black;
+}
+.wiki-content h4{
+	color: black;
+	margin-top: 20px;
+}
 th{
 	background-color: #EFF6FA;
-}
-.control-group>button{
-	margin: 15px 0px;
 }
 pre, code{
 	font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
@@ -81,6 +78,9 @@ pre, code{
 	font-family:"ＭＳ Ｐゴシック","Mona","mona-gothic-jisx0208.1990-0",sans-serif;
 	font-size:12px;
 	line-height:14px;
+}
+.control-group>button{
+	margin: 15px 0px;
 }
 .error .help-block,
 .error .control-label,
@@ -123,7 +123,7 @@ pre, code{
 #message{
 	margin-top: 5px;
 }
-.comment-form {
+.comment-form{
 	margin: 5px 0;
 }
 .checkbox{

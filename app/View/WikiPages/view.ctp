@@ -14,6 +14,6 @@ $this->assign('breadcrumb', $this->Html->getCrumbList(array('class'=>'breadcrumb
 $this->assign('contentInfo','<h4 class="text-right"><small>最終更新日時：'.$data['WikiPage']['modified'].'</small></h4><h4 class="text-right"><small>作成日時：'.$data['WikiPage']['created'].'</small></h4>');
 
 ?>
-<div class="wiki_content">
+<div class="wiki-content">
 	<?php echo $this->WikitccParse->parse($this,$data['WikiPage']['body']); ?>
 </div>
