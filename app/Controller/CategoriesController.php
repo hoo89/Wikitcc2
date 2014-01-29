@@ -4,12 +4,12 @@ class CategoriesController extends AppController {
 	public $components = array('Security');
 
 	var $paginate = array(
-        'limit' => 20,
-        'order' => array(
-        	'Category.lft',
-            'WikiPage.modified' => 'desc'
-        )
-    );
+		'limit' => 20,
+		'order' => array(
+			'Category.lft',
+			'WikiPage.modified' => 'desc'
+		)
+	);
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -17,24 +17,26 @@ class CategoriesController extends AppController {
 		$this->Auth->allow('index', 'public_index', 'view', 'public_view');
 	}
 
-    public function index() {
-    	if(!$this->Auth->loggedIn()){
-    		$this->redirect(array('action' => 'public_index'));
-    	}
-    	$categories = $this->Category->find('threaded', array( 
-            'order' => array('Category.lft')) 
-        );
-        $top_pages = $this->Category->WikiPage->findAllByCategoryId(null);
-        
-        if ($this->request->is('requested')) {
-            return $categories;
-        } else {
+	public function index() {
+		if(!$this->Auth->loggedIn()){
+			$this->redirect(array('action' => 'public_index'));
+		}
+
+		$categories = $this->Category->find('threaded', array( 
+			'order' => array('Category.lft')) 
+		);
+
+		$top_pages = $this->Category->WikiPage->findAllByCategoryId(null);
+		
+		if ($this->request->is('requested')) {
+			return $categories;
+		} else {
 			$this->set('categories',$categories);
 			$this->set('top_pages',$top_pages);
 		}
-    }
+	}
 
-    public function add() {
+	public function add() {
 		return $this->edit();
 	}
 
@@ -57,7 +59,6 @@ class CategoriesController extends AppController {
 		$deleteCategoryList = $this->Category->children($id);
 		$this->set('deleteCategoryList',$deleteCategoryList);
 	}
-
 
 	public function edit($id = null) {
 		if ($this->request->isPost() || $this->request->isPut()) {
@@ -82,6 +83,7 @@ class CategoriesController extends AppController {
 
 		$this->render('edit');
 	}
+
 	public function movedown($id = null, $delta = null) {
 
 		$this->Category->id = $id;
@@ -119,29 +121,31 @@ class CategoriesController extends AppController {
 
 	public function edit_view(){
 		$categories = $this->Category->find('threaded', array( 
-            'order' => array('Category.lft')) 
-        );
-        
+			'order' => array('Category.lft')) 
+		);
+		
 		$this->set('categories',$categories);
 	}
 
 	public function public_index(){
 		if($this->Auth->loggedIn()){
-    		$this->redirect(array('action' => 'index'));
-    	}
+			$this->redirect(array('action' => 'index'));
+		}
+
 		$categories = $this->Category->find(
 			'threaded', array(
 				'conditions' => array('Category.is_public' => true),
-            	'order' => array('Category.lft')
-            )
-        );
-        $top_pages = $this->Category->WikiPage->find(
-        	'all',array('conditions' => array(
-        			'WikiPage.category_id' => null,
-        			'WikiPage.is_public' => true
-        			)
-        		)
-        	);
+				'order' => array('Category.lft')
+			)
+		);
+
+		$top_pages = $this->Category->WikiPage->find(
+			'all',array('conditions' => array(
+					'WikiPage.category_id' => null,
+					'WikiPage.is_public' => true
+				)
+			)
+		);
 
 		$this->set('categories',$categories);
 		$this->set('top_pages',$top_pages);
@@ -149,8 +153,8 @@ class CategoriesController extends AppController {
 
 	public function view($id = null){
 		if(!$this->Auth->loggedIn()){
-    		$this->redirect(array('action' => 'public_view', $id));
-    	}
+			$this->redirect(array('action' => 'public_view', $id));
+		}
 
 		$this->Category->id = $id;
 		if ($this->Category->exists()) {
@@ -159,14 +163,14 @@ class CategoriesController extends AppController {
 		}
 
 		$categoryList = $this->Category->generateTreeList(null,null,null, '-');
-        $this->set('categoryList',$categoryList);
-        if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
-            foreach ($this->request->data['WikiPage']['id'] as $wiki_id => $selected) {
-                if($selected){
-                    $this->Category->WikiPage->save(array('id'=>$wiki_id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
-                }
-            }
-        }
+		$this->set('categoryList',$categoryList);
+		if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
+			foreach ($this->request->data['WikiPage']['id'] as $wiki_id => $selected) {
+				if($selected){
+					$this->Category->WikiPage->save(array('id'=>$wiki_id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+				}
+			}
+		}
 
 		$category_ids = $this->Category->children($id,false,'id');
 		$ids = array_map(function($item){return $item['Category']['id'];},$category_ids);
@@ -179,8 +183,8 @@ class CategoriesController extends AppController {
 
 	public function public_view($id = null){
 		if($this->Auth->loggedIn()){
-    		$this->redirect(array('action' => 'view', $id));
-    	}
+			$this->redirect(array('action' => 'view', $id));
+		}
 
 		$this->Category->id = $id;
 		if ($this->Category->exists()) {

@@ -32,25 +32,25 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $helpers = array(
-        'Session',
-        'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
-        'Form' => array('className' => 'BoostCake.BoostCakeForm'),
-        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
-        'Nav'
-    );
-    public $components = array(
-        'Session',
-        'Auth' => array(
-            'loginRedirect' => '/',
-            'authorize' => array('Controller'),
-            'authError' => 'その操作にはログインが必要です'
-        )
-    );
+		'Session',
+		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+		'Nav'
+	);
+	public $components = array(
+		'Session',
+		'Auth' => array(
+			'loginRedirect' => '/',
+			'authorize' => array('Controller'),
+			'authError' => 'その操作にはログインが必要です'
+		)
+	);
 
-    public function isAuthorized($user) {
-        if ($this->Auth->loggedIn()) {
-            return true;
-        }
-        return false;
-    }
+	public function isAuthorized($user) {
+		if ($this->Auth->loggedIn()) {
+			return true;
+		}
+		return false;
+	}
 }
