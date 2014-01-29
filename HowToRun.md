@@ -5,7 +5,8 @@
 * DB setting
   - configure app/Config/database.php (based on database.php.default)
   - $app/Console/cake schema create
-* You need other knowledge(such as URL setting) refer http://book.cakephp.org/2.0/ja/installation.html
+* Configure app/Config/core.php (based on core.php.default)
+* If you need other knowledge (such as URL setting) refer http://book.cakephp.org/2.0/ja/installation.html
 
 ### How to transition
 * mysqldump -u cake_user -p cake_db > dump.sql (on your old server)
