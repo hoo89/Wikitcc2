@@ -138,6 +138,12 @@ pre, code{
 .navbar{
 	margin-bottom: 10px;
 }
+.media{
+	margin-top: 20px;
+}
+.wiki-page-date{
+	margin-top: 0;
+}
 
 @media screen and (max-width: 767px) {
 	#content{

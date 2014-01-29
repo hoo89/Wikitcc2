@@ -27,7 +27,7 @@
     		echo '...';
     	}
     	?>
-    	<h4><small>
+    	<h4 class="wiki-page-date"><small>
     <?php echo strftime("%Y-%m-%d",strtotime($wikiPage['WikiPage']['modified']));?>
     </small></h4>
   </div>
