@@ -1,6 +1,6 @@
 <table class="table table-striped">
 <?php
-$this->BootstrapPaginator->options(array('url' => $content_title));
+$this->Paginator->options(array('url' => $content_title));
 echo $this->Html->tableHeaders(array('#','更新日時','',''));
 $count = 0;
 $html=$this->Html;
@@ -15,4 +15,4 @@ foreach($wikiPages as $rev){
 }?>
 </table>
 
-<?php echo $this->BootstrapPaginator->pagination(array('div' => 'text-center')); ?>
+<?php echo $this->Paginator->pagination(array('ul' => 'pagination','div' => 'text-center')); ?>

@@ -20,7 +20,7 @@
 
 <div>
     <p>
-        <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}ファイル中 {:start}-{:end}ファイルを表示')));?>
+        <?php echo $this->Paginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}ファイル中 {:start}-{:end}ファイルを表示')));?>
     </p>
 
     <table class="table table-hover">
@@ -46,5 +46,5 @@
         </tr>
     <?php endforeach; ?>
     </table>
-    <?php echo $this->BootstrapPaginator->pagination(array('div' => 'text-center')); ?>
+    <?php echo $this->Paginator->pagination(array('ul' => 'pagination','div' => 'text-center')); ?>
 </div>

@@ -79,9 +79,6 @@ pre, code{
 	font-size:12px;
 	line-height:14px;
 }
-.control-group>button{
-	margin: 15px 0px;
-}
 .error .help-block,
 .error .control-label,
 .error .radio,
@@ -143,6 +140,9 @@ pre, code{
 }
 .wiki-page-date{
 	margin-top: 0;
+}
+#content-body .btn{
+	margin: 10px 0;
 }
 
 @media screen and (max-width: 767px) {

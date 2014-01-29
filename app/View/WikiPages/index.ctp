@@ -6,7 +6,7 @@
         $this->assign('title', h($title));
     }
     $this->assign('rss', $this->Html->meta('京都工芸繊維大学コンピュータ部',$this->Html->url().'.rss',array('type' => 'rss')));
-    if(!empty($searchword)) $this->BootstrapPaginator->options(array('url' => $searchword));
+    if(!empty($searchword)) $this->Paginator->options(array('url' => $searchword));
     $this->append('script','<script>
         $(function(){
             $(".edit").hide();
@@ -31,7 +31,7 @@
 ?>
 
 <p>
-    <?php echo $this->BootstrapPaginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
+    <?php echo $this->Paginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
 </p>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#normal" data-toggle="tab" id="view-tab-1">一覧</a></li>
@@ -60,11 +60,11 @@
         <table class="table table-hover">
             <tr>
                 <th class="edit"><input id="checkAll" type="checkbox" value="dummy" label="全選択"></th>
-                <th><?php echo $this->BootstrapPaginator->sort('title','タイトル');?></th>
-                <th><?php echo $this->BootstrapPaginator->sort('modified','更新日時');?></th>
-                <th><?php echo $this->BootstrapPaginator->sort('created','作成日時');?></th>
-                <th><?php echo $this->BootstrapPaginator->sort('category_id','カテゴリー');?></th>
-                <th><?php echo $this->BootstrapPaginator->sort('is_public','外部公開');?></th>
+                <th><?php echo $this->Paginator->sort('title','タイトル');?></th>
+                <th><?php echo $this->Paginator->sort('modified','更新日時');?></th>
+                <th><?php echo $this->Paginator->sort('created','作成日時');?></th>
+                <th><?php echo $this->Paginator->sort('category_id','カテゴリー');?></th>
+                <th><?php echo $this->Paginator->sort('is_public','外部公開');?></th>
             </tr>
         <?php foreach ($wikiPages as $wikiPage): ?>
             <tr>
@@ -81,4 +81,6 @@
         <?php if(!empty($categoryList)) echo $this->Form->end(); ?>
     </div>
 </div>
-<?php echo $this->BootstrapPaginator->pagination(array('div' => 'text-center')); ?>
+
+<?php echo $this->Paginator->pagination(array('ul' => 'pagination','div'=>'text-center')); ?>
+

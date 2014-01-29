@@ -107,5 +107,5 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
-CakePlugin::load(array('TwitterBootstrap'));
-CakePlugin::load(array('Search'));
+CakePlugin::load('BoostCake');
+CakePlugin::load('Search');
