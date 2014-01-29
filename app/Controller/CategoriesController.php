@@ -41,16 +41,16 @@ class CategoriesController extends AppController {
 	public function delete($id) {
 		if($this->request->isDelete()) {
 			if ($this->Category->delete($id)) {
-				$this->Session->setFlash('カテゴリーを削除しました');
+				$this->Session->setFlash('カテゴリーを削除しました','alert/success');
 			} else {
-				$this->Session->setFlash('カテゴリーの削除に失敗しました');
+				$this->Session->setFlash('カテゴリーの削除に失敗しました','alert/danger');
 			}
 			$this->redirect(array('action'=> 'index'));
 		}
 
 		$this->request->data = $this->Category->findById($id);
 		if (empty($this->request->data)) {
-			$this->Session->setFlash('カテゴリーが見つかりませんでした');
+			$this->Session->setFlash('カテゴリーが見つかりませんでした','alert/warning');
 			$this->redirect(array('action'=> 'index'));
 		}
 
@@ -62,16 +62,16 @@ class CategoriesController extends AppController {
 	public function edit($id = null) {
 		if ($this->request->isPost() || $this->request->isPut()) {
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash('カテゴリーを保存しました');
+				$this->Session->setFlash('カテゴリーを保存しました','alert/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('カテゴリーを保存できませんでした');
+				$this->Session->setFlash('カテゴリーを保存できませんでした','alert/danger');
 			}
 		} else {
 			if ($id != null) {
 				$this->request->data = $this->Category->findById($id);
 				if (empty($this->request->data)) {
-					$this->Session->setFlash('カテゴリーが見つかりませんでした');
+					$this->Session->setFlash('カテゴリーが見つかりませんでした','alert/warning');
 					$this->redirect(array('action'=> 'index'));
 				}
 			}
@@ -92,7 +92,7 @@ class CategoriesController extends AppController {
 		if ($delta > 0) {
 			$this->Category->moveDown($this->Category->id, abs($delta));
 		} else {
-			$this->Session->setFlash('入力に間違いがあります。');
+			$this->Session->setFlash('入力に間違いがあります。','alert/warning');
 		}
 
 		$this->redirect(array('action' => 'edit_view'), null, true);
@@ -104,13 +104,13 @@ class CategoriesController extends AppController {
 
 		$this->Category->id = $id;
 		if (!$this->Category->exists()) {
-			throw new NotFoundException(__('Invalid category'));
+			throw new NotFoundException('Invalid category');
 		}
 
 		if ($delta > 0) {
 			$this->Category->moveUp($this->Category->id, abs($delta));
 		} else {
-			$this->Session->setFlash('入力に間違いがあります。');
+			$this->Session->setFlash('入力に間違いがあります。','alert/warning');
 		}
 
 		$this->redirect(array('action' => 'edit_view'), null, true);

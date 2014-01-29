@@ -130,10 +130,10 @@ class WikiPagesController extends AppController {
         if ($this->request->is('post')) {
             $this->WikiPage->create();
             if ($this->WikiPage->save($this->request->data)) {
-                $this->Session->setFlash('ページが作成されました');
+                $this->Session->setFlash('ページが作成されました','alert/success');
                 return $this->redirect(array('action' => 'view',$this->request->data['WikiPage']['title']));
             }
-            $this->Session->setFlash('ページを作成できませんでした');
+            $this->Session->setFlash('ページを作成できませんでした','alert/danger');
         }
     }
 
@@ -141,7 +141,11 @@ class WikiPagesController extends AppController {
         $categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
         $this->set('content_title', $title);
         $this->set('categoryList',$categoryList);
+        
         $post = $this->WikiPage->findByTitle($title);
+        if (!$post) {
+            throw new NotFoundException('ページが見つかりません');
+        }
         $this->set('post', $post);
 
         if ($this->request->is(array('post', 'put'))) {
@@ -150,16 +154,16 @@ class WikiPagesController extends AppController {
             }
             if ($this->WikiPage->save($this->request->data)) {
                 if($post){
-                    $this->Session->setFlash('ページが更新されました');
+                    $this->Session->setFlash('ページが更新されました','alert/success');
                 }else{
-                    $this->Session->setFlash('ページが作成されました');
+                    $this->Session->setFlash('ページが作成されました','alert/success');
                 }
                 return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
             }
             if($post){
-                $this->Session->setFlash('ページを更新できませんでした');
+                $this->Session->setFlash('ページを更新できませんでした','alert/danger');
             }else{
-                $this->Session->setFlash('ページを作成できませんでした');
+                $this->Session->setFlash('ページを作成できませんでした','alert/danger');
             }
         }
 
@@ -182,7 +186,7 @@ class WikiPagesController extends AppController {
         $id=$post['WikiPage']['id'];
 
         if ($this->WikiPage->delete($id)) {
-            $this->Session->setFlash(__('ページ： %s を削除しました', $title));
+            $this->Session->setFlash('ページ： '.h($title).'を削除しました','alert/success');
             return $this->redirect(array('action' => 'index'));
         }
     }
@@ -205,10 +209,10 @@ class WikiPagesController extends AppController {
             $post['WikiPage']['body'] = $content;
 
             if ($this->WikiPage->save($post)) {
-                $this->Session->setFlash(__('ページが更新されました'));
+                $this->Session->setFlash('ページが更新されました','alert/success');
                 return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
             }else{
-                $this->Session->setFlash(__('ページを更新できませんでした'));
+                $this->Session->setFlash('ページを更新できませんでした','alert/danger');
             }
         }
     }
@@ -265,7 +269,8 @@ class WikiPagesController extends AppController {
     public function blackhole($type){
         switch($type){
             case 'csrf' :
-                $this->Session->setFlash('送信できませんでした.セッションがタイムアウトした可能性があります.もう一度再読み込みしてやり直してください');
+                $this->Session->setFlash('送信できませんでした.セッションがタイムアウトした可能性があります.もう一度再読み込みしてやり直してください',
+                    'alert/warning');
                 $this->redirect(array('action' => $this->action));
                 break;
             default :

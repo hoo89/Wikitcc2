@@ -4,10 +4,10 @@ class AttachmentsController extends AppController{
 		if ($this->request->is('post')) {
             $this->Attachment->create();
             if ($this->Attachment->save($this->request->data)) {
-                $this->Session->setFlash(__('アップロードが完了しました.'));
+                $this->Session->setFlash('アップロードが完了しました.','alert/success');
                 return $this->redirect($this->referer());
             }
-            $this->Session->setFlash(__('アップロードできませんでした.'));
+            $this->Session->setFlash('アップロードできませんでした.','alert/danger');
         }
         $wiki_page_id=null;
         if(!empty($title)){
@@ -43,9 +43,9 @@ class AttachmentsController extends AppController{
 
     public function delete($id) {
         if ($this->Attachment->delete($id)) {
-            $this->Session->setFlash('ファイルを削除しました');
+            $this->Session->setFlash('ファイルを削除しました','alert/success');
         } else {
-            $this->Session->setFlash('ファイルの削除に失敗しました');
+            $this->Session->setFlash('ファイルの削除に失敗しました','alert/danger');
         }
         $this->redirect($this->referer(null,true));
     }

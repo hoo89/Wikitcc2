@@ -74,7 +74,7 @@
 				</div>
 				<div class="col-sm-12" id="content-body">
 					<div id="message">
-						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
+						<?php echo $this->Session->flash(); ?>
 					</div>
 					<div>
 						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>
