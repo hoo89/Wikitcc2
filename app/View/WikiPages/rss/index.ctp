@@ -10,7 +10,7 @@ function transformRSS($wikiPage) {
         'title' => $wikiPage['WikiPage']['title'],
         'link' => array('action' => 'view', $wikiPage['WikiPage']['title']),
         'guid' => array('action' => 'view', $wikiPage['WikiPage']['title']),
-        'description' => $wikiPage['WikiPage']['body'],
+        'description' => nl2br(h($wikiPage['WikiPage']['body'])),
         'pubDate' => $wikiPage['WikiPage']['modified']
     );
 }
