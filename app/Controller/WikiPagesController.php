@@ -167,6 +167,7 @@ class WikiPagesController extends AppController {
         if (!$this->request->data) {
             $this->request->data = $post;
         }
+        $this->render('add');
     }
 
     public function delete($title = null) {
