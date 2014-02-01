@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<?php echo $this->Html->link('KITCC', '/' ,array('class'=>'navbar-brand')); ?>
+		<a href="<?php echo $this->Html->url('/')?>" class="navbar-brand" style="padding:5px 15px;"><?php echo $this->Html->image('header.png'); ?></a> 
   	</div>
   	<div class="collapse navbar-collapse" id="wikitcc-header">
 		<ul class="nav navbar-nav navbar-right">
