@@ -15,6 +15,11 @@
 	<![endif]-->
 	<?php echo $this->Html->css('bootstrap.min');
 	echo $this->Html->css('wikitcc');
+	echo $this->Html->meta(
+	    'favicon.ico',
+	    '/favicon.ico',
+	    array('type' => 'icon')
+	);
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
