@@ -1,5 +1,5 @@
 <div class="users form">
-<?php echo $this->Session->flash('auth', array('element' => 'failure')); ?>
+<?php echo $this->Session->flash('auth', array('element' => 'alert/danger')); ?>
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
         <legend><?php echo __('ユーザ名とパスワードを入力してください.'); ?></legend>
