@@ -31,7 +31,7 @@
 ?>
 
 <p>
-    <?php echo $this->Paginator->counter(array('format' => __('{:pages}ページ中 {:page}ページ目 &nbsp;&nbsp;{:count}記事中 {:start}-{:end}記事を表示')));?>
+    <?php echo $this->Paginator->counter(array('format' => '{:count}記事中 {:start}-{:end}記事を表示'));?>
 </p>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#normal" data-toggle="tab" id="view-tab-1">一覧</a></li>

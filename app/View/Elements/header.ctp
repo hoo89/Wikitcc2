@@ -24,9 +24,9 @@
 	   <?php echo $this->Html->link('サイトマップ','/categories')?>
 		</li>
 		<?php if($isLoggedIn):
-		echo $this->Nav->tab('ページ一覧','/wiki_pages/index');
+		echo $this->Nav->tab('最近の更新','/wiki_pages/index');
 		else:
-		echo $this->Nav->tab('ページ一覧','/wiki_pages/public_index');
+		echo $this->Nav->tab('最近の更新','/wiki_pages/public_index');
 		endif; ?>
 		</ul>
 
