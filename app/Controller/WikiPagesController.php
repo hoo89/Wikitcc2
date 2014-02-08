@@ -18,6 +18,8 @@ class WikiPagesController extends AppController {
 	// for Search Plugin
 	public $presetVars = true;
 
+	public $helpers = array('Text');
+
 	// WikiPage order
 	var $paginate = array(
 		'limit' => 20,
