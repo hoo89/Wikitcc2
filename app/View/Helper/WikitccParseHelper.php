@@ -1,4 +1,15 @@
 <?php
+/**
+ * WikitccPaeseHelper
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * 
+ * @copyright	Copyright (c) 2014, KITCC(http://www.kitcc.org/)
+ * @link		https://github.com/hoo89/Wikitcc2
+ * @license		MIT License
+ */
+
 class WikitccParseHelper extends AppHelper {
 	public function parse($view,$text) {
 		$wiki = new WikitccParser($text);

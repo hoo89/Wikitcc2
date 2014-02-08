@@ -1,4 +1,15 @@
 <?php
+/**
+ * AttachmentsController
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * 
+ * @copyright	Copyright (c) 2014, hoo89
+ * @link		https://github.com/hoo89/Wikitcc2
+ * @license		MIT License
+ */
+
 class AttachmentsController extends AppController{
 	public function add($title=null){
 		if ($this->request->is('post')) {
