@@ -14,8 +14,11 @@ App::uses('AppController', 'Controller');
 
 class WikiPagesController extends AppController {
 	public $components = array('Search.Prg','RequestHandler','Security' => array('validatePost' => false));
+
+	// for Search Plugin
 	public $presetVars = true;
 
+	// WikiPage order
 	var $paginate = array(
 		'limit' => 20,
 		'order' => array(
@@ -23,35 +26,33 @@ class WikiPagesController extends AppController {
 		)
 	);
 
+	// before action
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Security->blackHoleCallback = 'blackhole';
 		$this->Security->requireAuth('add', 'edit', 'add_comment');
 
-		if ($this->RequestHandler->isRSS()){
-			$this->Auth->authenticate = array('Form','Basic');
+		if ($this->RequestHandler->isRSS()) {
+			$this->Auth->authenticate = array('Form', 'Basic');
 		}
-		$this->Auth->allow('public_find','view','public_index');
-		if ($this->action === 'view'){
+		$this->Auth->allow('public_find', 'view', 'public_index');
+		if ($this->action === 'view') {
 			$title = $this->request->params['pass'][0];
-			if (!$this->WikiPage->isPublic($title)){
+			if (!$this->WikiPage->isPublic($title)) {
 				$this->Auth->deny('view');
 			}
 		}
-		if ($this->action === 'find'||$this->action === 'public_find'||$this->action === 'preview'){
+		if ($this->action === 'find'||$this->action === 'public_find'||$this->action === 'preview') {
 			$this->Security->csrfCheck = false;
 		}
 	}
 
+	// WikiPage index
 	public function index() {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
 		if ($this->request->is('post') && !$this->request->is('requested')){
-			foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
-				if ($selected){
-					$this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
-				}
-			}
+			_changePagesCategory();
 		}
 
 		$wikiPages = $this->paginate();
@@ -62,9 +63,11 @@ class WikiPagesController extends AppController {
 		}
 	}
 
+	// WikiPage index for public
 	public function public_index() {
-		$this->paginate['conditions'] = array('WikiPage.is_public'=>true);
+		$this->paginate['conditions'] = array('WikiPage.is_public' => true);
 		$wikiPages = $this->paginate();
+
 		if ($this->request->is('requested')) {
 			return $wikiPages;
 		} else {
@@ -77,22 +80,18 @@ class WikiPagesController extends AppController {
 		$this->set('title','検索結果');
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
-		if ($this->request->is('post') && array_key_exists('id',$this->request->data['WikiPage'])){
-			foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
-				if ($selected){
-					$this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
-				}
-			}
+		if ($this->request->is('post') && !$this->request->is('requested') && array_key_exists('id',$this->request->data['WikiPage'])){
+			_changePagesCategory();
 		}
 
 		$this->Prg->commonProcess();
 		$this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
-		$this->set('searchword',$this->request->named);
-		$posts = $this->paginate();
+		$this->set('searchword', $this->request->named);
+		$wikiPages = $this->paginate();
 		if ($this->request->is('requested')) {
-			return $posts;
+			return $wikiPages;
 		} else {
-			$this->set('wikiPages', $posts);
+			$this->set('wikiPages', $wikiPages);
 			$this->render('index');
 		}
 	}
@@ -100,16 +99,24 @@ class WikiPagesController extends AppController {
 	public function public_find(){
 		$this->set('title','検索結果');
 		$this->Prg->commonProcess();
-		$this->passedArgs['is_public'] = 1;
+		$this->passedArgs['is_public'] = true;
 		$this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
 		$this->set('searchword',$this->request->named);
-		$posts = $this->paginate();
-		$this->set('posts', $posts);
+		$wikiPages = $this->paginate();
+		$this->set('wikiPages', $wikiPages);
 		if ($this->request->is('requested')) {
-			return $posts;
+			return $wikiPages;
 		} else {
-			$this->set('wikiPages', $posts);
+			$this->set('wikiPages', $wikiPages);
 			$this->render('index');
+		}
+	}
+	
+	function _changePagesCategory(){
+		foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+			if ($selected){
+				$this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+			}
 		}
 	}
 
@@ -173,7 +180,7 @@ class WikiPagesController extends AppController {
 			}
 		}
 
-		//フォームのデフォルト値をここで設定
+		//for form default value
 		if (!$this->request->data) {
 			$this->request->data = $post;
 		}
@@ -202,7 +209,7 @@ class WikiPagesController extends AppController {
 			$post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);
 			if (!$post) {
 				throw new NotFoundException('ページが見つかりません');
-			}            
+			}
 			$this->WikiPage->id = $post['WikiPage']['id'];
 			$content = $post['WikiPage']['body'];
 			$name = h($this->request->data['WikiPage']['name']);
@@ -251,7 +258,7 @@ class WikiPagesController extends AppController {
 		$diff = $this->WikiPage->diff(null,$version_id,array('limit'=>2));
 		$this->set('diff',$diff);
 	}
-	
+
 	public function view_latest_diff($version_id){
 		$this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
 
@@ -263,9 +270,9 @@ class WikiPagesController extends AppController {
 	}
 
 	public function preview(){
-		$this->log($this->request->data);
-
-		$this->set('body',$this->request->data['body']);
+		if ($this->RequestHandler->isAjax()) {
+			$this->set('body',$this->request->data['body']);
+		}
 	}
 
 	/**
