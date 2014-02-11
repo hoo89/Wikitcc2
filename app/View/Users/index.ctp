@@ -22,7 +22,7 @@
             <?php echo $this->Html->link($post['User']['username'],
 array('controller' => 'Users', 'action' => 'view', $post['User']['id'])); ?>
         </td>
-        <td><?php echo $post['User']['password']; ?></td>
+        <td><?php echo h($post['User']['password']); ?></td>
         <td><?php echo $post['User']['created']; ?></td>
     </tr>
     <?php endforeach; ?>

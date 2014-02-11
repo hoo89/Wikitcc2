@@ -30,33 +30,28 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
+
 class AppController extends Controller {
 	public $helpers = array(
-        'Session',
-        'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
-        'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
-        'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
-        'Nav'
-    );
-    public $components = array(
-        'Session',
-        'Auth' => array(
-            'loginRedirect' => '/',
-            'authorize' => array('Controller'),
-            'authError' => 'その操作にはログインが必要です'
-        )
-    );
+		'Session',
+		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+		'Nav'
+	);
+	public $components = array(
+		'Session',
+		'Auth' => array(
+			'loginRedirect' => '/',
+			'authorize' => array('Controller'),
+			'authError' => 'その操作にはログインが必要です'
+		)
+	);
 
-    public function beforeFilter() {
-        //ログイン無しで行えるActionを許可する
-        //$this->Auth->allow();
-        $this->set('logged_in',$this->Auth->loggedIn());
-    }
-
-    public function isAuthorized($user) {
-        if ($this->Auth->loggedIn()) {
-            return true;
-        }
-        return false;
-    }
+	public function isAuthorized($user) {
+		if ($this->Auth->loggedIn()) {
+			return true;
+		}
+		return false;
+	}
 }

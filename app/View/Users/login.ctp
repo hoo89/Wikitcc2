@@ -1,11 +1,11 @@
 <div class="users form">
-<?php echo $this->Session->flash('auth', array('element' => 'failure')); ?>
+<?php echo $this->Session->flash('auth', array('element' => 'alert/danger')); ?>
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
         <legend><?php echo __('ユーザ名とパスワードを入力してください.'); ?></legend>
-        <div class="col-sm-3">
-        <?php echo $this->Form->input('username',array('label'=>'ユーザ名','class'=>'form-control col-sm-2'));
-        echo $this->Form->input('password',array('label'=>'パスワード','class'=>'form-control col-sm-2'));
+        <div class="col-md-4 col-sm-5">
+        <?php echo $this->Form->input('username',array('label'=>'ユーザ名','class'=>'form-control'));
+        echo $this->Form->input('password',array('label'=>'パスワード','class'=>'form-control'));
         ?>
         </div>
     </fieldset>

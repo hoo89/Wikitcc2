@@ -7,26 +7,10 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<?php echo $this->Html->link('KITCC', '/' ,array('class'=>'navbar-brand')); ?>
+		<a href="<?php echo $this->Html->url('/')?>" class="navbar-brand" style="padding:5px 15px;"><?php echo $this->Html->image('header.png'); ?></a> 
   	</div>
   	<div class="collapse navbar-collapse" id="wikitcc-header">
 		<ul class="nav navbar-nav navbar-right">
-		<?php if($isLoggedIn): ?>
-		  <li class="dropdown">
-
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">ページ編集 <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-			  <?php
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-plus"></span> 新規ページ',array('controller' => 'wikiPages', 'action' => 'add'));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-edit"></span> 編集',array('controller' => 'wikiPages', 'action' => 'edit',$content_title),empty($content_title));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-time"></span> 編集履歴',array('controller' => 'wikiPages', 'action' => 'revisions',$content_title),empty($content_title));
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-upload"></span> アップロード',array('controller' => 'attachments', 'action' => 'index','title:'.$content_title),empty($content_title));
-			  
-			  echo $this->Nav->tab('<span class="glyphicon glyphicon-file"></span> ページ',array('controller' => 'wikiPages', 'action' => 'view',$content_title),empty($content_title));
-			  ?>
-			</ul>
-		  </li>
-		<?php endif; ?>
 		<?php if($isLoggedIn):
 		echo $this->Nav->tab('ログアウト',array('controller' => 'users', 'action' => 'logout'));
 		else:
@@ -40,17 +24,17 @@
 	   <?php echo $this->Html->link('サイトマップ','/categories')?>
 		</li>
 		<?php if($isLoggedIn):
-		echo $this->Nav->tab('ページ一覧','/wikiPages/index');
+		echo $this->Nav->tab('最近の更新','/wiki_pages/index');
 		else:
-		echo $this->Nav->tab('ページ一覧','/wikiPages/public_index');
+		echo $this->Nav->tab('最近の更新','/wiki_pages/public_index');
 		endif; ?>
 		</ul>
 
 		<div class="col-sm-4 col-md-4  navbar-right">
 			<?php if($isLoggedIn): ?>
-			<?php echo $this->Form->create('WikiPage',array('action'=>'find','class'=>'navbar-form'));?>
+			<?php echo $this->Form->create('WikiPage',array('action'=>'find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
 			<?php else: ?>
-			<?php echo $this->Form->create('WikiPage',array('action'=>'public_find','class'=>'navbar-form'));?>
+			<?php echo $this->Form->create('WikiPage',array('action'=>'public_find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
 			<?php endif; ?>
 			<div class="input-group input-group-sm">
 				<div class="input-group-btn">

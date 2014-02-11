@@ -15,6 +15,11 @@
 	<![endif]-->
 	<?php echo $this->Html->css('bootstrap.min');
 	echo $this->Html->css('wikitcc');
+	echo $this->Html->meta(
+	    'favicon.ico',
+	    '/favicon.ico',
+	    array('type' => 'icon')
+	);
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
@@ -74,7 +79,7 @@
 				</div>
 				<div class="col-sm-12" id="content-body">
 					<div id="message">
-						<?php echo $this->Session->flash('flash', array('element' => 'message')); ?>
+						<?php echo $this->Session->flash(); ?>
 					</div>
 					<div>
 						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>

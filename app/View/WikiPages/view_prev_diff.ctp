@@ -14,9 +14,9 @@ if(!empty($diff['WikiPage']['body']) && !empty($diff['WikiPage']['body'][1]) && 
 	//$renderer->_trailing_context_lines = 10000;
 
 	$text = $renderer->render($differ);
-	//頭のみ改行を入れない
+	//行頭のみ改行を入れない 他は見やすさのため @~~~ の前に改行を入れる
 	$text = preg_replace("/^(@.*)/", "<span class=\"info\">\\1</span>", $text);
-	$text = preg_replace("/^(@.*)/m", "<br><span class=\"info\">\\1</span>", $text);
+	$text = preg_replace("/^(@.*)/m", "<br /><span class=\"info\">\\1</span>", $text);
 	$text = preg_replace("/^(\+.*)/m", "<span class=\"ins\">\\1</span>", $text);
 	$text = preg_replace("/^(-.*)/m", "<span class=\"del\">\\1</span>", $text);
 	echo $text;
