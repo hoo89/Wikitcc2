@@ -4,6 +4,8 @@ Wikitcc2
 CakePHPで動くWikiクローンです.
 ある先輩が作成したWikitccというWikiクローンの後継を目指し開発を行いました。
 
+Wiki clone powered by CakePHP.
+
 ### 機能
 * PukiWikiライクな記法を用いた通常のWikiとしてのページ作成,編集,閲覧機能
 * ファイルアップロード機能
@@ -32,10 +34,8 @@ HowToRun.md参照
 私のライセンスが明記してあるものはMIT Licenseで公開します。
 また、 app/View フォルダ内にある私が書いたものについてはパブリックドメインで公開します。
 
-
-Wiki clone powered by CakePHP.
-
 Copyright(c) 2013-2014 hoo89 http://hoo89.hatenablog.com/ hoo89@me.com
+
 
 bokkoさんに敬意を込めて.
 
