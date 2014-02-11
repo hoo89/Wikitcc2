@@ -54,7 +54,7 @@ class WikiPagesController extends AppController {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
 		if ($this->request->is('post') && !$this->request->is('requested')){
-			_changePagesCategory();
+			$this->_changePagesCategory();
 		}
 
 		$wikiPages = $this->paginate();
@@ -83,7 +83,7 @@ class WikiPagesController extends AppController {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
 		if ($this->request->is('post') && !$this->request->is('requested') && array_key_exists('id',$this->request->data['WikiPage'])){
-			_changePagesCategory();
+			$this->_changePagesCategory();
 		}
 
 		$this->Prg->commonProcess();

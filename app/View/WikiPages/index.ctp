@@ -68,7 +68,7 @@
             </tr>
         <?php foreach ($wikiPages as $wikiPage): ?>
             <tr>
-                <td class="edit"><?php echo $this->Form->input('WikiPage.id.'.$wikiPage['WikiPage']['id'], array('type' => 'checkbox', 'multiple' => 'checkbox', 'class'=>'checkbox edit'));?></td>
+                <td class="edit"><?php echo $this->Form->checkbox('WikiPage.id.'.$wikiPage['WikiPage']['id'],array('class'=>'checkbox'));?></td>
                 <td><?php echo $this->Html->link($wikiPage['WikiPage']['title'],array('controller' => 'wiki_pages','action' => 'view',$wikiPage['WikiPage']['title'])); ?>&nbsp;</td>
                 <td><?php echo h($wikiPage['WikiPage']['modified']); ?>&nbsp;</td>
                 <td><?php echo h($wikiPage['WikiPage']['created']); ?>&nbsp;</td>
