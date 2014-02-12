@@ -35,17 +35,15 @@
 </head>
 
 <body>
+	<div id="header">
+	<?php
+	if(empty($content_title)){
+		$content_title=null;
+	}
+	echo $this->element('header',array('isLoggedIn'=>$isLoggedIn,'content_title'=>$content_title));
+	?>
+	</div>
 	<div class="container" id="container">
-		<div class="row">
-			<div id="header">
-				<?php
-				if(empty($content_title)){
-					$content_title=null;
-				}
-				echo $this->element('header',array('isLoggedIn'=>$isLoggedIn,'content_title'=>$content_title));
-				?>
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-sm-3 col-md-2" id="sidebar">
 				<?php
