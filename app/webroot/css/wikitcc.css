@@ -8,6 +8,8 @@ body {
 #content-body{
 	font-size: 110%;
 	color: black;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 #sidebar{
 	background-color: #F4FAFF;
@@ -168,5 +170,8 @@ pre, code{
 	}
 	.navbar{
 		margin-bottom: 0px;
+	}
+	#content-body{
+		padding: 0;
 	}
 }
