@@ -31,6 +31,7 @@ class WikiPageTest extends CakeTestCase {
 
     	$this->assertEquals($expected, $result);
 
+        // Same title is not allowed.
     	$this->WikiPage->create();
     	$result = $this->WikiPage->save(array('title' => 'Same Article'));
     	$this->assertEquals(false, $result);
