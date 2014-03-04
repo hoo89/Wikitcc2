@@ -1,4 +1,4 @@
-<?php 
+<?php
     $this->append('script',$this->Html->script('jquery.cookie'));
     if(empty($title)){
         $this->assign('title', 'ページ一覧');
@@ -53,7 +53,7 @@
             すべてにチェックを入れたい時は一番上のチェックを押してください.<br />
         </div>
         <?php
-        echo $this->Form->create('WikiPage');
+        echo $this->Form->create('WikiPage', array('action' => 'changePagesCategory'));
         echo $this->Form->select('category_id', $categoryList, array('empty' => '------','class'=>'edit'));
         echo $this->Form->submit('カテゴリーを変更する',array('class'=>'btn btn-sm btn-primary edit'));
         }?>

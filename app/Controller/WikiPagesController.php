@@ -53,9 +53,6 @@ class WikiPagesController extends AppController {
 	public function index() {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
-		if ($this->request->is('post') && !$this->request->is('requested')){
-			$this->_changePagesCategory();
-		}
 
 		$wikiPages = $this->paginate();
 		if ($this->request->is('requested')) {
@@ -82,9 +79,6 @@ class WikiPagesController extends AppController {
 		$this->set('title','検索結果');
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
-		if ($this->request->is('post') && !$this->request->is('requested') && array_key_exists('id',$this->request->data['WikiPage'])){
-			$this->_changePagesCategory();
-		}
 
 		$this->Prg->commonProcess();
 		$this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
@@ -113,12 +107,25 @@ class WikiPagesController extends AppController {
 			$this->render('index');
 		}
 	}
-	
-	function _changePagesCategory(){
-		foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
-			if ($selected){
-				$this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+
+	/**
+	 * Change multiple pages category at once.
+	 *
+	 * - Example Post data
+	 * {'WikiPage'=>{'id'=>{1=>true, 2=>true, 3=>false}, 'category_id'=> 1}
+	 * Change 1 and 2 page's category_id to 1
+	 *
+	 * @return void
+	 */
+	function changePagesCategory(){
+		if ($this->request->is('post')) {
+			foreach ($this->request->data['WikiPage']['id'] as $id => $selected) {
+				if ($selected){
+					$this->WikiPage->save(array('id'=>$id,'category_id'=>$this->request->data['WikiPage']['category_id'],'modified'=>false));
+				}
 			}
+			$this->setFlash('カテゴリーを変更しました','alert/success');
+			$this->redirect($this->referer(null,true));
 		}
 	}
 
