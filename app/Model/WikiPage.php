@@ -41,4 +41,13 @@ class WikiPage extends AppModel {
 	}
 
 	private $limit_revisions = 100;
+
+	public function getRevision(){
+		if(empty($this->revision)){
+			$this->Behaviors->load('Revision',array('limit'=>$this->limit_revisions));
+			$this->revision = $this->ShadowModel;
+		}
+
+		return $this->revision;
+	}
 }

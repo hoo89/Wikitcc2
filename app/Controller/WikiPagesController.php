@@ -240,38 +240,30 @@ class WikiPagesController extends AppController {
 	}
 
 	public function revisions($title=null){
-		$this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
-
 		$post = $this->WikiPage->findByTitle($title);
 		if (!$post){
 			throw new NotFoundException('ページが見つかりません');
 		}
 		$this->WikiPage->id = $post['WikiPage']['id'];
-		$revisions = $this->paginate('WikiPage.ShadowModel',array('id'=>$this->WikiPage->id));
+		$revisions = $this->paginate($this->WikiPage->getRevision(), array('id'=>$this->WikiPage->id));
 		$this->set('wikiPages',$revisions);
 		$this->set('content_title',$post['WikiPage']['title']);
 	}
 
 	public function view_revision($version_id){
-		$this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
-
-		$post = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+		$post = $this->WikiPage->getRevision()->findByVersionId($version_id);
 		$this->set('post',$post);
 	}
 
 	public function view_prev_diff($version_id){
-		$this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
-
-		$old = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+		$old = $this->WikiPage->getRevision()->findByVersionId($version_id);
 		$this->WikiPage->id = $old['WikiPage']['id'];
-		$diff = $this->WikiPage->diff(null,$version_id,array('limit'=>2));
+		$diff = $this->WikiPage->diff(null, $version_id, array('limit'=>2));
 		$this->set('diff',$diff);
 	}
 
 	public function view_latest_diff($version_id){
-		$this->WikiPage->Behaviors->load('Revision',array('limit'=>$this->WikiPage->limit_revisions));
-
-		$old = $this->WikiPage->ShadowModel->findByVersionId($version_id);
+		$old = $this->WikiPage->getRevision()->findByVersionId($version_id);
 		$current = $this->WikiPage->findById($old['WikiPage']['id']);
 		$diff = array_merge_recursive($current, $old);
 		$this->set('diff',$diff);
