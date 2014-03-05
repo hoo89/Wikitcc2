@@ -330,7 +330,7 @@ class WikiPagesController extends AppController {
 			$this->WikiPage->id = $post['WikiPage']['id'];
 			$content = $post['WikiPage']['body'];
 			$name = h($this->request->data['WikiPage']['name']);
-			$message = nl2br(h($this->request->data['WikiPage']['comment']), false);
+			$message = ereg_replace("\n|\r",'',nl2br(h($this->request->data['WikiPage']['comment']), false));
 			if (empty($name)){
 				$name = "名無しさん";
 			}
