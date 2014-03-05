@@ -268,32 +268,6 @@ class WikiPagesController extends AppController {
 		}
 	}
 
-	public function add_comment(){
-		if ($this->request->is('post')) {
-			$post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);
-			if (!$post) {
-				throw new NotFoundException('ページが見つかりません');
-			}
-			$this->WikiPage->id = $post['WikiPage']['id'];
-			$content = $post['WikiPage']['body'];
-			$name = h($this->request->data['WikiPage']['name']);
-			$message = nl2br(h($this->request->data['WikiPage']['comment']));
-			if (empty($name)){
-				$name = "名無しさん";
-			}
-			$wiki_comment = "*$message - $name\n";
-			$content = str_replace('{{comment}}', $wiki_comment.'{{comment}}', $content);
-			$post['WikiPage']['body'] = $content;
-
-			if ($this->WikiPage->save($post)) {
-				$this->Session->setFlash('ページが更新されました','alert/success');
-				return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
-			}else{
-				$this->Session->setFlash('ページを更新できませんでした','alert/danger');
-			}
-		}
-	}
-
 	public function revisions($title=null){
 		$post = $this->WikiPage->findByTitle($title);
 		if (!$post){
@@ -344,6 +318,32 @@ class WikiPagesController extends AppController {
 			default :
 				$this->redirect(array('action' => 'index'));
 				break;
+		}
+	}
+
+	public function add_comment(){
+		if ($this->request->is('post')) {
+			$post = $this->WikiPage->findById($this->request->data['WikiPage']['id']);
+			if (!$post) {
+				throw new NotFoundException('ページが見つかりません');
+			}
+			$this->WikiPage->id = $post['WikiPage']['id'];
+			$content = $post['WikiPage']['body'];
+			$name = h($this->request->data['WikiPage']['name']);
+			$message = nl2br(h($this->request->data['WikiPage']['comment']), false);
+			if (empty($name)){
+				$name = "名無しさん";
+			}
+			$wiki_comment = "*$message - $name\n";
+			$content = str_replace('{{comment}}', $wiki_comment.'{{comment}}', $content);
+			$post['WikiPage']['body'] = $content;
+
+			if ($this->WikiPage->save($post)) {
+				$this->Session->setFlash('ページが更新されました','alert/success');
+				return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
+			}else{
+				$this->Session->setFlash('ページを更新できませんでした','alert/danger');
+			}
 		}
 	}
 }
