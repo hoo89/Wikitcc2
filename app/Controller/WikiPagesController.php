@@ -228,22 +228,13 @@ class WikiPagesController extends AppController {
 		$this->set('post', $post);
 
 		if ($this->request->is(array('post', 'put'))) {
-			if ($post){
-				$this->WikiPage->id = $post['WikiPage']['id'];
-			}
+			$this->WikiPage->id = $post['WikiPage']['id'];
+
 			if ($this->WikiPage->save($this->request->data)) {
-				if ($post){
-					$this->Session->setFlash('ページが更新されました','alert/success');
-				} else {
-					$this->Session->setFlash('ページが作成されました','alert/success');
-				}
+				$this->Session->setFlash('ページが更新されました','alert/success');
 				return $this->redirect(array('action' => 'view',$post['WikiPage']['title']));
 			}
-			if ($post){
-				$this->Session->setFlash('ページを更新できませんでした','alert/danger');
-			} else {
-				$this->Session->setFlash('ページを作成できませんでした','alert/danger');
-			}
+			$this->Session->setFlash('ページを更新できませんでした','alert/danger');
 		}
 
 		//for setting form default value
