@@ -41,9 +41,9 @@ class WikiPagesController extends AppController {
 		if ($this->RequestHandler->isRSS()) {
 			$this->Auth->authenticate = array('Form', 'Basic');
 		}
-		if ($this->action === 'find'||$this->action === 'public_find'||$this->action === 'preview') {
 		$this->Auth->allow('public_index', 'public_find', 'view');
 
+		if ($this->action === 'preview') {
 			$this->Security->csrfCheck = false;
 		}
 	}
