@@ -41,14 +41,9 @@ class WikiPagesController extends AppController {
 		if ($this->RequestHandler->isRSS()) {
 			$this->Auth->authenticate = array('Form', 'Basic');
 		}
-		$this->Auth->allow('public_find', 'view', 'public_index');
-		if ($this->action === 'view') {
-			$title = $this->request->params['pass'][0];
-			if (!$this->WikiPage->isPublic($title)) {
-				$this->Auth->deny('view');
-			}
-		}
 		if ($this->action === 'find'||$this->action === 'public_find'||$this->action === 'preview') {
+		$this->Auth->allow('public_index', 'public_find', 'view');
+
 			$this->Security->csrfCheck = false;
 		}
 	}
@@ -173,6 +168,13 @@ class WikiPagesController extends AppController {
 		if (!$post) {
 			throw new NotFoundException('ページが見つかりません');
 		}
+
+		if(!$this->Auth->loggedIn() && !$post['WikiPage']['is_public']){
+			$this->Session->write('Auth.redirect', Router::url(null, true));
+			$this->Session->setFlash('そのページを表示するにはログインが必要です','alert/danger');
+			$this->redirect(array('controller'=>'users', 'action'=>'login'));
+		}
+
 		$this->set('parents', $this->WikiPage->Category->getPath($post['Category']['id']));
 		$this->set('data', $post);
 	}
