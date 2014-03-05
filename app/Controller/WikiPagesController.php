@@ -73,6 +73,10 @@ class WikiPagesController extends AppController {
 	 * @return array|void
 	 */
 	public function public_index() {
+		if($this->Auth->loggedIn()){
+			$this->redirect(array('action'=>'index'));
+		}
+
 		$this->paginate['conditions'] = array('WikiPage.is_public' => true);
 		$wikiPages = $this->paginate();
 
@@ -114,6 +118,10 @@ class WikiPagesController extends AppController {
 	 * @return array|void
 	 */
 	public function public_find(){
+		if($this->Auth->loggedIn()){
+			$this->redirect(array('action'=>'find'));
+		}
+
 		$this->set('title','検索結果');
 		$this->Prg->commonProcess();
 		$this->passedArgs['is_public'] = true;
