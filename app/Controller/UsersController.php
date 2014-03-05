@@ -4,7 +4,7 @@
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
- * 
+ *
  * @copyright	Copyright (c) 2014, hoo89
  * @link		https://github.com/hoo89/Wikitcc2
  * @license		MIT License
@@ -39,21 +39,16 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$this->Session->write('name', $this->Auth->user('username'));
-				$url = $this->Session->read('redirect_url');
-				if(preg_match("/\\/users\\/login$/", $url)){
-					$url='/';
-				}
-				$this->Session->delete('redirect_url');
-				$this->redirect($url);
+				$this->redirect($this->Auth->redirectUrl());
 			} else {
 				$this->Session->setFlash('ユーザ名かパスワードが間違っています.','alert/danger');
 			}
 		}else{
 			$url = $this->Auth->redirectUrl();
 			if($url === '/'){
-				$url = $this->referer(null,true);
+				$url = $this->referer(null, true);
 			}
-			$this->Session->write('redirect_url', $url);
+			$this->Session->write('Auth.redirect', $url);
 		}
 	}
 
