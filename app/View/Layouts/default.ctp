@@ -27,7 +27,7 @@
 	$this->startIfEmpty('rss');
 	echo $this->Html->meta('京都工芸繊維大学コンピュータ部','/wikiPages/public_index.rss',array('type' => 'rss'));
 	$this->end();
-	
+
 	echo $this->fetch('rss');
 
 	$isLoggedIn = $this->Session->check('name');
@@ -58,6 +58,9 @@
 			</div>
 
 			<div class="col-sm-9 col-md-10" id="content">
+				<div id="message">
+					<?php echo $this->Session->flash(); ?>
+				</div>
 				<div id="content-header">
 					<div class="pull-right">
 						<?php
@@ -75,13 +78,10 @@
 						?>
 					</div>
 				</div>
-				<div class="col-sm-12" id="content-body">
-					<div id="message">
-						<?php echo $this->Session->flash(); ?>
-					</div>
+				<div id="content-body">
 					<div>
 						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>
-					</div>		
+					</div>
 					<?php if(!empty($title)) echo'<hr style="margin-top:0">'; ?>
 					<?php echo $this->fetch('content'); ?>
 					<?php echo $title=$this->fetch('contentInfo'); ?>
