@@ -4,7 +4,7 @@
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
- * 
+ *
  * @copyright	Copyright (c) 2014, hoo89
  * @link		https://github.com/hoo89/Wikitcc2
  * @license		MIT License
@@ -28,7 +28,11 @@ class WikiPagesController extends AppController {
 		)
 	);
 
-	// before action
+	/**
+	 * Called before Action.
+	 *
+	 * @return void
+	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Security->blackHoleCallback = 'blackhole';
@@ -49,7 +53,12 @@ class WikiPagesController extends AppController {
 		}
 	}
 
-	// WikiPage index
+	/**
+	 * It makes WikiPage index.
+	 * If it called from requestAction(), this return array of WikiPages.
+	 *
+	 * @return array|void
+	 */
 	public function index() {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
@@ -62,7 +71,12 @@ class WikiPagesController extends AppController {
 		}
 	}
 
-	// WikiPage index for public
+	/**
+	 * It makes public WikiPage index for users not logged in.
+	 * If it called from requestAction(), this return array of WikiPages.
+	 *
+	 * @return array|void
+	 */
 	public function public_index() {
 		$this->paginate['conditions'] = array('WikiPage.is_public' => true);
 		$wikiPages = $this->paginate();
@@ -75,6 +89,12 @@ class WikiPagesController extends AppController {
 		}
 	}
 
+	/**
+	 * Search action.
+	 * If it called from requestAction(), this return array of WikiPages.
+	 *
+	 * @return array|void
+	 */
 	public function find(){
 		$this->set('title','検索結果');
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
@@ -92,6 +112,12 @@ class WikiPagesController extends AppController {
 		}
 	}
 
+	/**
+	 * Search action for users not logged in.
+	 * If it called from requestAction(), this return array of WikiPages.
+	 *
+	 * @return array|void
+	 */
 	public function public_find(){
 		$this->set('title','検索結果');
 		$this->Prg->commonProcess();
@@ -129,6 +155,13 @@ class WikiPagesController extends AppController {
 		}
 	}
 
+	/**
+	 * WikiPage View
+	 *
+	 * @param string $title
+	 * @return void
+	 * @throws NotFoundException
+	 */
 	public function view($title = null) {
 		$this->set('content_title', $title);
 		$this->helpers[] = 'WikitccParse';
@@ -144,6 +177,12 @@ class WikiPagesController extends AppController {
 		$this->set('data', $post);
 	}
 
+	/**
+	 * Add WikiPage
+	 * If posted WikiPage, create page and redirect created one.
+	 *
+	 * @return void
+	 */
 	public function add() {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
@@ -159,11 +198,19 @@ class WikiPagesController extends AppController {
 		}
 	}
 
+	/**
+	 * Edit WikiPage
+	 * If posted WikiPage, update page and redirect updated one.
+	 *
+	 * @param string $title
+	 * @return void
+	 * @throws NotFoundException
+	 */
 	public function edit($title = null) {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('content_title', $title);
 		$this->set('categoryList',$categoryList);
-		
+
 		$post = $this->WikiPage->findByTitle($title);
 		if (!$post) {
 			throw new NotFoundException('ページが見つかりません');
@@ -189,13 +236,20 @@ class WikiPagesController extends AppController {
 			}
 		}
 
-		//for form default value
+		//for setting form default value
 		if (!$this->request->data) {
 			$this->request->data = $post;
 		}
 		$this->render('add');
 	}
 
+	/**
+	 * Delete WikiPage
+	 *
+	 * @param string $title
+	 * @return void
+	 * @throws NotFoundException MethodNotAllowedException
+	 */
 	public function delete($title = null) {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
@@ -277,8 +331,7 @@ class WikiPagesController extends AppController {
 	}
 
 	/**
-	 * blackhole
-	 * - for SecurityComponent
+	 * blackhole method for SecurityComponent
 	 */
 	public function blackhole($type){
 		switch($type){
