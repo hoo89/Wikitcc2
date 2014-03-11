@@ -1,5 +1,5 @@
-GRANT ALL PRIVILEGES ON *.* TO cake_user@localhost IDENTIFIED BY [password];
 CREATE DATABASE cake_db CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON cake_db.* TO cake_user@localhost IDENTIFIED BY [password];
 
 CREATE TABLE wiki_pages (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
