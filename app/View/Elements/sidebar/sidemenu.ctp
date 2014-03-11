@@ -1,10 +1,10 @@
-<div id="sidemenu">
-	<ul class="nav nav-pills nav-stacked" id="wikitcc-nav">
+<div id="sidebar-sidemenu">
+	<ul class="nav nav-pills nav-stacked" id="sidebar-sidemenu-nav">
 		<?php echo $this->Nav->tab('トップページ','/');?>
-		<li <?php 
+		<li <?php
 		$url = $this->Html->url();
 		if($url === $this->Html->url('/categories')||$url === $this->Html->url('/categories/public_index')){echo 'class="active"';}?> >
-       <?php echo $this->Html->link('サイトマップ','/categories');?>
+	   <?php echo $this->Html->link('サイトマップ','/categories');?>
 		</li>
 		<?php
 		echo $this->Nav->tab('クラブ紹介',array('controller' => 'wiki_pages', 'action' => 'view','クラブ紹介'));

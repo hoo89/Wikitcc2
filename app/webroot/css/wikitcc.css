@@ -15,11 +15,15 @@ body {
 	background-color: #F4FAFF;
 	margin-right: 5px;
 	margin-left: -5px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border-radius: 5px;
+	font-size: 110%;
 }
-#wikitcc-nav a{
+#sidebar-sidemenu-nav>li{
+	margin: 5px 0px;
+}
+#sidebar-sidemenu-nav>li>a{
 	padding: 2px 10px;
 }
 #sidebar-updates{
@@ -164,6 +168,9 @@ pre, code{
 		border-radius: 0;
 		padding-top: 5px;
 		padding-bottom: 5px;
+	}
+	#sidebar-sidemenu-nav>li{
+		margin: 0;
 	}
 	.nav-pills>li>a{
 		padding:5px 5px;
