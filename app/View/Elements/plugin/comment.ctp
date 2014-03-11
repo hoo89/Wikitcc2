@@ -1,4 +1,4 @@
-<div id="comment" class="row" style="margin:0">
+<div class="comment" class="row" style="margin:0">
 <?php
 if(empty($data)){
 	$data=array('WikiPage'=>array('id'=>false));
