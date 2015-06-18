@@ -10,7 +10,8 @@ CREATE TABLE wiki_pages (
     category_id INT UNSIGNED DEFAULT NULL,
     is_public BOOLEAN DEFAULT 1,
     format INT UNSIGNED DEFAULT 0,
-    attachment_id INT UNSIGNED DEFAULT NULL
+    attachment_id INT UNSIGNED DEFAULT NULL,
+    KEY `title` (`title`)
 );
 
 CREATE TABLE categories (
