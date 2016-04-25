@@ -7,6 +7,9 @@
         "cakedc/search": "*"
 
     },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.38"
+    },
     "config": {
         "vendor-dir": "Vendor/"
     },
