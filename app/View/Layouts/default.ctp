@@ -80,9 +80,9 @@
 				</div>
 				<div id="content-body">
 					<div>
-						<h2 id="title"><?php echo $title=$this->fetch('title'); ?></h2>
+						<h2 id="title"><?php echo $title=$this->fetch('page_title'); ?></h2>
 					</div>
-					<?php if(!empty($title)) echo'<hr style="margin-top:0">'; ?>
+					<?php if(!empty($page_title)) echo'<hr style="margin-top:0">'; ?>
 					<?php echo $this->fetch('content'); ?>
 					<?php echo $title=$this->fetch('contentInfo'); ?>
 				</div>

@@ -1,5 +1,5 @@
-<?php 
-    $this->assign('title', 'ページ一覧');
+<?php
+    $this->assign('page_title', 'ページ一覧');
     echo $this->Html->link(
     'Add User',
     array('controller' => 'Users', 'action' => 'add')

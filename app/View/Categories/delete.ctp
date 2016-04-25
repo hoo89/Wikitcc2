@@ -1,4 +1,4 @@
-<?php $this->start('title'); ?>
+<?php $this->start('page_title'); ?>
 	カテゴリー削除
 <?php $this->end(); ?>
 
