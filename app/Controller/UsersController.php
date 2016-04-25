@@ -42,6 +42,7 @@ class UsersController extends AppController {
 				$this->redirect($this->Auth->redirectUrl());
 			} else {
 				$this->Session->setFlash('ユーザ名かパスワードが間違っています.','alert/danger');
+				$this->redirect(array('action' => 'login'));
 			}
 		}else{
 			$url = $this->Auth->redirectUrl();

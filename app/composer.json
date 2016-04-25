@@ -1,0 +1,16 @@
+{
+    "name": "Wikitcc2",
+    "require": {
+        "cakephp/cakephp": "2.8.*",
+	"pear-pear.php.net/Text_Diff": ">=1.2.1"
+    },
+    "config": {
+        "vendor-dir": "Vendor/"
+    },
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "https://pear.php.net/"
+        }
+    ]
+}
