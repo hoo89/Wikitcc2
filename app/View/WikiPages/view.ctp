@@ -7,7 +7,7 @@ if($this->Html->url()!=$this->Html->webroot){
 		}
 	}
 	$this->Html->addCrumb(h($data['WikiPage']['title']));
-	$this->assign('title', h($data['WikiPage']['title']));
+	$this->assign('page_title', h($data['WikiPage']['title']));
 }
 
 $this->assign('breadcrumb', $this->Html->getCrumbList(array('class'=>'breadcrumb')));

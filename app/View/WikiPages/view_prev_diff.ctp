@@ -1,5 +1,6 @@
 <pre class="diff">
 <?php
+require ROOT . DS . APP_DIR . DS . 'Vendor/autoload.php';
 require_once 'Text/Diff.php';
 require_once 'Text/Diff/Renderer/inline.php';
 require_once 'Text/Diff/Renderer/unified.php';

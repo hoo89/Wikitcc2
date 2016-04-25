@@ -1,5 +1,5 @@
-<?php 
-    $this->assign('title', 'アップロード');
+<?php
+    $this->assign('page_title', 'アップロード');
 ?>
 
 <?php if(!empty($content_title)): ?>
@@ -33,10 +33,10 @@
     <?php foreach ($attachments as $attachment): ?>
         <tr>
             <td>
-                <?php 
+                <?php
                 if($attachment['Attachment']['thumb_dir']){
                     echo '<a href="',$this->webroot,h($attachment['Attachment']['dir']),'" class="img-thumbnail">','<img src="',$this->webroot,h($attachment['Attachment']['thumb_dir']),'" width="70" height="70">';
-                } 
+                }
                 ?>
             </td>
             <td><?php echo '<a href="',$this->webroot,h($attachment['Attachment']['dir']),'">',h($attachment['Attachment']['name']),'</a>';?>

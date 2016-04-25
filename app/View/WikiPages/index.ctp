@@ -1,9 +1,9 @@
 <?php
     $this->append('script',$this->Html->script('jquery.cookie'));
     if(empty($title)){
-        $this->assign('title', 'ページ一覧');
+        $this->assign('page_title', 'ページ一覧');
     }else{
-        $this->assign('title', h($title));
+        $this->assign('page_title', h($title));
     }
     $this->assign('rss', $this->Html->meta('京都工芸繊維大学コンピュータ部',$this->Html->url().'.rss',array('type' => 'rss')));
     if(!empty($searchword)) $this->Paginator->options(array('url' => $searchword));

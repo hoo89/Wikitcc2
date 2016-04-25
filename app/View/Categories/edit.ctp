@@ -1,4 +1,4 @@
-<?php $this->start('title'); ?>
+<?php $this->start('page_title'); ?>
 カテゴリー<?php echo empty($this->data['Category']['id']) ? '追加' : '編集'; ?>
 <?php $this->end(); ?>
 <div>

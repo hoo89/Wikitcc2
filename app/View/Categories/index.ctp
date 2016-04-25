@@ -1,4 +1,4 @@
-<?php $this->assign('title','サイトマップ');
+<?php $this->assign('page_title','サイトマップ');
 $this->append('css',$this->Html->css('jquery.treeview'));
 $this->append('script',$this->Html->script('jquery.treeview'));
 $this->append('script',$this->Html->script('jquery.cookie')); ?>

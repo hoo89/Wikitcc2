@@ -1,0 +1,22 @@
+{
+    "name": "Wikitcc2",
+    "require": {
+        "cakephp/cakephp": "2.8.*",
+        "pear-pear.php.net/Text_Diff": ">=1.2.1",
+        "slywalker/boost_cake": "*",
+        "cakedc/search": "*"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.38"
+    },
+    "config": {
+        "vendor-dir": "Vendor/"
+    },
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "https://pear.php.net/"
+        }
+    ]
+}

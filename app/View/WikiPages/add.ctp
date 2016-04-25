@@ -11,9 +11,9 @@ $this->append('script','<script>
     </script>');
 
 if($content_title){
-	$this->assign('title','編集');
+	$this->assign('page_title','編集');
 }else{
-	$this->assign('title', '新規作成');
+	$this->assign('page_title', '新規作成');
 }
 ?>
 
