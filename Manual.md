@@ -1,7 +1,7 @@
 運用マニュアル
 ================
 
-1. 導入方法
+### 導入方法
 動作には以下のものが必要です。
 PHP >= 5.3.0
 MySQL
@@ -33,7 +33,7 @@ chown www-data:www-data tmp webroot/files/attachment
 Configure::write('debug', 2);
 
 
-2. データベース(DB)設定方法
+### データベース(DB)設定方法
 MySQLおよびDB設定の方法を解説します。
 MySQLコンソールにrootでログインし
 mysql -u root -p
@@ -59,14 +59,14 @@ Wikitcc2のルートディレクトリに戻りこのコマンドを実行しテ
 app/Console/cake schema create
 (yを押して実行)
 
-3. バックアップ・移行方法
+### バックアップ・移行方法
 移行はディレクトリごとコピーすればだいたい大丈夫かと思います。
 DBのデータの移行はダンプファイルに書き出して
 mysqldump -u cake_user -p cake_db --add-drop-table > dump.sql (移行元)
 mysql -u cake_user -p cake_db < dump.sql (移行先)
 のようにすれば移行できるはずです。
 
-4. その他
+### その他
   + アップデート方法
     appディレクトリ内で
     php composer.phar update
@@ -87,6 +87,3 @@ mysql -u cake_user -p cake_db < dump.sql (移行先)
 	}
 	の$this->Auth->allow('login');を$this->Auth->allow();に変えることで
 	[URL]/usersからユーザーの追加・管理画面を表示できます。
-
-
-
