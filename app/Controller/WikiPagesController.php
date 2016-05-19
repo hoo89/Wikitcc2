@@ -99,6 +99,7 @@ class WikiPagesController extends AppController {
 		$categoryList = $this->WikiPage->Category->generateTreeList(null,null,null, '-');
 		$this->set('categoryList',$categoryList);
 
+		App::uses('String', 'Utility');
 		$this->Prg->commonProcess();
 		$this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
 		$this->set('searchword', $this->request->named);
@@ -123,6 +124,8 @@ class WikiPagesController extends AppController {
 		}
 
 		$this->set('title','検索結果');
+
+		App::uses('String', 'Utility');
 		$this->Prg->commonProcess();
 		$this->passedArgs['is_public'] = true;
 		$this->paginate['conditions'] = $this->WikiPage->parseCriteria($this->passedArgs);
