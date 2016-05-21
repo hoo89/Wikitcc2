@@ -33,9 +33,9 @@
 
 			<div class="col-sm-4 col-md-4  navbar-right">
 				<?php if($isLoggedIn): ?>
-				<?php echo $this->Form->create('WikiPage',array('action'=>'find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
+				<?php echo $this->Form->create('WikiPage',array('url'=>'/wiki_pages/find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
 				<?php else: ?>
-				<?php echo $this->Form->create('WikiPage',array('action'=>'public_find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
+				<?php echo $this->Form->create('WikiPage',array('url'=>'/wiki_pages/public_find','class'=>'navbar-form','inputDefaults' => array('div' => 'form-group','label' => false,'wrapInput' => false,'class' => 'form-control')));?>
 				<?php endif; ?>
 				<div class="input-group input-group-sm">
 					<div class="input-group-btn">
