@@ -15,7 +15,7 @@ class User extends AppModel {
 	public $validate = array(
 		'username' => array(
 			'least1' => array(
-				'rule' => array('custom', '/[a-zA-Z0-9\'.\\\s]{1,}$/i'),
+				'rule' => array('custom', '/^[a-zA-Z0-9\'-_]{1,}$/'),
 				'message' => 'ユーザ名には1文字以上の半角英数字が必要です.'
 			),
 			'unique' => array(
@@ -25,7 +25,7 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'least4' => array(
-				'rule' => array('custom', '/[a-zA-Z0-9\'.\\\s]{4,}$/i'),
+				'rule' => array('custom', '/^[a-zA-Z0-9\'-_]{4,}$/'),
 				'message' => 'パスワードには4文字以上の半角英数字が必要です.'
 			)
 		)
