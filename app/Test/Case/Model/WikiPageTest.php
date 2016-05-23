@@ -9,8 +9,9 @@ class WikiPageTest extends CakeTestCase {
         $this->WikiPage = ClassRegistry::init('WikiPage');
     }
 
-    public function testSave(){
+    public function testSave() {
     	$this->WikiPage->create();
+
     	$result = $this->WikiPage->save(
     		array(
                 'id' => 100,
@@ -33,25 +34,26 @@ class WikiPageTest extends CakeTestCase {
 
         // Same title is not allowed.
     	$this->WikiPage->create();
-    	$result = $this->WikiPage->save(array('title' => 'Same Article'));
+        $result = $this->WikiPage->save(array('title' => 'Same Article'));
     	$this->assertEquals(false, $result);
 
+        // Slash / is not allowed for title.
     	$this->WikiPage->create();
     	$result = $this->WikiPage->save(array('title' => 'slash / is not allowed'));
     	$this->assertEquals(false, $result);
     }
 
-    public function testGetRevison(){
+    public function testGetRevison() {
     	//First Record
     	$this->WikiPage->create();
     	$this->WikiPage->save(array('id' => 100, 'title' => 'Record', 'body'=>'First Record'));
     	$result = $this->WikiPage->getRevision()->find('all');
 
- 		//Number of revisions equal 1
-    	$this->assertEquals(1, count($result));
+        //Number of revisions equal 11
+        $this->assertEquals(11, count($result));
 
     	//It contains ...
-    	$expected = array('version_id'=> 1, 'id' => 100, 'title' => 'Record', 'body'=>'First Record');
+        $expected = array('version_id'=> 11, 'id' => 100, 'title' => 'Record', 'body'=>'First Record');
     	$filtered_result = array_intersect_key($result[0]['WikiPage'], $expected);
     	$this->assertEquals($expected, $filtered_result);
 
@@ -59,15 +61,15 @@ class WikiPageTest extends CakeTestCase {
     	$this->WikiPage->save(array('id' => 100, 'title' => 'Record', 'body'=>'Second Record'));
     	$result = $this->WikiPage->getRevision()->find('all', array('order' => array('version_id' => 'desc')));
 
-    	//Number of revisions equal 2
-    	$this->assertEquals(2, count($result));
+        //Number of revisions equal 12
+        $this->assertEquals(12, count($result));
 
     	//It contains ...
-		$expected = array('version_id'=> 2, 'id' => 100, 'title' => 'Record', 'body'=>'Second Record');
+		$expected = array('version_id'=> 12, 'id' => 100, 'title' => 'Record', 'body'=>'Second Record');
     	$filtered_result = array_intersect_key($result[0]['WikiPage'], $expected);
     	$this->assertEquals($expected, $filtered_result);
 
-    	$expected = array('version_id'=> 1, 'id' => 100, 'title' => 'Record', 'body'=>'First Record');
+        $expected = array('version_id'=> 11, 'id' => 100, 'title' => 'Record', 'body'=>'First Record');
     	$filtered_result = array_intersect_key($result[1]['WikiPage'], $expected);
     	$this->assertEquals($expected, $filtered_result);
     }
