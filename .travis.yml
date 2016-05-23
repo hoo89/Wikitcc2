@@ -39,7 +39,7 @@ before_script:
         'prefix' => '',
         'encoding' => 'utf8',
      );
-  }" > app/Config/database.php
+    }" > app/Config/database.php
   - (cd app; composer install)
   - (./app/Console/cake schema -q create; exit 0)
 
