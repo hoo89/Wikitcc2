@@ -41,8 +41,8 @@ class Attachment extends AppModel {
 			return false;
 		}
 		if(!move_uploaded_file($this->data['Attachment']['attachment']['tmp_name'],$upload_file)){
-            unlink($this->data['Attachment']['attachment']['tmp_name']);
-            return false;
+			unlink($this->data['Attachment']['attachment']['tmp_name']);
+			return false;
         }
 		$thumb_dir = $this->createThumnail($upload_file);
 
