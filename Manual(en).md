@@ -1,6 +1,6 @@
 ### How to run
-* Install those packages $sudo apt-get install apache2 php5-mysql libapache2-mod-php5 php-pear mysql-server php5-gd
-* Install Text_Diff $pear install Text_Diff
+* Install those packages apache2 php5-mysql libapache2-mod-php5 php-pear mysql-server php5-gd
+* cd app; php composer.phar install
 * Confirm mods-rewrite enabled
 * DB setting
   - Configure app/Config/database.php (based on database.php.default)
