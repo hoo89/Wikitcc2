@@ -99,12 +99,8 @@ before_script:
       }
     }
     }" > app/Config/database.php
-<<<<<<< Updated upstream
   - (cd app; composer install)
-=======
-  - (cd app; composer install --no-dev)
   - yes|./app/Console/cake schema -q create
->>>>>>> Stashed changes
 
 script:
   - sh -c "./app/Console/cake test app all --stderr;"
