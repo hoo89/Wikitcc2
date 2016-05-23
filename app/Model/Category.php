@@ -20,12 +20,7 @@ class Category extends AppModel {
 		'order' => 'WikiPage.modified DESC'
 		)
 	);
-	public function beforeSave($options = array()) {
-		if (isset($this->data[$this->alias]['title'])) {
-			$this->data[$this->alias]['title']=h($this->data[$this->alias]['title']);
-		}
-		return true;
-	}
+
 	public function beforeDelete($options = array()){
 		$category = $this->findById($this->id);
 
