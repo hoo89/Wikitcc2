@@ -13,7 +13,7 @@ Ubuntu 14.04では以下のパッケージを導入することで動かせま�
 apache2 php5-fpm php5-mysql libapache2-mod-php5 php-pear mysql-server php5-gd php5-mcrypt
 ```
 
-また```php5enmod mcrypt```でmodを有効にする必要があることに注意します。
+また```php5enmod mcrypt```でmcrypt modを有効にする必要があることに注意します。
 
 Ubuntu 16.04では以下のパッケージを導入することで動かせます。
 ```
