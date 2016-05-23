@@ -1,5 +1,5 @@
 ### How to run
-* Install those packages apache2 php5-mysql libapache2-mod-php5 php-pear mysql-server php5-gd
+* Install those packages apache2 php5-fpm php5-mysql libapache2-mod-php5 php-pear mysql-server php5-gd php5-mcrypt
 * cd app; php composer.phar install
 * Confirm mods-rewrite enabled
 * DB setting
