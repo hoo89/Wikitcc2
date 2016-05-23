@@ -4,12 +4,12 @@
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
- * 
+ *
  * @copyright	Copyright (c) 2014, hoo89
  * @link		https://github.com/hoo89/Wikitcc2
  * @license		MIT License
  */
- 
+
 class Attachment extends AppModel {
 	public $validate = array(
 		'name' => array(
@@ -40,7 +40,10 @@ class Attachment extends AppModel {
 		if(file_exists($upload_file)){
 			return false;
 		}
-		move_uploaded_file($this->data['Attachment']['attachment']['tmp_name'],$upload_file);
+		if(!move_uploaded_file($this->data['Attachment']['attachment']['tmp_name'],$upload_file)){
+			unlink($this->data['Attachment']['attachment']['tmp_name']);
+			return false;
+		}
 		$thumb_dir = $this->createThumnail($upload_file);
 
 		$this->data[$this->alias]['dir'] = $upload_file;
