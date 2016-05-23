@@ -118,7 +118,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 
 		// if user is logout, show public pages
 		$results = $this->testAction('/wiki_pages/public_index',array('method' => 'get', 'return' => 'vars'));
-		debug($results);
+		//debug($results);
 
 		$expected = array(
 			'wikiPages' => array(
@@ -323,7 +323,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 		$this->login();
 		// if user is logged in, show all pages
         $results = $this->testAction('/wiki_pages/index',array('method' => 'get', 'return' => 'vars'));
-        debug($results);
+        //debug($results);
 		$expected = array(
 			'wikiPages' => array(
 				(int) 0 => array(
@@ -600,7 +600,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 		$this->logout();
 
         $results = $this->testAction('/wiki_pages/view/page2', array('return' => 'vars'));
-        debug($results);
+        //debug($results);
 		$expected = array(
 			'data' => array(
 				'WikiPage' => array(
@@ -670,7 +670,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 		);
 
 		$this->assertEquals($expected, $results);
-		debug($this->headers);
+		//debug($this->headers);
 
 		// if page is private and user is not logged in, redirect to users/login
 		$results = $this->testAction('/wiki_pages/view/page4',array('method' => 'get', 'return' => 'vars'));
@@ -704,7 +704,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 		$this->login();
 
 		$results = $this->testAction('/wiki_pages/add', array('method' => 'get', 'return' => 'vars'));
-		debug($results);
+		//debug($results);
 		$expected = array(
 			'content_title' => null,
 			'categoryList' => array(
@@ -773,7 +773,7 @@ class WikiPagesControllerTest extends ControllerTestCase {
 		);
 
 		$results = $this->testAction('/wiki_pages/add',array('data' => $page, 'return' => 'vars'));
-		debug($results);
+		//debug($results);
 		$expected = array(
 			'content_title' => null,
 			'categoryList' => array(
