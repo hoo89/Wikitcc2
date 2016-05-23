@@ -53,7 +53,7 @@
             すべてにチェックを入れたい時は一番上のチェックを押してください.<br />
         </div>
         <?php
-        echo $this->Form->create('WikiPage', array('action' => 'changePagesCategory'));
+        echo $this->Form->create('WikiPage', array('url' => 'changePagesCategory'));
         echo $this->Form->select('category_id', $categoryList, array('empty' => '------','class'=>'edit'));
         echo $this->Form->submit('カテゴリーを変更する',array('class'=>'btn btn-sm btn-primary edit'));
         }?>
