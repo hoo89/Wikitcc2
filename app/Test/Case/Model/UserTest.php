@@ -41,7 +41,7 @@ class UserTest extends CakeTestCase {
  *
  * @return void
  */
-    public function testSave(){
+	public function testSave(){
 		Configure::write('Security.salt', 'aaaaa');
 
 		$sample = array(
@@ -51,10 +51,10 @@ class UserTest extends CakeTestCase {
 			'modified' => '2016-05-21 21:44:13'
 		);
 
-    	$this->User->create();
-    	$result = $this->User->save($sample);
+		$this->User->create();
+		$result = $this->User->save($sample);
 
-    	$expected = array(
+		$expected = array(
 			'User' => 	array(
 						'id' => '1',
 						'username' => 's',
@@ -63,10 +63,10 @@ class UserTest extends CakeTestCase {
 						'created' => '2016-05-21 21:44:13',
 						'modified' => '2016-05-21 21:44:13'
 			)
-    	);
+		);
 
 		// Confirm the sample user is created.
-    	$this->assertEquals($expected, $result);
+		$this->assertEquals($expected, $result);
 
 		$this->User->set('username', 'modified');
 		$result = $this->User->save();
@@ -100,29 +100,29 @@ class UserTest extends CakeTestCase {
 		// Confirm the sample user is created.
 		$this->assertEquals($expected2, $result);
 
-        // Same username is not allowed.
-    	$this->User->create();
-    	$result = $this->User->save($sample2);
-    	$this->assertEquals(false, $result);
+		// Same username is not allowed.
+		$this->User->create();
+		$result = $this->User->save($sample2);
+		$this->assertEquals(false, $result);
 
 		// Empty username is not allowed.
-    	$this->User->create();
+		$this->User->create();
 		$sample['username']='';
 		$result = $this->User->save($sample);
-    	$this->assertEquals(false, $result);
+		$this->assertEquals(false, $result);
 
 		// The password needs 4 length at least.
 		$this->User->create();
 		$sample['username']='s2';
 		$sample['password']='aaa';
 		$result = $this->User->save($sample);
-    	$this->assertEquals(false, $result);
+		$this->assertEquals(false, $result);
 
 		// Invalid username is not allowed.
 		$this->User->create();
 		$sample['username']='/a';
 		$result = $this->User->save($sample);
 		$this->assertEquals(false, $result);
-    }
+	}
 
 }
