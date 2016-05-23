@@ -74,7 +74,7 @@ class WikiPagesController extends AppController {
 	 */
 	public function public_index() {
 		if($this->Auth->loggedIn()){
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 
 		$this->paginate['conditions'] = array('WikiPage.is_public' => true);
