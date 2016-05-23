@@ -13,7 +13,7 @@
 class Attachment extends AppModel {
 	public $validate = array(
 		'name' => array(
-			array('rule' => 'notEmpty'),
+			array('rule' => 'notBlank'),
 			array('rule' => 'isUnique','message' => '既にそのファイル名のファイルが存在するようです.別のファイル名を指定してください.')
 			)
 		);
