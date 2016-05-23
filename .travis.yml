@@ -18,7 +18,7 @@ before_script:
   - set +H
   - echo "<?php
     class DATABASE_CONFIG {
-      public $default = array(
+      public \$default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
         'host' => '0.0.0.0',
@@ -29,7 +29,7 @@ before_script:
         'encoding' => 'utf8',
      );
 
-    public $test = array(
+    public \$test = array(
       'datasource' => 'Database/Mysql',
         'persistent' => false,
         'host' => '0.0.0.0',
