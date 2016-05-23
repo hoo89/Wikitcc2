@@ -3,8 +3,8 @@
     "require": {
         "cakephp/cakephp": "2.8.*",
         "pear-pear.php.net/Text_Diff": ">=1.2.1",
-        "slywalker/boost_cake": "*",
-        "cakedc/search": "*"
+        "slywalker/boost_cake": "1.0.*",
+        "cakedc/search": "2.5.*"
 
     },
     "require-dev": {
