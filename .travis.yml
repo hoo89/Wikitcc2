@@ -100,7 +100,7 @@ before_script:
     }
     }" > app/Config/database.php
   - (cd app; composer install)
-  - ./app/Console/cake schema -q create
+  - (./app/Console/cake schema -q create; exit 0)
 
 script:
   - sh -c "./app/Console/cake test app all --stderr;"
