@@ -1,6 +1,8 @@
 Wikitcc2
 ==========
 
+[![Build Status](https://travis-ci.org/hoo89/Wikitcc2.svg?branch=master)](https://travis-ci.org/hoo89/Wikitcc2)
+
 CakePHPで動くWikiクローンです.
 ある先輩が作成したWikitccというWikiクローンの後継を目指し開発を行いました。
 
@@ -24,17 +26,16 @@ Wiki clone powered by CakePHP.
 php5 + CakePHPが動くDB
 
 #### 依存ライブラリ
-* Text_Diff(http://pear.php.net/package/Text_Diff)
 * GD(http://www.php.net/manual/ja/book.image.php)
 
 ### 動作方法
-HowToRun.md参照
+Manual.md参照
 
 ### ライセンス
 私のライセンスが明記してあるものはMIT Licenseで公開します。
 また、 app/View フォルダ内にある私が書いたものについてはパブリックドメインで公開します。
 
-Copyright(c) 2013-2014 hoo89 http://hoo89.hatenablog.com/ hoo89@me.com
+Copyright(c) 2013-2016 hoo89 http://hoo89.hatenablog.com/ hoo89@me.com
 
 
 bokkoさんに敬意を込めて.
