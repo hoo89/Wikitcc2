@@ -9,7 +9,7 @@ env:
 before_script:
   - sudo locale-gen en_US.UTF-8
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cake_db;'; fi"
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cake_db_test;'; fi""
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cake_db_test;'; fi"
   - mkdir -p ./app/tmp/cache/models ./app/tmp/cache/persistent ./app/webroot/files/attachment
   - chmod -R 777 ./app/tmp ./app/webroot/files/attachment
   - sh -c "if [ '$PHPCS' = '1' ]; then pear channel-discover pear.cakephp.org; fi"
