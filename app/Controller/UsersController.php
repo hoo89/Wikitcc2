@@ -11,13 +11,15 @@
  */
 
 class UsersController extends AppController {
+
 	public $scaffold;
+
 	public $components = array(
 		'Auth' => array(
 			'authenticate' => array(
 				'Form' => array(
 					'passwordHasher' => 'Simple',
-					'fields' => array('username','password')
+					'fields' => array('username', 'password')
 				)
 			)
 	));
@@ -27,7 +29,7 @@ class UsersController extends AppController {
 		$this->Auth->allow('login');
 	}
 
-	public function isAuthorized($user){
+	public function isAuthorized($user) {
 		if($this->action === 'logout'){
 			return parent::isAuthorized();
 		}
@@ -41,7 +43,7 @@ class UsersController extends AppController {
 				$this->Session->write('name', $this->Auth->user('username'));
 				$this->redirect($this->Auth->redirectUrl());
 			} else {
-				$this->Session->setFlash('ユーザ名かパスワードが間違っています.','alert/danger');
+				$this->Session->setFlash('ユーザ名かパスワードが間違っています.', 'alert/danger');
 				$this->redirect(array('action' => 'login'));
 			}
 		}else{
