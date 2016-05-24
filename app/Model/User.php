@@ -12,6 +12,12 @@
 
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
+
+/**
+ * バリデーションルール
+ *
+ * @var array
+ */
 	public $validate = array(
 		'username' => array(
 			'least1' => array(
@@ -31,6 +37,12 @@ class User extends AppModel {
 		)
 	);
 
+/**
+ * 保存前にパスワードをハッシュ化する
+ *
+ * @param array $options
+ * @return bool
+ */
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
 			$passwordHasher = new SimplePasswordHasher();
