@@ -32,6 +32,12 @@ App::uses('Controller', 'Controller');
  */
 
 class AppController extends Controller {
+
+/**
+ * Default Helpers
+ *
+ * @var array
+ */
 	public $helpers = array(
 		'Session',
 		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
@@ -39,6 +45,12 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 		'Nav'
 	);
+
+/**
+ * Default Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'Session',
 		'Auth' => array(
@@ -48,6 +60,13 @@ class AppController extends Controller {
 		)
 	);
 
+/**
+ * Check if the user is authorized.
+ * If the user is logged in, the user is always authorized.
+ *
+ * @param array|null $user
+ * @return bool
+ */
 	public function isAuthorized($user) {
 		if ($this->Auth->loggedIn()) {
 			return true;
